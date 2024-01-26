@@ -359,7 +359,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <NpcType>k__BackingField: 0
-  _itemType: 0
+  InteractionTable:
+  - Type: 0
+    OutcomeState: 3
+  - Type: 1
+    OutcomeState: 2
+  - Type: 2
+    OutcomeState: 2
+  - Type: 3
+    OutcomeState: 2
+  - Type: 4
+    OutcomeState: 1
 --- !u!114 &1663391891
 MonoBehaviour:
   m_ObjectHideFlags: 0

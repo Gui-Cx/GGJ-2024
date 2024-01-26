@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -20,7 +22,8 @@ public enum ITEM_TYPE //TODO : MOVE OUT OF HERE
     Flower,
     Ballon,
     Pie,
-    Hug
+    Hug,
+    Trumpet
 }
 
 public enum NPC_STATE
@@ -29,6 +32,13 @@ public enum NPC_STATE
     Satisfied,
     NotSatisfied,
     Dead
+}
+
+[Serializable]
+public struct ItemInteractionTable
+{
+    public ITEM_TYPE Type;
+    public NPC_STATE OutcomeState; 
 }
 
 /// <summary>
@@ -51,16 +61,25 @@ public class NPCBehaviourController : MonoBehaviour
 {
     #region SERIALIZED VARIABLES
     [field:SerializeField]public NPC_TYPES NpcType { get; private set; }
-    [SerializeField, InspectorName("Item Type")] private ITEM_TYPE _itemType;
+
+    //basically, each item is assigned an "outcome" in terms of NPC state. For example, an old guy will respond "satisfied" if handled with hug, disatisfied otherwise, and DEAD with red nose
+    //So we create a table here that associates each item to an "outcome state"
+    public ItemInteractionTable[] InteractionTable;
     #endregion
 
     #region VARIABLES
     private NPC_STATE _state;
+    private Dictionary<ITEM_TYPE, NPC_STATE> _itemInteractionDict; 
     #endregion
 
     private void Awake()
     {
         _state = NPC_STATE.Idle;
+        _itemInteractionDict = new Dictionary<ITEM_TYPE, NPC_STATE>();
+        foreach(var item in InteractionTable)
+        {
+            _itemInteractionDict[item.Type] = item.OutcomeState;
+        }
     }
 
     #region ITEM RELATED FUNCTIONS
@@ -83,19 +102,32 @@ public class NPCBehaviourController : MonoBehaviour
         _state = NPC_STATE.NotSatisfied;
     }
 
+    public void Dies()
+    {
+        Debug.Log("HE'S DEAD JOHN");
+    }
+
     /// <summary>
     /// Function that will handle the item that has been triggered on the 
     /// </summary>
     public void OnItemTriggered(ITEM_TYPE type)
     {
         Debug.Log("NPC " + this.gameObject.name + " : Item " + type + " APPLIED");
-        if (type == _itemType)
+        if(_itemInteractionDict.ContainsKey(type) && _itemInteractionDict[type] == NPC_STATE.Satisfied)
         {
             CorrectItemApplied();
         }
-        else
+        else if(_itemInteractionDict.ContainsKey(type) && _itemInteractionDict[type] == NPC_STATE.Dead)
+        {
+            Dies();
+        }
+        else if(_itemInteractionDict.ContainsKey(type) && _itemInteractionDict[type] == NPC_STATE.NotSatisfied)
         {
             IncorrectItemApplied();
+        }
+        else
+        {
+            Debug.Log("No state change : NPC remains idle");
         }
     }
     #endregion
