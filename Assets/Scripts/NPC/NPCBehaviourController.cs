@@ -34,13 +34,6 @@ public enum NPC_STATE
     Dead
 }
 
-[Serializable]
-public struct ItemInteractionTable
-{
-    public ITEM_TYPE Type;
-    public NPC_STATE OutcomeState; 
-}
-
 /// <summary>
 /// This script will handle the basic behaviours of the NPCs 
 /// Said behaviour :
@@ -60,23 +53,24 @@ public struct ItemInteractionTable
 public class NPCBehaviourController : MonoBehaviour
 {
     #region SERIALIZED VARIABLES
-    [field:SerializeField]public NPC_TYPES NpcType { get; private set; }
-
-    //basically, each item is assigned an "outcome" in terms of NPC state. For example, an old guy will respond "satisfied" if handled with hug, disatisfied otherwise, and DEAD with red nose
-    //So we create a table here that associates each item to an "outcome state"
-    public ItemInteractionTable[] InteractionTable;
+    [SerializeField, InspectorName("NPC Data")] private NPCTypeData _npcData;
     #endregion
 
     #region VARIABLES
     private NPC_STATE _state;
-    private Dictionary<ITEM_TYPE, NPC_STATE> _itemInteractionDict; 
+    private Dictionary<ITEM_TYPE, NPC_STATE> _itemInteractionDict;
     #endregion
+
+    private void OnValidate()
+    {
+        Assert.IsNotNull(_npcData);
+    }
 
     private void Awake()
     {
         _state = NPC_STATE.Idle;
         _itemInteractionDict = new Dictionary<ITEM_TYPE, NPC_STATE>();
-        foreach(var item in InteractionTable)
+        foreach(var item in _npcData.ItemInteractionTable)
         {
             _itemInteractionDict[item.Type] = item.OutcomeState;
         }
