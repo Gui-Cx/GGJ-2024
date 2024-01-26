@@ -53,24 +53,32 @@ public enum NPC_STATE
 public class NPCBehaviourController : MonoBehaviour
 {
     #region SERIALIZED VARIABLES
-    [SerializeField, InspectorName("NPC Data")] private NPCTypeData _npcData;
+    [SerializeField, InspectorName("Current NPC Data")] private NPCTypeData _curNpcData;
+    [SerializeField, InspectorName("Available NPC Data")] private NPCTypeData[] _availableNPCData;
     #endregion
 
     #region VARIABLES
+    private NPC_TYPES _type;
     private NPC_STATE _state;
     private Dictionary<ITEM_TYPE, NPC_STATE> _itemInteractionDict;
     #endregion
 
     private void OnValidate()
     {
-        Assert.IsNotNull(_npcData);
+        Assert.IsNotNull(_curNpcData);
     }
 
     private void Awake()
     {
         _state = NPC_STATE.Idle;
+        UpdateItemInteractionTable();
+    }
+
+    private void UpdateItemInteractionTable()
+    {
+        _type = _curNpcData.Type;
         _itemInteractionDict = new Dictionary<ITEM_TYPE, NPC_STATE>();
-        foreach(var item in _npcData.ItemInteractionTable)
+        foreach (var item in _curNpcData.ItemInteractionTable)
         {
             _itemInteractionDict[item.Type] = item.OutcomeState;
         }
@@ -81,6 +89,17 @@ public class NPCBehaviourController : MonoBehaviour
         Debug.Log("HE'S DEAD JOHN");
         gameObject.SetActive(false);
         NPCEvents.Instance.Event.Invoke(NPCGameEventType.Death);
+    }
+
+    /// <summary>
+    /// Function that will handle the switch of interaction table
+    /// </summary>
+    public void SwitchNPCData()
+    {
+        int rng = UnityEngine.Random.Range(0, _availableNPCData.Length);
+        _curNpcData = _availableNPCData[rng];
+        UpdateItemInteractionTable();
+        _state = NPC_STATE.Idle;
     }
 
 

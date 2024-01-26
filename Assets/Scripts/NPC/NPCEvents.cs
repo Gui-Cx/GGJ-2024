@@ -17,7 +17,7 @@ public class NPCEvents : MonoBehaviour
     /// <summary>
     /// Basis for the game events
     /// </summary>
-    public class NPCGameEvent : UnityEvent<NPCGameEventType>
+    public class NpcGameEvent : UnityEvent<NPCGameEventType>
     {
     }
 
@@ -36,10 +36,11 @@ public class NPCEvents : MonoBehaviour
     }
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         _instance = this;
-        Event = new NPCGameEvent();
+        Event = new NpcGameEvent();
     }
     #endregion
 
-    public NPCGameEvent Event;
+    public NpcGameEvent Event;
 }
