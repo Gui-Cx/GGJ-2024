@@ -76,6 +76,14 @@ public class NPCBehaviourController : MonoBehaviour
         }
     }
 
+    public void Dies()
+    {
+        Debug.Log("HE'S DEAD JOHN");
+        gameObject.SetActive(false);
+        NPCEvents.Instance.Event.Invoke(NPCGameEventType.Death);
+    }
+
+
     #region ITEM RELATED FUNCTIONS
     /// <summary>
     /// Function triggered (internally) when the correct item has been applied on the NPC
@@ -94,11 +102,6 @@ public class NPCBehaviourController : MonoBehaviour
     {
         Debug.Log("NPC " + this.gameObject.name + " : INCORRECT ITEM APPLIED");
         _state = NPC_STATE.NotSatisfied;
-    }
-
-    public void Dies()
-    {
-        Debug.Log("HE'S DEAD JOHN");
     }
 
     /// <summary>
