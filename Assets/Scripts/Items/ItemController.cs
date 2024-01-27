@@ -13,21 +13,28 @@ public class ItemController : MonoBehaviour
     private ContactFilter2D contactFilter2D;
 
     private ItemDataElement currentItem;
+
+    private Player player;
+    
     void Start()
     {
+        player = GetComponent<Player>();
         contactFilter2D.SetLayerMask(_npcMask);
     }
     public void OnItemUsed(ITEM_TYPE type){
         currentItem = GameManager.Instance.itemsData.ItemDataElements.First(item => item.Type == type);
         Vector2 positionVec2 = new Vector2(transform.position.x, transform.position.y);
+        Vector2 offset;
         switch (currentItem.UseType){
             case USE_TYPE.Circle:
                 Debug.LogFormat("Item type {0} triggered Circle", currentItem.Type);
-                castCircle(positionVec2+currentItem.UseOffset, currentItem.UseRange);
+                offset = positionVec2 + (player.isFacingRight ? 1 : -1) * currentItem.UseOffset;
+                castCircle(offset, currentItem.UseRange);
             break;
             case USE_TYPE.Ray:
                 Debug.LogFormat("Item type {0} triggered Ray", currentItem.Type);
-                castRay(currentItem.UseRange);
+                offset = positionVec2 + (player.isFacingRight ? 1 : -1) * currentItem.UseOffset;
+                castRay(offset, (player.isFacingRight ? Vector2.right : Vector2.left), currentItem.UseRange);
             break;
             case USE_TYPE.The_Pie:
                 Debug.LogFormat("Item type {0} triggered the Piiiie", currentItem.Type);
@@ -47,10 +54,10 @@ public class ItemController : MonoBehaviour
         }
     }
 
-    private void castRay(float range)
+    private void castRay(Vector2 start, Vector2 direction, float range)
     {
         List<RaycastHit2D> npcHit = new List<RaycastHit2D>();
-        if (Physics2D.Raycast(transform.position, transform.forward, contactFilter2D, npcHit, range) > 0)
+        if (Physics2D.Raycast(start, direction, contactFilter2D, npcHit, range) > 0)
         {
             foreach(RaycastHit2D npcHitIterator in npcHit)
             {
