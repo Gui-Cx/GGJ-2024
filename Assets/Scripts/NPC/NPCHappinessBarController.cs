@@ -25,10 +25,14 @@ public class NPCHappinessBarController : MonoBehaviour
     [SerializeField] private int _scoreIncrease=20;
     [SerializeField] private int _scoreDecrease=1;
 
+    [Header("Happiness AOE")]
+    [SerializeField] private GameObject _happinessAOE;
+
     private bool _happinessIsActive = false;
 
     private void OnValidate()
     {
+        Assert.IsNotNull(_happinessAOE);
         Assert.IsNotNull(_happinessBar);
     }
 
@@ -95,7 +99,10 @@ public class NPCHappinessBarController : MonoBehaviour
 
     private IEnumerator HappinessTimer()
     {
+        GameObject aoe = Instantiate(_happinessAOE);
+        aoe.transform.position = gameObject.transform.position;
         yield return new WaitForSeconds(_happinessTimer);
+        Destroy(aoe);
         _happinessIsActive = false;
         UpdateHappinessBarColor(Color.green);
         GetComponent<NPCBehaviourController>().SwitchState(NPC_STATE.Idle);
