@@ -100,12 +100,12 @@ public class NPCSpawnManager : MonoBehaviour
         yield return new WaitForSeconds(_spawnTimer);
         if(CurNPCNumber == MaxHospitalCapacity)
         {
-            Debug.Log("Spawn Manager : Stopping NPC spawn coroutine due to max capacity reached");
+            //Debug.Log("Spawn Manager : Stopping NPC spawn coroutine due to max capacity reached");
             yield return null;
         }
         else
         {
-            Debug.Log("Spawn Manager : Attempting to spawn a new npc");
+            //Debug.Log("Spawn Manager : Attempting to spawn a new npc");
             if (AttemptNPCSpawn())
             {
                 SpawnNewNPC();
@@ -132,7 +132,7 @@ public class NPCSpawnManager : MonoBehaviour
     /// </summary>
     private void SpawnNewNPC()
     {
-        Debug.Log("Spawn Manager : Spawning new NPC");
+        //Debug.Log("Spawn Manager : Spawning new NPC");
         //selecting a valid spawn point :
         List<Transform> availableSpawnPoints = new List<Transform>();
         foreach(var spawnpoint in _spawnPointsOccupationDict)
@@ -179,7 +179,7 @@ public class NPCSpawnManager : MonoBehaviour
 
     private void OnNPCDeath(NPCGameEventArg arg)
     {
-        Debug.Log("Spawn Manager : NPC is dead, updating curNPCNumber values");
+        //Debug.Log("Spawn Manager : NPC is dead, updating curNPCNumber values");
         CurNPCNumber--;
         _spawnPointsOccupationDict[arg.Npc.GetComponent<NPCBehaviourController>().SpawnPoint] = false;
         StopAllCoroutines();

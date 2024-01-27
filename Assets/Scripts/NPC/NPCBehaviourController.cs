@@ -100,6 +100,7 @@ public class NPCBehaviourController : MonoBehaviour
         Debug.Log("HE'S DEAD JOHN");
         _state = NPC_STATE.Dead;
         gameObject.SetActive(false); //TODO : PROBABLY CHANGE THAT
+        GameManager.Instance.UpdateNumberOfDeadClients();
         NPCEvents.Instance.Event.Invoke(new NPCGameEventArg() { Npc=gameObject, Type=NPCGameEventType.Death});
     }
 
@@ -118,7 +119,7 @@ public class NPCBehaviourController : MonoBehaviour
     {
         _state = state;
         _symbolController.UpdateSymbolItem(_wantedItem);
-        Debug.Log("NPC " + this.gameObject.name + " : Switching back to state : " + _state);
+        //Debug.Log("NPC " + this.gameObject.name + " : Switching back to state : " + _state);
         if(_state == NPC_STATE.Idle) 
         {
             _symbolController.DisplaySymbol();
@@ -142,6 +143,7 @@ public class NPCBehaviourController : MonoBehaviour
         SwitchState(NPC_STATE.Satisfied);
         _happinessBarController.ActivateHappinessTime();
         _symbolController.HideSymbolDuringHappinessTime();
+        GameManager.Instance.UpdateNumberOfSatisfiedClients();
         SwitchNPCData();
         Debug.Log("NPC " + this.gameObject.name + " : CORRECT ITEM APPLIED | State : "+_state+" and switching data");
     }
@@ -152,6 +154,7 @@ public class NPCBehaviourController : MonoBehaviour
     public void IncorrectItemApplied()
     {
         Debug.Log("NPC " + this.gameObject.name + " : INCORRECT ITEM APPLIED");
+        GameManager.Instance.UpdateNumberOfNotAmusedClients();
         SwitchState(NPC_STATE.NotSatisfied);
         StartCoroutine(NotSatisfiedTimer());
     }
@@ -161,7 +164,6 @@ public class NPCBehaviourController : MonoBehaviour
     /// </summary>
     public void OnItemTriggered(ITEM_TYPE type)
     {
-        Debug.Log("NPC " + this.gameObject.name + " : Item " + type + " APPLIED");
         if(_itemInteractionDict.ContainsKey(type) && _itemInteractionDict[type] == NPC_STATE.Satisfied)
         {
             CorrectItemApplied();
