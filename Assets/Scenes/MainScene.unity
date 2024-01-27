@@ -5201,7 +5201,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 89875574516573383, guid: 22930868247a0bc41a7dce07b7b3c2a0, type: 3}
       propertyPath: speed
-      value: 150
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 896171388854043153, guid: 22930868247a0bc41a7dce07b7b3c2a0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5246,10 +5246,6 @@ PrefabInstance:
     - target: {fileID: 2034195104044351978, guid: 22930868247a0bc41a7dce07b7b3c2a0, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3978041052414680194, guid: 22930868247a0bc41a7dce07b7b3c2a0, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8673505464920307247, guid: 22930868247a0bc41a7dce07b7b3c2a0, type: 3}
       propertyPath: _interactableMask.m_Bits
