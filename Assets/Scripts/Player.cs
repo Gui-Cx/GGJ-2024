@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
 public class Player : MonoBehaviour
 {
+    public int speed = 0;
+    // public int maxVelocity = 0;
     // Left = -1; None = 0; Right = 1
     private int movementDirection = 0;
 
@@ -27,7 +30,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rigidbody2d.AddForce(Vector2.right*movementDirection);
+    }
+
+    void FixedUpdate()
+    {
+        rigidbody2d.AddForce(Vector2.right*movementDirection*speed);
     }
     
     void OnGrab(InputValue context)
