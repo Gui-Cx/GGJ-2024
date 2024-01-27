@@ -5275,13 +5275,29 @@ PrefabInstance:
       propertyPath: speed
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 163296808455324742, guid: 22930868247a0bc41a7dce07b7b3c2a0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1111738978, guid: 5e680cce78097914586b3091f4a10333, type: 3}
+    - target: {fileID: 163296808455324742, guid: 22930868247a0bc41a7dce07b7b3c2a0, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 163296808455324742, guid: 22930868247a0bc41a7dce07b7b3c2a0, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 163296808455324742, guid: 22930868247a0bc41a7dce07b7b3c2a0, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 896171388854043153, guid: 22930868247a0bc41a7dce07b7b3c2a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 896171388854043153, guid: 22930868247a0bc41a7dce07b7b3c2a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.98
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 896171388854043153, guid: 22930868247a0bc41a7dce07b7b3c2a0, type: 3}
       propertyPath: m_LocalPosition.z
