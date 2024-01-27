@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Grab",
+                    "name": "UseItem",
                     "type": "Button",
                     "id": "bd5df2c1-5e40-4488-98f6-16eb3b0955b1",
                     "expectedControlType": "Button",
@@ -149,7 +149,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Grab",
+                    "action": "UseItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

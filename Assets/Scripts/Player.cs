@@ -6,6 +6,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using static UnityEditor.Progress;
+using Random = System.Random;
 
 enum PlayerState
 {
@@ -25,20 +27,25 @@ public class Player : MonoBehaviour
     private Rigidbody2D rigidbody2d;
     private Interactor interactor;
     // Start is called before the first frame update
+    private ItemController itemController;
     PlayerState currentState;
     ElevatorLocomotion currentElevator;
+    Animator animator;
+
+    ITEM_TYPE currentItem;
+
+    public bool IsBoostedByHappinessAOE=false;
+
+    bool isFacingRight=true;
 
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         interactor = GetComponent<Interactor>();
         currentState = PlayerState.Idle;
+        animator = GetComponent<Animator>();
+        itemController = GetComponent<ItemController>();
     }    
-    
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -47,6 +54,13 @@ public class Player : MonoBehaviour
         {
             case PlayerState.Idle:
                 rigidbody2d.AddForce(speed*Vector2.right * movementDirection);
+                if (movementDirection != 0)
+                {
+                    animator.SetBool("isMoving", true);
+                    if (movementDirection > 0 && !isFacingRight) Flip();
+                    if (movementDirection < 0 && isFacingRight) Flip();
+                }
+                else animator.SetBool("isMoving", false);
                 break;
             case PlayerState.InElevator:
                 transform.position = currentElevator.transform.position;
@@ -55,16 +69,25 @@ public class Player : MonoBehaviour
                 break;
         }
     }
-    
-    void OnGrab(InputValue context)
+
+    void Flip()
     {
-        Debug.LogFormat("Cx : A pressed, Grab");
+        gameObject.GetComponent<SpriteRenderer>().flipX = !gameObject.GetComponent<SpriteRenderer>().flipX;
+        isFacingRight=!isFacingRight;
+    }
+    
+    void OnUseItem(InputValue context)
+    {
+        SetCurrentItem(ITEM_TYPE.Hug);
+        Debug.LogFormat("Cx : UseItem");
+        
     }
 
     void OnInteract(InputValue context)
     {
-        Debug.LogFormat("Cx : E pressed, Interact");
+        Debug.LogFormat("Cx : Interact");
         if (interactor.currentInteractable != null) interactor.currentInteractable.Interact(interactor);
+        
     }
 
     void OnMove(InputValue context)
@@ -108,6 +131,38 @@ public class Player : MonoBehaviour
             else transform.position += new Vector3(1f, 0, 0);
             rigidbody2d.simulated = true;
             currentElevator.QuitElevator();
+        }
+    }
+
+    public void SetCurrentItem(ITEM_TYPE item)
+    {
+        currentItem = item;
+        switch (currentItem)
+        {
+            case ITEM_TYPE.Hug:
+                animator.SetTrigger("GetPlush");
+                break;
+            case ITEM_TYPE.Trumpet:
+                animator.SetTrigger("GetTrumpet");
+                break;
+            case ITEM_TYPE.RedNose:
+                animator.SetTrigger("GetRedNose");
+                break;
+            case ITEM_TYPE.Flower:
+                animator.SetTrigger("GetFlower");
+                break;
+            case ITEM_TYPE.Gun:
+                animator.SetTrigger("GetGun");
+                break;
+            case ITEM_TYPE.Ballon:
+                animator.SetTrigger("GetBallon");
+                break;
+            case ITEM_TYPE.Pie:
+                animator.SetTrigger("GetPie");
+                break;
+            default:
+                animator.SetTrigger("GetEmpty");
+                break;
         }
     }
 }
