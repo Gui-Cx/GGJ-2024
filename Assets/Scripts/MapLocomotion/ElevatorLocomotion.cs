@@ -17,17 +17,27 @@ public class ElevatorLocomotion : MonoBehaviour
     private void Start()
     {
         currentEmpty = startEmptyElevator;
-        spriteDownArrow.enabled = false;
-        spriteUpArrow.enabled = false;
+        DisplayArrows(false);
     }
     public void MoveToEmptyElevator(EmptyElevator target)
     {
         isMoving = true;
-        spriteUpArrow.enabled = false;
-        spriteDownArrow.enabled = false;
+        DisplayArrows(false);
         StartCoroutine(StartMoving(target));
     }
 
+    void DisplayArrows(bool isDisplay)
+    {
+        if (isDisplay)
+        {
+            if (currentEmpty.upNeighbor != null) spriteUpArrow.enabled = true;
+            if (currentEmpty.downNeighbor != null) spriteDownArrow.enabled = true;
+        }
+        else {
+            spriteUpArrow.enabled = false;
+            spriteDownArrow.enabled = false;
+        }
+    }
     private IEnumerator StartMoving(EmptyElevator target)
     {
         Vector3 startingPos = transform.position;
@@ -45,6 +55,7 @@ public class ElevatorLocomotion : MonoBehaviour
     {
         currentEmpty = target;
         isMoving = false;
+        if (playerIsIn) DisplayArrows(true);
     }
 
     public void UseElevator(bool goUp)
@@ -63,8 +74,7 @@ public class ElevatorLocomotion : MonoBehaviour
         Debug.Log("enter elevator");
         playerIsIn = true;
         player.EnterInElevator(this);
-        if (currentEmpty.upNeighbor != null) spriteUpArrow.enabled = true;
-        if (currentEmpty.downNeighbor != null) spriteDownArrow.enabled = true;
+        DisplayArrows(true);
 
         
     }
@@ -73,8 +83,7 @@ public class ElevatorLocomotion : MonoBehaviour
     {
         Debug.Log("quit elevator");
         playerIsIn = false;
-        spriteUpArrow.enabled = false;
-        spriteDownArrow.enabled = false;
+        DisplayArrows(false);
 
     }
 
