@@ -683,6 +683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLevel: 20
   _curLevel: 0
+  _happinessThreshold: 10
   _barDownUpdateTimer: 1
   _happinessBar: {fileID: 1754726675}
 --- !u!1 &1754726675
@@ -787,6 +788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63622c87379e35c40ae86315aafb4ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fillImage: {fileID: 111243329}
 --- !u!1 &1762557464
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class HappinessBarModule : MonoBehaviour
 {
+    [SerializeField] private Image _fillImage;
     private Slider _slider;
 
     private void Awake()
@@ -22,5 +23,9 @@ public class HappinessBarModule : MonoBehaviour
     public void SetHappinessValue(int val)
     {
         _slider.value = val;
+    }
+    public void ChangeFillColor(Color color)
+    {
+        _fillImage.color = color;
     }
 }

@@ -9,8 +9,9 @@ using UnityEngine.Assertions;
 public class NPCHappinessBarController : MonoBehaviour
 {
     [Header("Happiness Bar values")]
-    [SerializeField] private int _maxLevel = 500;
+    [SerializeField] private int _maxLevel = 20;
     [SerializeField] private int _curLevel;
+    [SerializeField] private int _happinessThreshold = 10; //at this point, the patient will start to emit sadness
 
     [Header("Timer values")]
     [SerializeField] private float _barDownUpdateTimer=1f;
@@ -29,6 +30,7 @@ public class NPCHappinessBarController : MonoBehaviour
         _barModule = _happinessBar.GetComponent<HappinessBarModule>();
         _curLevel = _maxLevel;
         _barModule.SetMaxHappiness(_maxLevel);
+        UpdateHappinessBarColor(Color.green);
         StartCoroutine(BarDownUpdate());
     }
 
@@ -40,6 +42,12 @@ public class NPCHappinessBarController : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         _curLevel--;
+        if (_curLevel < _happinessThreshold)
+        {
+            Debug.Log("NPC : " + gameObject.name + " IS SAD");
+            //TODO : Do something here to "emit sadness"
+            UpdateHappinessBarColor(Color.red);
+        }
         if( _curLevel <= 0)
         {
             _curLevel = 0;
@@ -52,6 +60,11 @@ public class NPCHappinessBarController : MonoBehaviour
     private void UpdateVisualHappinessBar()
     {
         _barModule.SetHappinessValue(_curLevel);
+    }
+
+    private void UpdateHappinessBarColor(Color color)
+    {
+        _barModule.ChangeFillColor(color);
     }
 
 
