@@ -171,6 +171,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2476318361396702263, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
+      propertyPath: elevator
+      value: 
+      objectReference: {fileID: 2147002060}
+    - target: {fileID: 2476318361396702263, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
+      propertyPath: upNeighbor
+      value: 
+      objectReference: {fileID: 1040949549}
+    - target: {fileID: 2476318361396702263, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
+      propertyPath: downNeighbor
+      value: 
+      objectReference: {fileID: 1991920116}
     - target: {fileID: 8186230665463920497, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
       propertyPath: m_Name
       value: EmptyElevator
@@ -228,6 +240,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6184596249335772412, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
+      propertyPath: startEmptyElevator
+      value: 
+      objectReference: {fileID: 1326309264}
     - target: {fileID: 8056579825344954253, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
       propertyPath: m_Name
       value: Elevator
@@ -237,6 +253,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
+--- !u!114 &1040949549 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2476318361396702263, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
+  m_PrefabInstance: {fileID: 1198654315}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94528cc4d48769346b3b68ee1a5a4c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1101343733
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,6 +276,7 @@ GameObject:
   - component: {fileID: 1101343736}
   - component: {fileID: 1101343735}
   - component: {fileID: 1101343734}
+  - component: {fileID: 1101343738}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -395,6 +423,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1101343738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101343733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c445515ba88e64dab2073f78d1fa7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionPoint: {fileID: 1101343737}
+  _interactionRadius: 1
+  _interactableMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1001 &1198654315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -443,6 +488,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2476318361396702263, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
+      propertyPath: elevator
+      value: 
+      objectReference: {fileID: 2147002060}
+    - target: {fileID: 2476318361396702263, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
+      propertyPath: downNeighbor
+      value: 
+      objectReference: {fileID: 1326309264}
     - target: {fileID: 8186230665463920497, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
       propertyPath: m_Name
       value: EmptyElevator (1)
@@ -498,6 +551,17 @@ Transform:
   - {fileID: 1862823619}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1326309264 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2476318361396702263, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
+  m_PrefabInstance: {fileID: 506947539}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94528cc4d48769346b3b68ee1a5a4c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1440784276
 GameObject:
   m_ObjectHideFlags: 0
@@ -3490,6 +3554,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2476318361396702263, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
+      propertyPath: elevator
+      value: 
+      objectReference: {fileID: 2147002060}
+    - target: {fileID: 2476318361396702263, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
+      propertyPath: upNeighbor
+      value: 
+      objectReference: {fileID: 1326309264}
     - target: {fileID: 8186230665463920497, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
       propertyPath: m_Name
       value: EmptyElevator (2)
@@ -4932,6 +5004,28 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1991920116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2476318361396702263, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
+  m_PrefabInstance: {fileID: 1807942736}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94528cc4d48769346b3b68ee1a5a4c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2147002060 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6184596249335772412, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
+  m_PrefabInstance: {fileID: 522106875}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 366909ddb807428479336321f0dd453d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

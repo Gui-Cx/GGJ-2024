@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class EmptyElevator : MonoBehaviour,IInteractable
 {
-    [SerializeField]ElevatorLocomotion elevator;
+    [SerializeField] ElevatorLocomotion elevator;
+    [SerializeField] public EmptyElevator upNeighbor;
+    [SerializeField] public EmptyElevator downNeighbor;
     public bool Interact(Interactor interactor)
     {
         Debug.Log("appel elevator");
         if (elevator.currentEmpty == this)
         {
             Debug.Log("use elevator");
+            if (!elevator.isMoving) elevator.PlayerEnter();
         }
         else
         {

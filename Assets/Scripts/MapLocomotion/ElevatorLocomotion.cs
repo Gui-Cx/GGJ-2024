@@ -6,14 +6,19 @@ using UnityEngine;
 
 public class ElevatorLocomotion : MonoBehaviour
 {
-    [SerializeField] float timing;
+    [SerializeField] float timing = 3f;
     public EmptyElevator currentEmpty;
     [SerializeField] EmptyElevator startEmptyElevator;
     public bool isMoving;
+    bool playerIsIn;
+    [SerializeField] SpriteRenderer spriteUpArrow;
+    [SerializeField] SpriteRenderer spriteDownArrow;
 
     private void Start()
     {
         currentEmpty = startEmptyElevator;
+        spriteDownArrow.enabled = false;
+        spriteUpArrow.enabled = false;
     }
 
     private void Update()
@@ -23,18 +28,18 @@ public class ElevatorLocomotion : MonoBehaviour
     public void MoveToEmptyElevator(EmptyElevator target)
     {
         isMoving = true;
-        StartCoroutine(SmoothLerp(target, 3f));
+        StartCoroutine(SmoothLerp(target));
     }
 
 
-    private IEnumerator SmoothLerp(EmptyElevator target, float time)
+    private IEnumerator SmoothLerp(EmptyElevator target)
     {
         Vector3 startingPos = transform.position;
         Vector3 finalPos = target.transform.position;
         float elapsedTime = 0;
-        while (elapsedTime < time)
+        while (elapsedTime < timing)
         {
-            transform.position = Vector3.Lerp(startingPos, finalPos, (elapsedTime / time));
+            transform.position = Vector3.Lerp(startingPos, finalPos, (elapsedTime / timing));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -47,5 +52,28 @@ public class ElevatorLocomotion : MonoBehaviour
         currentEmpty = target;
         isMoving = false;
     }
+
+    public void UseElevator(bool goUp)
+    {
+        Debug.Log("use");
+        spriteUpArrow.enabled = false;
+        spriteDownArrow.enabled = false;
+        if (goUp) ArriveToDestination(currentEmpty.upNeighbor);
+        else ArriveToDestination(currentEmpty.downNeighbor);
+    }
+
+    public void PlayerEnter()
+    {
+        if (currentEmpty.upNeighbor != null) spriteUpArrow.enabled = true;
+        if (currentEmpty.downNeighbor != null) spriteDownArrow.enabled = true;
+    }
+
+    void QuitElevator()
+    {
+        spriteUpArrow.enabled = false;
+        spriteDownArrow.enabled = false;
+        Debug.Log("quit");
+    }
+
 }
 
