@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
             case PlayerState.InElevator:
                 transform.position = currentElevator.transform.position;
                 if (movementDirection != 0) { TryQuitElevator(movementDirection); }
-                if (verticalMovementDirection != 0) { TryUseElevator(movementDirection); }
+                if (verticalMovementDirection != 0) { TryUseElevator(verticalMovementDirection); }
                 break;
         }
         print(verticalMovementDirection);
