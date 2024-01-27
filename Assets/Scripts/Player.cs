@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using static UnityEditor.Progress;
 
 enum PlayerState
 {
@@ -28,6 +29,8 @@ public class Player : MonoBehaviour
     PlayerState currentState;
     ElevatorLocomotion currentElevator;
     Animator animator;
+
+    ITEM_TYPE currentItem;
 
     void Awake()
     {
@@ -62,6 +65,7 @@ public class Player : MonoBehaviour
     void OnGrab(InputValue context)
     {
         Debug.LogFormat("Cx : A pressed, Grab");
+        SetCurrentItem(ITEM_TYPE.Hug);
     }
 
     void OnInteract(InputValue context)
@@ -111,6 +115,21 @@ public class Player : MonoBehaviour
             else transform.position += new Vector3(1f, 0, 0);
             rigidbody2d.simulated = true;
             currentElevator.QuitElevator();
+        }
+    }
+
+
+    void SetCurrentItem(ITEM_TYPE item)
+    {
+        currentItem = item;
+        switch (currentItem)
+        {
+            case ITEM_TYPE.Hug:
+                animator.SetTrigger("GetPlush");
+                break;
+            default:
+                animator.SetTrigger("GetEmpty");
+                break;
         }
     }
 }
