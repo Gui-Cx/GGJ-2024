@@ -75,5 +75,9 @@ public class ElevatorLocomotion : MonoBehaviour
         Debug.Log("quit");
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("pouet");
+    }
 }
 
