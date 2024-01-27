@@ -656,7 +656,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cec9030699b3b7a499bac0b0c38be498, type: 2}
   - {fileID: 11400000, guid: d6f6de9cd125f4547b3afc1348c3ee39, type: 2}
   - {fileID: 11400000, guid: 54c3c3c7c6c8da9448fccd82df1a466f, type: 2}
+  _movementData: {fileID: 11400000, guid: 52ee7f33621f5c2478a227b13e6968e7, type: 2}
   _state: 0
+  _anim: {fileID: 6784153524069042179}
   SpawnPoint: {fileID: 0}
 --- !u!114 &5244143766612524366
 MonoBehaviour:
@@ -679,7 +681,7 @@ MonoBehaviour:
   _scoreIncrease: 20
   _scoreDecrease: 1
   _happinessAOE: {fileID: 3532436184711353229, guid: 213443cbf3bd43a4082f1bf5c27c099a, type: 3}
-  animator: {fileID: 6784153524069042179}
+  _anim: {fileID: 6784153524069042179}
 --- !u!114 &7761431413581048324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -709,6 +711,7 @@ MonoBehaviour:
   ActivateItem: 0
   SwitchData: 0
   SwitchStateToSatisfied: 0
+  MakeMovingNPC: 0
 --- !u!61 &8593301969145467838
 BoxCollider2D:
   m_ObjectHideFlags: 0
