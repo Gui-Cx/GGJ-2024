@@ -44,7 +44,7 @@ public class ElevatorLocomotion : MonoBehaviour
 
     private void Update()
     {
-        //print(currentEmpty.upNeighbor);
+        print(isMoving);
     }
 
     private void ArriveToDestination(EmptyElevator target)
