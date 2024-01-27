@@ -41,12 +41,6 @@ public class ElevatorLocomotion : MonoBehaviour
         }
         ArriveToDestination(target);      
     }
-
-    private void Update()
-    {
-        print(isMoving);
-    }
-
     private void ArriveToDestination(EmptyElevator target)
     {
         currentEmpty = target;

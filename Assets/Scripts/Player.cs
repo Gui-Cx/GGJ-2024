@@ -54,7 +54,6 @@ public class Player : MonoBehaviour
                 if (verticalMovementDirection != 0) { TryUseElevator(verticalMovementDirection); }
                 break;
         }
-        print(verticalMovementDirection);
     }
     
     void OnGrab(InputValue context)
