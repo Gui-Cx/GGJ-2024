@@ -51,3 +51,4 @@ MonoBehaviour:
   _numSatisfiedClients: 0
   _numDeadClients: 0
   _numNotAmusedClients: 0
+  itemsData: {fileID: 11400000, guid: 6fdbdb6e0a573554098dcfd3e8e34eaa, type: 2}
