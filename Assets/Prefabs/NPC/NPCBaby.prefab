@@ -556,7 +556,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.1726718, a: 1}
+  m_Color: {r: 0, g: 0.80438423, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 7761431413581048324}
   - component: {fileID: 5239786256614605535}
   m_Layer: 0
-  m_Name: NPCOld
+  m_Name: NPCBaby
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -628,11 +628,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a55d200e5e886e84ebfaf734e593a887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _curNpcData: {fileID: 11400000, guid: e52a2a34442731148a7c942050812ad5, type: 2}
+  _curNpcData: {fileID: 11400000, guid: cec9030699b3b7a499bac0b0c38be498, type: 2}
   _availableNPCData:
-  - {fileID: 11400000, guid: e52a2a34442731148a7c942050812ad5, type: 2}
-  - {fileID: 11400000, guid: 102c8ce422699ce46942acb40a8c627b, type: 2}
-  - {fileID: 11400000, guid: f8fcdce991dc4a84a95b1874d965e7ce, type: 2}
+  - {fileID: 11400000, guid: cec9030699b3b7a499bac0b0c38be498, type: 2}
+  - {fileID: 11400000, guid: d6f6de9cd125f4547b3afc1348c3ee39, type: 2}
+  - {fileID: 11400000, guid: 54c3c3c7c6c8da9448fccd82df1a466f, type: 2}
   _state: 0
   SpawnPoint: {fileID: 0}
 --- !u!114 &5244143766612524366

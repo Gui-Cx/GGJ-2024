@@ -14,22 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemDataElements>k__BackingField:
   - Name: RedNose
-    Symbol: {fileID: 21300000, guid: ccad2acf89da2de48b818e6e78dd1507, type: 3}
+    Symbol: {fileID: 21300000, guid: c1165d39ec8561540b6c8a394a584d9a, type: 3}
     Type: 0
   - Name: Flower
-    Symbol: {fileID: 21300000, guid: ccad2acf89da2de48b818e6e78dd1507, type: 3}
+    Symbol: {fileID: 21300000, guid: 194c837fecc075b4394e9792090d9a15, type: 3}
     Type: 1
   - Name: Ballon
-    Symbol: {fileID: 21300000, guid: ccad2acf89da2de48b818e6e78dd1507, type: 3}
+    Symbol: {fileID: 21300000, guid: 8c836f43d56ad1d49b03f46c41887f9f, type: 3}
     Type: 2
   - Name: Pie
-    Symbol: {fileID: 21300000, guid: ccad2acf89da2de48b818e6e78dd1507, type: 3}
+    Symbol: {fileID: 21300000, guid: eb4b37f33eca969409997648d267bd58, type: 3}
     Type: 3
   - Name: Hug
-    Symbol: {fileID: 21300000, guid: ccad2acf89da2de48b818e6e78dd1507, type: 3}
+    Symbol: {fileID: 21300000, guid: a64abea97b95152469b8413e1d9acd45, type: 3}
     Type: 4
   - Name: Trumpet
-    Symbol: {fileID: 21300000, guid: ccad2acf89da2de48b818e6e78dd1507, type: 3}
+    Symbol: {fileID: 21300000, guid: 1a246bae3a1031249b9196a9fd75de26, type: 3}
     Type: 5
   - Name: Gun
     Symbol: {fileID: 21300000, guid: ccad2acf89da2de48b818e6e78dd1507, type: 3}
