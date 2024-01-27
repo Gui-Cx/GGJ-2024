@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c1c519eb302084d80525db5ce1a19c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 80
+  speed: 30
 --- !u!114 &3436095440098622070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,4 +220,4 @@ MonoBehaviour:
   _interactionRadius: 1
   _interactableMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
