@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using static UnityEditor.Progress;
+using Random = System.Random;
 
 enum PlayerState
 {
@@ -65,7 +66,13 @@ public class Player : MonoBehaviour
     void OnGrab(InputValue context)
     {
         Debug.LogFormat("Cx : A pressed, Grab");
-        SetCurrentItem(ITEM_TYPE.Hug);
+        //TO TEST ANIMATION
+        /*
+        Array values = Enum.GetValues(typeof(ITEM_TYPE));
+        Random random = new Random();
+        ITEM_TYPE randomBar = (ITEM_TYPE)values.GetValue(random.Next(values.Length));
+        SetCurrentItem(randomBar);*/
+
     }
 
     void OnInteract(InputValue context)
@@ -118,7 +125,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
     void SetCurrentItem(ITEM_TYPE item)
     {
         currentItem = item;
@@ -126,6 +132,24 @@ public class Player : MonoBehaviour
         {
             case ITEM_TYPE.Hug:
                 animator.SetTrigger("GetPlush");
+                break;
+            case ITEM_TYPE.Trumpet:
+                animator.SetTrigger("GetTrumpet");
+                break;
+            case ITEM_TYPE.RedNose:
+                animator.SetTrigger("GetRedNose");
+                break;
+            case ITEM_TYPE.Flower:
+                animator.SetTrigger("GetFlower");
+                break;
+            case ITEM_TYPE.Gun:
+                animator.SetTrigger("GetGun");
+                break;
+            case ITEM_TYPE.Ballon:
+                animator.SetTrigger("GetBallon");
+                break;
+            case ITEM_TYPE.Pie:
+                animator.SetTrigger("GetPie");
                 break;
             default:
                 animator.SetTrigger("GetEmpty");
