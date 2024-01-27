@@ -73,7 +73,7 @@ public class NPCBehaviourController : MonoBehaviour
 
     private void Start()
     {
-        _state = NPC_STATE.Idle;
+        SwitchState(NPC_STATE.Idle);
         UpdateItemInteractionTable();
     }
 
@@ -117,7 +117,12 @@ public class NPCBehaviourController : MonoBehaviour
     public void SwitchState(NPC_STATE state)
     {
         _state = state;
+        _symbolController.UpdateSymbolItem(_wantedItem);
         Debug.Log("NPC " + this.gameObject.name + " : Switching back to state : " + _state);
+        if(_state == NPC_STATE.Idle) 
+        {
+            _symbolController.DisplaySymbol();
+        }
     }
 
     private IEnumerator NotSatisfiedTimer()
@@ -136,6 +141,7 @@ public class NPCBehaviourController : MonoBehaviour
     {
         SwitchState(NPC_STATE.Satisfied);
         _happinessBarController.ActivateHappinessTime();
+        _symbolController.HideSymbolDuringHappinessTime();
         SwitchNPCData();
         Debug.Log("NPC " + this.gameObject.name + " : CORRECT ITEM APPLIED | State : "+_state+" and switching data");
     }

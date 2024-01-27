@@ -30,4 +30,17 @@ public class NPCSymbolController : MonoBehaviour
     {
         _symbolModule.DisplaySymbol(type);
     }
+
+    /// <summary>
+    /// Hide the symbol during the happiness timer, called by NPCBehaviourController
+    /// </summary>
+    public void HideSymbolDuringHappinessTime()
+    {
+        _symbol.SetActive(false);
+    }
+
+    public void DisplaySymbol()
+    {
+        _symbol.SetActive(true);
+    }
 }
