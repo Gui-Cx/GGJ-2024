@@ -27,18 +27,15 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     PlayerState currentState;
     ElevatorLocomotion currentElevator;
+    Animator animator;
 
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         interactor = GetComponent<Interactor>();
         currentState = PlayerState.Idle;
+        animator = GetComponent<Animator>();
     }    
-    
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -47,6 +44,12 @@ public class Player : MonoBehaviour
         {
             case PlayerState.Idle:
                 rigidbody2d.AddForce(speed*Vector2.right * movementDirection);
+                if (movementDirection != 0)
+                {
+                    animator.SetBool("isMoving", true);
+                    transform.localScale =new Vector3(movementDirection, 1,0);
+                }
+                else animator.SetBool("isMoving", false);
                 break;
             case PlayerState.InElevator:
                 transform.position = currentElevator.transform.position;
