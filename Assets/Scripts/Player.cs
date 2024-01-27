@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using static UnityEditor.Progress;
+using JetBrains.Annotations;
 
 enum PlayerState
 {
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rigidbody2d;
     private Interactor interactor;
     // Start is called before the first frame update
+    private ItemController itemController;
     PlayerState currentState;
     ElevatorLocomotion currentElevator;
     Animator animator;
@@ -38,6 +40,7 @@ public class Player : MonoBehaviour
         interactor = GetComponent<Interactor>();
         currentState = PlayerState.Idle;
         animator = GetComponent<Animator>();
+        itemController = GetComponent<ItemController>();
     }    
 
     // Update is called once per frame
@@ -62,16 +65,18 @@ public class Player : MonoBehaviour
         }
     }
     
-    void OnGrab(InputValue context)
+    void OnUseItem(InputValue context)
     {
-        Debug.LogFormat("Cx : A pressed, Grab");
         SetCurrentItem(ITEM_TYPE.Hug);
+        Debug.LogFormat("Cx : UseItem");
+        
     }
 
     void OnInteract(InputValue context)
     {
-        Debug.LogFormat("Cx : E pressed, Interact");
+        Debug.LogFormat("Cx : Interact");
         if (interactor.currentInteractable != null) interactor.currentInteractable.Interact(interactor);
+        
     }
 
     void OnMove(InputValue context)
