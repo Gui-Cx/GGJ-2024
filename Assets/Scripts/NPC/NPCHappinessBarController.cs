@@ -30,6 +30,9 @@ public class NPCHappinessBarController : MonoBehaviour
 
     private bool _happinessIsActive = false;
 
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
+
     private void OnValidate()
     {
         Assert.IsNotNull(_happinessAOE);
@@ -95,6 +98,7 @@ public class NPCHappinessBarController : MonoBehaviour
         UpdateHappinessBarColor(Color.yellow);
         UpdateVisualHappinessBar();
         StartCoroutine(HappinessTimer());
+        animator.SetTrigger("Laught");
     }
 
     private IEnumerator HappinessTimer()
