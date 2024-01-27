@@ -13,6 +13,8 @@ public class ItemController : MonoBehaviour
     private ContactFilter2D contactFilter2D;
 
     private ItemDataElement currentItem;
+
+    [SerializeField] GameObject pie;
     void Start()
     {
         contactFilter2D.SetLayerMask(_npcMask);
@@ -31,8 +33,14 @@ public class ItemController : MonoBehaviour
             break;
             case USE_TYPE.The_Pie:
                 Debug.LogFormat("Item type {0} triggered the Piiiie", currentItem.Type);
+                ThrowPie();
             break;
         }
+    }
+
+    private void ThrowPie()
+    {
+        Instantiate(pie, transform.position, Quaternion.identity);
     }
     
     private void castCircle(Vector2 position, float radius)
