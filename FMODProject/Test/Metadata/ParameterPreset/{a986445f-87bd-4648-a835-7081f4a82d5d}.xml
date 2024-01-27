@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{a986445f-87bd-4648-a835-7081f4a82d5d}">
+		<property name="name">
+			<value>Triggre</value>
+		</property>
+		<relationship name="folder">
+			<destination>{607eadd3-6cd3-4d61-8534-e1a7b41c1828}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{743b6c06-a875-49be-98f3-80c89b920e48}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{743b6c06-a875-49be-98f3-80c89b920e48}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
