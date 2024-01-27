@@ -8,6 +8,7 @@ public class NPCDebug : MonoBehaviour
     public bool ActivateItem;
     public bool SwitchData;
     public bool SwitchStateToSatisfied;
+    public bool MakeMovingNPC;
 
     private void Update()
     {
@@ -20,6 +21,11 @@ public class NPCDebug : MonoBehaviour
         {
             SwitchData = false;
             GetComponent<NPCBehaviourController>().SwitchNPCData();
+        }
+        if(MakeMovingNPC)
+        {
+            MakeMovingNPC = false;
+            GetComponent<NPCBehaviourController>().MakeMovingNPC();
         }
     }
 }

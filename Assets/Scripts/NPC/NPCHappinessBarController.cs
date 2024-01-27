@@ -31,7 +31,7 @@ public class NPCHappinessBarController : MonoBehaviour
     private bool _happinessIsActive = false;
 
     [Header("Animation")]
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator _anim;
 
     private void OnValidate()
     {
@@ -61,7 +61,7 @@ public class NPCHappinessBarController : MonoBehaviour
         }
         if (_curLevel < _happinessThreshold)
         {
-            Debug.Log("NPC : " + gameObject.name + " IS SAD");
+            //Debug.Log("NPC : " + gameObject.name + " IS SAD");
             //TODO : Do something here to "emit sadness"
             GameManager.Instance.DecreaseScore(_scoreDecrease); //we decrease (each seconds) the score by the score decrease 
             UpdateHappinessBarColor(Color.red);
@@ -98,7 +98,7 @@ public class NPCHappinessBarController : MonoBehaviour
         UpdateHappinessBarColor(Color.yellow);
         UpdateVisualHappinessBar();
         StartCoroutine(HappinessTimer());
-        animator.SetTrigger("Laught");
+        _anim.SetTrigger("Laugth");
     }
 
     private IEnumerator HappinessTimer()

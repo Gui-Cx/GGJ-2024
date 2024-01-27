@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager.UI;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -43,9 +44,10 @@ public enum NPC_STATE
 [RequireComponent(typeof(NPCHappinessBarController))]
 public class NPCBehaviourController : MonoBehaviour
 {
-    #region SERIALIZED VARIABLES
+    #region DATA VARIABLES
     [SerializeField, InspectorName("Current NPC Data")] private NPCTypeData _curNpcData;
     [SerializeField, InspectorName("Available NPC Data")] private NPCTypeData[] _availableNPCData;
+    [SerializeField,InspectorName("NPC Movement Data")] private NPCMovementData _movementData;
     #endregion
 
     #region VARIABLES
@@ -54,6 +56,10 @@ public class NPCBehaviourController : MonoBehaviour
     private Dictionary<ITEM_TYPE, NPC_STATE> _itemInteractionDict;
     private NPCHappinessBarController _happinessBarController;
     private NPCSymbolController _symbolController;
+    private NPCMovementController _movementController;
+
+    [Header("Animation")]
+    [SerializeField] private Animator _anim;
 
     private ITEM_TYPE _wantedItem;
 
@@ -63,6 +69,7 @@ public class NPCBehaviourController : MonoBehaviour
     private void OnValidate()
     {
         Assert.IsNotNull(_curNpcData);
+        Assert.IsNotNull(_movementData);
     }
 
     private void Awake()
@@ -182,6 +189,19 @@ public class NPCBehaviourController : MonoBehaviour
         {
             Debug.Log("No state change : NPC remains idle");
         }
+    }
+    #endregion
+
+    #region MOVEMENT RELATED FUNCTIONS
+
+    /// <summary>
+    /// Function that will render that NPC a moving one. To be certain, it should be called immediately after spawn.
+    /// Should only be called by the spawner
+    /// </summary>
+    public void MakeMovingNPC()
+    {
+        _movementController = gameObject.AddComponent<NPCMovementController>();
+        _movementController.InitializeData(_movementData, _anim);
     }
     #endregion
 }

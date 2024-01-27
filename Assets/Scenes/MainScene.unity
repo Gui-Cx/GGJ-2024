@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 167259820}
   - component: {fileID: 167259819}
   - component: {fileID: 167259818}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ColliderTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
