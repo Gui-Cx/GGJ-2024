@@ -653,6 +653,8 @@ MonoBehaviour:
   _barDownUpdateTimer: 1
   _happinessTimer: 5
   _happinessBar: {fileID: 6771110061281526966}
+  _scoreIncrease: 20
+  _scoreDecrease: 1
 --- !u!114 &7761431413581048324
 MonoBehaviour:
   m_ObjectHideFlags: 0
