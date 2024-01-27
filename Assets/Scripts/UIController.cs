@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Script that will handle the basic game UI
@@ -23,7 +24,6 @@ public class UIController : MonoBehaviour
     }
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         _instance = this;
     }
     #endregion
@@ -71,5 +71,15 @@ public class UIController : MonoBehaviour
     public void UpdateEndScore(int scoreValue, int numSatisfiedClients, int numNotAmusedClients, int numDeadClients)
     {
         _endScoreText.text = "Score : "+scoreValue.ToString() + '\n'+"Number of Satisfied Clients : "+numSatisfiedClients.ToString()+'\n'+"Not Amused Clients : "+numNotAmusedClients.ToString()+'\n'+"Number of Dead Clients : "+numDeadClients;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
