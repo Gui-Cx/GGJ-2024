@@ -20,6 +20,7 @@ public class Interactor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         List<Collider2D> interactableColliders = new List<Collider2D>();
 
         if (Physics2D.OverlapCircle(new Vector2(_interactionPoint.position.x, _interactionPoint.position.y), _interactionRadius, interactableFilter, interactableColliders)>0)
@@ -28,13 +29,13 @@ public class Interactor : MonoBehaviour
             _collider.TryGetComponent(out currentInteractable);
         } else {
             currentInteractable = null;
-        }
+        }*/
 
-        // _collider = Physics2D.OverlapCircle(new Vector2(_interactionPoint.position.x, _interactionPoint.position.y), _interactionRadius, _interactableMask);
-        // if (_collider != null)
-        // {
-        //     _collider.TryGetComponent(out currentInteractable);
-        // }
+        _collider = Physics2D.OverlapCircle(new Vector2(_interactionPoint.position.x, _interactionPoint.position.y), _interactionRadius, _interactableMask);
+        if (_collider != null)
+        {
+            _collider.TryGetComponent(out currentInteractable);
+        }
     }
 
     public List<IInteractable> getInteractableNPCs()

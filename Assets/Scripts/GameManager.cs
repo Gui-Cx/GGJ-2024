@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _numDeadClients = 0;
     [SerializeField] private int _numNotAmusedClients = 0;
 
+    [SerializeField] public ItemsData itemsData;
+
     private int _curHour = 8;
 
     private void Start()

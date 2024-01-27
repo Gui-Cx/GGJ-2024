@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 3978041052414680194}
   - component: {fileID: 8673505464920307247}
   - component: {fileID: 3263945455789734995}
+  - component: {fileID: 6571301192094912758}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -165,6 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
+  IsBoostedByHappinessAOE: 0
 --- !u!114 &3436095440098622070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,3 +359,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6571301192094912758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034195104044351978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d213e8ed78da6b4eb2c70637dc1b506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _npcMask:
+    serializedVersion: 2
+    m_Bits: 128

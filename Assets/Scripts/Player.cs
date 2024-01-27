@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
                 if (verticalMovementDirection != 0) { TryUseElevator(verticalMovementDirection); }
                 break;
         }
+        print(interactor.currentInteractable);
     }
 
     void Flip()
@@ -78,9 +79,9 @@ public class Player : MonoBehaviour
     
     void OnUseItem(InputValue context)
     {
-        SetCurrentItem(ITEM_TYPE.Hug);
+        //SetCurrentItem(ITEM_TYPE.Hug);
         Debug.LogFormat("Cx : UseItem");
-        
+        itemController.OnItemUsed(currentItem);
     }
 
     void OnInteract(InputValue context)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -7,18 +8,19 @@ using UnityEngine.UIElements;
 public class ItemController : MonoBehaviour
 {
 
-    ItemDataElement currentItem;
-
     [SerializeField] LayerMask _npcMask;
 
     private ContactFilter2D contactFilter2D;
 
+    private ItemDataElement currentItem;
     void Awake()
     {
         ContactFilter2D contactFilter2D = new ContactFilter2D();
         contactFilter2D.SetLayerMask(_npcMask);
     }
-    public void OnItemUsed(){
+    public void OnItemUsed(ITEM_TYPE type){
+        currentItem = GameManager.Instance.itemsData.ItemDataElements.First(item => item.Type == type);
+
         Vector2 positionVec2 = new Vector2(transform.position.x, transform.position.y);
         switch (currentItem.UseType){
             case USE_TYPE.Circle:
