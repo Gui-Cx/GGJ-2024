@@ -20,19 +20,15 @@ public class ElevatorLocomotion : MonoBehaviour
         spriteDownArrow.enabled = false;
         spriteUpArrow.enabled = false;
     }
-
-    private void Update()
-    {
-        //print(isMoving);
-    }
     public void MoveToEmptyElevator(EmptyElevator target)
     {
         isMoving = true;
-        StartCoroutine(SmoothLerp(target));
+        spriteUpArrow.enabled = false;
+        spriteDownArrow.enabled = false;
+        StartCoroutine(StartMoving(target));
     }
 
-
-    private IEnumerator SmoothLerp(EmptyElevator target)
+    private IEnumerator StartMoving(EmptyElevator target)
     {
         Vector3 startingPos = transform.position;
         Vector3 finalPos = target.transform.position;
@@ -43,8 +39,12 @@ public class ElevatorLocomotion : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        ArriveToDestination(target);
-        
+        ArriveToDestination(target);      
+    }
+
+    private void Update()
+    {
+        //print(currentEmpty.upNeighbor);
     }
 
     private void ArriveToDestination(EmptyElevator target)
@@ -56,30 +56,40 @@ public class ElevatorLocomotion : MonoBehaviour
     public void UseElevator(bool goUp)
     {
         Debug.Log("use");
-        spriteUpArrow.enabled = false;
-        spriteDownArrow.enabled = false;
-        if (goUp) ArriveToDestination(currentEmpty.upNeighbor);
-        else ArriveToDestination(currentEmpty.downNeighbor);
+        if (goUp) {
+            if (currentEmpty.upNeighbor != null)MoveToEmptyElevator(currentEmpty.upNeighbor);
+        }
+        else { 
+            if (currentEmpty.downNeighbor != null) MoveToEmptyElevator(currentEmpty.downNeighbor); 
+        }
     }
 
-    public void PlayerEnter()
+    public void PlayerEnter(Player player)
     {
+        Debug.Log("enter elevator");
         playerIsIn = true;
+        player.EnterInElevator(this);
         if (currentEmpty.upNeighbor != null) spriteUpArrow.enabled = true;
         if (currentEmpty.downNeighbor != null) spriteDownArrow.enabled = true;
+
+        
     }
 
-    void QuitElevator()
+    public void QuitElevator()
     {
+        Debug.Log("quit elevator");
         playerIsIn = false;
         spriteUpArrow.enabled = false;
         spriteDownArrow.enabled = false;
-        Debug.Log("quit");
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Player>()) { PlayerEnter(); print("Enter in Elevator"); }
+        if (!playerIsIn && !isMoving && collision.gameObject.GetComponent<Player>()) { 
+            PlayerEnter(collision.gameObject.GetComponent<Player>()); 
+            print("Enter in Elevator"); 
+        }
     }
 }
 
