@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
 
     ITEM_TYPE currentItem;
 
+    public bool IsBoostedByHappinessAOE=false;
+
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
