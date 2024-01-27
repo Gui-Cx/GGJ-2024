@@ -61,10 +61,10 @@ public class ItemController : MonoBehaviour
 
     private void sendMessageToNPCHit(Collider2D npcHit)
     {
-        NPCBehaviourController npcBehaviourController;
-        if (npcHit.TryGetComponent<NPCBehaviourController>(out npcBehaviourController))
+        NPCItemHandler npcItemHandler;
+        if (npcHit.TryGetComponent<NPCItemHandler>(out npcItemHandler))
         {
-            npcBehaviourController.OnItemTriggered(currentItem.Type);
+            npcItemHandler.OnItemTriggered(currentItem.Type);
         }
     }
 }

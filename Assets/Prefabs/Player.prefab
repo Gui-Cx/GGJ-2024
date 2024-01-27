@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 8673505464920307247}
   - component: {fileID: 3263945455789734995}
   - component: {fileID: 6571301192094912758}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
+  currentItem: 0
   IsBoostedByHappinessAOE: 0
 --- !u!114 &3436095440098622070
 MonoBehaviour:

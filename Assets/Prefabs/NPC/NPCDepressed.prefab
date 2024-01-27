@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3891907108609728720}
   - component: {fileID: 314306714898452504}
   - component: {fileID: 2022009031357086577}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6147365390786530731}
   - component: {fileID: 5235005329269136619}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: Symbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 7359807851349978434}
   - component: {fileID: 6287088060705551859}
   - component: {fileID: 2160295434155717888}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 5683639722781667945}
   - component: {fileID: 7770832343102074976}
   - component: {fileID: 5482102078571345651}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: 6514794700608886433}
   - component: {fileID: 4621041862317011686}
   - component: {fileID: 3818399914201690269}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 8680033973502371305}
   - component: {fileID: 4370968889115533964}
   - component: {fileID: 955897301640608484}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 1348015550499723368}
   - component: {fileID: 4182065881607462284}
   - component: {fileID: 4510668516772850941}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: HappinessBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,7 +723,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -737,7 +737,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.0070822835}
