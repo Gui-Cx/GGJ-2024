@@ -95,7 +95,6 @@ public class NPCSpawnManager : MonoBehaviour
     /// <summary>
     /// Main coroutine that will handle the spawn of an npc
     /// </summary>
-    /// <returns></returns>
     private IEnumerator SpawnTimer()
     {
         yield return new WaitForSeconds(_spawnTimer);
@@ -143,10 +142,15 @@ public class NPCSpawnManager : MonoBehaviour
                 availableSpawnPoints.Add(spawnpoint.Key);
             }
         }
+        if(availableSpawnPoints.Count == 0)
+        {
+            return;
+        }
         Transform selectedSpawnPoint = SelectSpawnPoint(availableSpawnPoints);
         //selecting npc to spawn :
         GameObject newNpc = Instantiate(SelectNPC());
         newNpc.transform.position = selectedSpawnPoint.transform.position;
+        newNpc.GetComponent<NPCBehaviourController>().SpawnPoint = selectedSpawnPoint;
         //updating dict values :
         CurNPCNumber++;
         _spawnPointsOccupationDict[selectedSpawnPoint] = true;
@@ -162,19 +166,24 @@ public class NPCSpawnManager : MonoBehaviour
         return _availableNPC[Random.Range(0, _availableNPC.Length)];
     }
 
-    private void OnEventReceived(NPCGameEventType type)
+    #region DEATH OF NPC FUNCTIONS
+    private void OnEventReceived(NPCGameEventArg arg)
     {
-        switch (type)
+        switch (arg.Type)
         {
             case NPCGameEventType.Death:
-                OnNPCDeath();
+                OnNPCDeath(arg);
                 break;
         }
     }
 
-    private void OnNPCDeath()
+    private void OnNPCDeath(NPCGameEventArg arg)
     {
         Debug.Log("Spawn Manager : NPC is dead, updating curNPCNumber values");
         CurNPCNumber--;
+        _spawnPointsOccupationDict[arg.Npc.GetComponent<NPCBehaviourController>().SpawnPoint] = false;
+        StopAllCoroutines();
+        StartCoroutine(SpawnTimer());
     }
+    #endregion
 }
