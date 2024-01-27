@@ -157,7 +157,6 @@ public class NPCSpawnManager : MonoBehaviour
         newNpc.GetComponent<NPCBehaviourController>().SpawnPoint = selectedSpawnPoint;
         //updating dict values :
         CurNPCNumber++;
-        Debug.Log("cur num npc: " + CurNPCNumber);
         _spawnPointsOccupationDict[selectedSpawnPoint] = true;
     }
 

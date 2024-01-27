@@ -91,15 +91,11 @@ public class GameManager : MonoBehaviour
     #region SCORE FUNCTIONS
     public void IncreaseScore(int value)
     {
-        Debug.Log("INCREASING SCORE with value : "+value);
         _curScore += value;
-        Debug.Log("New score : "+_curScore+" | Resulting of calculus : "+(_curScore+value));
     }
     public void DecreaseScore(int value)
     {
-        Debug.Log("DECREASING SCORE with value : " + value);
         _curScore -= value;
-        Debug.Log("New score : " + _curScore + " | Resulting of calculus : " + (_curScore-value));
     }
     /// <summary>
     /// Updates the number of clients that reach their happiness time.
