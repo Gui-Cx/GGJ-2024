@@ -9,11 +9,10 @@ public class EmptyElevator : MonoBehaviour,IInteractable
     [SerializeField] public EmptyElevator downNeighbor;
     public bool Interact(Interactor interactor)
     {
-        Debug.Log("appel elevator");
-        if (elevator.currentEmpty != this)
+        if (elevator.currentEmpty != this && !elevator.isMoving)
         {
             Debug.Log("call elevator");
-        if (!elevator.isMoving) elevator.MoveToEmptyElevator(this);
+            elevator.MoveToEmptyElevator(this);
         }
         return true;
     }

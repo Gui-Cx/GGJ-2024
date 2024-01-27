@@ -64,6 +64,8 @@ public class NPCBehaviourController : MonoBehaviour
     [SerializeField] private NPC_STATE _state;
     private Dictionary<ITEM_TYPE, NPC_STATE> _itemInteractionDict;
     private NPCHappinessBarController _happinessBarController;
+
+    [HideInInspector] public Transform SpawnPoint;
     #endregion
 
     private void OnValidate()
@@ -93,7 +95,7 @@ public class NPCBehaviourController : MonoBehaviour
         Debug.Log("HE'S DEAD JOHN");
         _state = NPC_STATE.Dead;
         gameObject.SetActive(false); //TODO : PROBABLY CHANGE THAT
-        NPCEvents.Instance.Event.Invoke(NPCGameEventType.Death);
+        NPCEvents.Instance.Event.Invoke(new NPCGameEventArg() { Npc=gameObject, Type=NPCGameEventType.Death});
     }
 
     /// <summary>
