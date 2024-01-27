@@ -1,13 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class MainClown : MonoBehaviour
 {
-    public double horizontalSpeed = 0;
+    // Left = -1; None = 0; Right = 1
+    private int movementDirection = 0;
     
+    private Rigidbody2D rigidbody2d;
     // Start is called before the first frame update
+    void Awake()
+    {
+        rigidbody2d = GetComponent<Rigidbody2D>();
+    }    
+    
     void Start()
     {
         
@@ -16,12 +25,12 @@ public class MainClown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        rigidbody2d.AddForce(Vector2.right*movementDirection);
     }
 
     void OnMove(InputValue context)
     {
         Debug.LogFormat("Cx : Direction is {0}", context.Get<float>());
-        horizontalSpeed = context.Get<float>();   
+        movementDirection = (int)Math.Round(context.Get<float>());
     }
 }
