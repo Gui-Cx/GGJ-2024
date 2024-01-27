@@ -19,7 +19,6 @@ public class HappinessBarModule : MonoBehaviour
         _slider.maxValue = val;
         _slider.value = val;
     }
-
     public void SetHappinessValue(int val)
     {
         _slider.value = val;

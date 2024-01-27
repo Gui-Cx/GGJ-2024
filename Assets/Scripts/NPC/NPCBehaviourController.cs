@@ -23,7 +23,8 @@ public enum ITEM_TYPE //TODO : MOVE OUT OF HERE
     Ballon,
     Pie,
     Hug,
-    Trumpet
+    Trumpet,
+    Gun
 }
 
 public enum NPC_STATE

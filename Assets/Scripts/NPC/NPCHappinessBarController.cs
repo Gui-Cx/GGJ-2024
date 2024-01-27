@@ -32,11 +32,6 @@ public class NPCHappinessBarController : MonoBehaviour
         StartCoroutine(BarDownUpdate());
     }
 
-    private void Update()
-    {
-        Debug.Log("NPC : " + gameObject.name + " : Happiness Bar : " + _curLevel);
-    }
-
     /// <summary>
     /// Function that will reduce the bar every bar down update timer
     /// </summary>
@@ -49,6 +44,7 @@ public class NPCHappinessBarController : MonoBehaviour
         {
             _curLevel = 0;
         }
+        Debug.Log("NPC : " + gameObject.name + " : Happiness Bar : " + _curLevel);
         UpdateVisualHappinessBar();
         StartCoroutine(BarDownUpdate());
     }
