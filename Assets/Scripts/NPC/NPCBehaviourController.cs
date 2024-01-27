@@ -145,7 +145,7 @@ public class NPCBehaviourController : MonoBehaviour
         _symbolController.HideSymbolDuringHappinessTime();
         GameManager.Instance.UpdateNumberOfSatisfiedClients();
         SwitchNPCData();
-        Debug.Log("NPC " + this.gameObject.name + " : CORRECT ITEM APPLIED | State : "+_state+" and switching data");
+        //Debug.Log("NPC " + this.gameObject.name + " : CORRECT ITEM APPLIED | State : "+_state+" and switching data");
     }
 
     /// <summary>
@@ -153,7 +153,7 @@ public class NPCBehaviourController : MonoBehaviour
     /// </summary>
     public void IncorrectItemApplied()
     {
-        Debug.Log("NPC " + this.gameObject.name + " : INCORRECT ITEM APPLIED");
+        //Debug.Log("NPC " + this.gameObject.name + " : INCORRECT ITEM APPLIED");
         GameManager.Instance.UpdateNumberOfNotAmusedClients();
         SwitchState(NPC_STATE.NotSatisfied);
         StartCoroutine(NotSatisfiedTimer());

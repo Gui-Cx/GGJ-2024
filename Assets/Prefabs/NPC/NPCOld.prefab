@@ -655,6 +655,7 @@ MonoBehaviour:
   _happinessBar: {fileID: 6771110061281526966}
   _scoreIncrease: 20
   _scoreDecrease: 1
+  _happinessAOE: {fileID: 3532436184711353229, guid: 213443cbf3bd43a4082f1bf5c27c099a, type: 3}
 --- !u!114 &7761431413581048324
 MonoBehaviour:
   m_ObjectHideFlags: 0
