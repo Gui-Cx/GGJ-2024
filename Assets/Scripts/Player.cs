@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
 
     ITEM_TYPE currentItem;
 
+    bool isFacingRight=true;
+
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -51,7 +53,8 @@ public class Player : MonoBehaviour
                 if (movementDirection != 0)
                 {
                     animator.SetBool("isMoving", true);
-                    transform.localScale =new Vector3(movementDirection, 1,0);
+                    if (movementDirection > 0 && !isFacingRight) Flip();
+                    if (movementDirection < 0 && isFacingRight) Flip();
                 }
                 else animator.SetBool("isMoving", false);
                 break;
@@ -61,6 +64,12 @@ public class Player : MonoBehaviour
                 if (verticalMovementDirection != 0) { TryUseElevator(verticalMovementDirection); }
                 break;
         }
+    }
+
+    void Flip()
+    {
+        gameObject.GetComponent<SpriteRenderer>().flipX = !gameObject.GetComponent<SpriteRenderer>().flipX;
+        isFacingRight=!isFacingRight;
     }
     
     void OnGrab(InputValue context)
