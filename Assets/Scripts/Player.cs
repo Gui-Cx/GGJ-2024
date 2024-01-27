@@ -66,12 +66,6 @@ public class Player : MonoBehaviour
     void OnGrab(InputValue context)
     {
         Debug.LogFormat("Cx : A pressed, Grab");
-        //TO TEST ANIMATION
-        /*
-        Array values = Enum.GetValues(typeof(ITEM_TYPE));
-        Random random = new Random();
-        ITEM_TYPE randomBar = (ITEM_TYPE)values.GetValue(random.Next(values.Length));
-        SetCurrentItem(randomBar);*/
 
     }
 

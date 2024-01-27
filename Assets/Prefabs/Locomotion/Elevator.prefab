@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8401749230908125560}
   - component: {fileID: 7125428114592347918}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Triangle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6186489595717601464}
   - component: {fileID: 7228769638350841779}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 6322486140813019400}
   - component: {fileID: 6184596249335772412}
   - component: {fileID: 7452760407281712383}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Elevator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 6.4691353}
+  m_Offset: {x: 0.027729154, y: 9.907543}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -317,5 +317,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 13.938271}
+  m_Size: {x: 1.6544063, y: 22.367916}
   m_EdgeRadius: 0

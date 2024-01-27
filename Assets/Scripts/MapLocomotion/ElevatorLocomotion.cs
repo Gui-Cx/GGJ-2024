@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
-public class ElevatorLocomotion : MonoBehaviour
+public class ElevatorLocomotion : MonoBehaviour, IInteractable
 {
     [SerializeField] float timing;
     public EmptyElevator currentEmpty;
@@ -16,7 +17,7 @@ public class ElevatorLocomotion : MonoBehaviour
 
     private void Start()
     {
-        currentEmpty = startEmptyElevator;
+        SetCurrentEmpty(startEmptyElevator);
         DisplayArrows(false);
     }
     public void MoveToEmptyElevator(EmptyElevator target)
@@ -53,9 +54,17 @@ public class ElevatorLocomotion : MonoBehaviour
     }
     private void ArriveToDestination(EmptyElevator target)
     {
-        currentEmpty = target;
+        SetCurrentEmpty(target);
         isMoving = false;
         if (playerIsIn) DisplayArrows(true);
+    }
+
+
+    public void SetCurrentEmpty(EmptyElevator target)
+    {
+        if(currentEmpty) currentEmpty.collider.enabled = true;
+        target.collider.enabled = false;
+        currentEmpty = target;
     }
 
     public void UseElevator(bool goUp)
@@ -85,12 +94,15 @@ public class ElevatorLocomotion : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public bool Interact(Interactor interactor)
     {
-        if (!playerIsIn && !isMoving && collision.gameObject.GetComponent<Player>()) { 
-            PlayerEnter(collision.gameObject.GetComponent<Player>()); 
-            print("Enter in Elevator"); 
+        if (!playerIsIn && !isMoving )
+        {
+            PlayerEnter(interactor.gameObject.GetComponent<Player>());
+            print("Enter in Elevator");
+            return true;
         }
+        return false;
     }
 }
 
