@@ -7,6 +7,7 @@ public class NPCDebug : MonoBehaviour
     public ITEM_TYPE Type;
     public bool ActivateItem;
     public bool SwitchData;
+    public bool SwitchStateToSatisfied;
 
     private void Update()
     {

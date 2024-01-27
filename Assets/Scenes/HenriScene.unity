@@ -652,8 +652,8 @@ MonoBehaviour:
   _curNpcData: {fileID: 11400000, guid: e52a2a34442731148a7c942050812ad5, type: 2}
   _availableNPCData:
   - {fileID: 11400000, guid: e52a2a34442731148a7c942050812ad5, type: 2}
-  - {fileID: 11400000, guid: e137400c35a5c5342bc1b065f0c02c6c, type: 2}
-  - {fileID: 11400000, guid: d05e96ada7d51794cbb6b598efb96131, type: 2}
+  - {fileID: 11400000, guid: 102c8ce422699ce46942acb40a8c627b, type: 2}
+  - {fileID: 11400000, guid: f8fcdce991dc4a84a95b1874d965e7ce, type: 2}
 --- !u!114 &1663391891
 MonoBehaviour:
   m_ObjectHideFlags: 0

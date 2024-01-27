@@ -15,10 +15,13 @@ public class NPCHappinessBarController : MonoBehaviour
 
     [Header("Timer values")]
     [SerializeField] private float _barDownUpdateTimer=1f;
+    [SerializeField] private float _happinessTimer = 5f; //the timer during which the NPC will be "happy" and its happiness bar will no longer go down
 
     [Header("Happiness Bar elements")]
     [SerializeField] private GameObject _happinessBar;
     private HappinessBarModule _barModule;
+
+    private bool _happinessIsActive = false;
 
     private void OnValidate()
     {
@@ -41,7 +44,10 @@ public class NPCHappinessBarController : MonoBehaviour
     private IEnumerator BarDownUpdate()
     {
         yield return new WaitForSeconds(1f);
-        _curLevel--;
+        if (!_happinessIsActive)
+        {
+            _curLevel--;
+        }
         if (_curLevel < _happinessThreshold)
         {
             Debug.Log("NPC : " + gameObject.name + " IS SAD");
@@ -67,5 +73,26 @@ public class NPCHappinessBarController : MonoBehaviour
         _barModule.ChangeFillColor(color);
     }
 
+    /// <summary>
+    /// Function called when the the correct item has been applied to the NPC, triggering its "happy" phase during which:
+    /// - happiness bar is maxed out
+    /// - happiness bar no longer goes down for a HappinessTime duration
+    /// </summary>
+    public void ActivateHappinessTime()
+    {
+        Debug.Log("NPC IS HAPPY ! HOORAY !");
+        _happinessIsActive = true;
+        _curLevel = _maxLevel;
+        UpdateHappinessBarColor(Color.yellow);
+        UpdateVisualHappinessBar();
+        StartCoroutine(HappinessTimer());
+    }
 
+    private IEnumerator HappinessTimer()
+    {
+        yield return new WaitForSeconds(_happinessTimer);
+        _happinessIsActive = false;
+        UpdateHappinessBarColor(Color.green);
+        GetComponent<NPCBehaviourController>().SwitchState(NPC_STATE.Idle);
+    }
 }
