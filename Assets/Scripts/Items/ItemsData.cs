@@ -15,12 +15,6 @@ public enum ITEM_TYPE
     Gun
 }
 
-public enum USE_TYPE
-{
-    Circle,
-    Ray,
-    The_Pie
-}
 
 [Serializable]
 public struct ItemDataElement
