@@ -556,6 +556,10 @@ PrefabInstance:
       value: NPCSpawnManager
       objectReference: {fileID: 0}
     - target: {fileID: 6569675572112283778, guid: 50f3259aaa291ec449685af219153108, type: 3}
+      propertyPath: _availableNPC.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6569675572112283778, guid: 50f3259aaa291ec449685af219153108, type: 3}
       propertyPath: _spawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1138832176}
@@ -575,6 +579,14 @@ PrefabInstance:
       propertyPath: _spawnPoints.Array.data[4]
       value: 
       objectReference: {fileID: 773138332}
+    - target: {fileID: 6569675572112283778, guid: 50f3259aaa291ec449685af219153108, type: 3}
+      propertyPath: _availableNPC.Array.data[1]
+      value: 
+      objectReference: {fileID: 9199155297810892559, guid: d6b15d45668b4b8438c2c38d9ebf556f, type: 3}
+    - target: {fileID: 6569675572112283778, guid: 50f3259aaa291ec449685af219153108, type: 3}
+      propertyPath: _availableNPC.Array.data[2]
+      value: 
+      objectReference: {fileID: 9199155297810892559, guid: d20d1199b22e04b40aa19c582f532315, type: 3}
     - target: {fileID: 8949326260697495775, guid: 50f3259aaa291ec449685af219153108, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.986781
