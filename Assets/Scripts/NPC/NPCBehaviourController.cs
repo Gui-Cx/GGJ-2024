@@ -164,6 +164,7 @@ public class NPCBehaviourController : MonoBehaviour
     /// </summary>
     public void OnItemTriggered(ITEM_TYPE type)
     {
+        Debug.LogFormat("Cx : {0} received item {1}, expected {2}, result {3}", gameObject.name, type, _itemInteractionDict.Keys.ToString(), _itemInteractionDict[type]);
         if(_itemInteractionDict.ContainsKey(type) && _itemInteractionDict[type] == NPC_STATE.Satisfied)
         {
             CorrectItemApplied();

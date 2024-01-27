@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     ElevatorLocomotion currentElevator;
     Animator animator;
 
-    ITEM_TYPE currentItem;
+    [SerializeField] ITEM_TYPE currentItem;
 
     public bool IsBoostedByHappinessAOE=false;
 
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
                 if (verticalMovementDirection != 0) { TryUseElevator(verticalMovementDirection); }
                 break;
         }
-        print(interactor.currentInteractable);
+        // print(interactor.currentInteractable);
     }
 
     void Flip()
