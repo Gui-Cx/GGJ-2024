@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
 public enum NPCGameEventType
 {
     Death
+}
+
+public struct NPCGameEventArg
+{
+    public GameObject Npc;
+    public NPCGameEventType Type;
 }
 
 /// <summary>
@@ -17,7 +22,7 @@ public class NPCEvents : MonoBehaviour
     /// <summary>
     /// Basis for the game events
     /// </summary>
-    public class NpcGameEvent : UnityEvent<NPCGameEventType>
+    public class NpcGameEvent : UnityEvent<NPCGameEventArg>
     {
     }
 
