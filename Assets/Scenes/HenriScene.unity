@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2fbce04e739b3342b7d0d455f3a629e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHourTimer: 600
+  _maxHourTimer: 18
   _curGameTimer: 0
   _timerRefreshRate: 2
   _curScore: 0
@@ -762,7 +762,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 13.618}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -374, y: -407}
+  m_AnchoredPosition: {x: -253, y: -492}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1346457692
@@ -848,7 +848,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -35.78784, z: 0, w: -225.35088}
+  m_margin: {x: 0, y: -35.78784, z: -389.643, w: -225.35088}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

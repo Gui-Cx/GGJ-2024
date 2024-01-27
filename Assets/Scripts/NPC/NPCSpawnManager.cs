@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -68,14 +69,17 @@ public class NPCSpawnManager : MonoBehaviour
             _spawnPointsOccupationDict.Add(spawnpoint, false);
         }
 
-        InitialNPCSpawn();
         CurNPCNumber = 0;
+        InitialNPCSpawn();
         NPCEvents.Instance.Event.AddListener(OnEventReceived);
     }
 
     private void OnDestroy()
     {
-        NPCEvents.Instance.Event.RemoveListener(OnEventReceived);
+        if(NPCEvents.Instance != null)
+        {
+            NPCEvents.Instance.Event.RemoveListener(OnEventReceived);
+        }
     }
 
     /// <summary>
@@ -119,7 +123,7 @@ public class NPCSpawnManager : MonoBehaviour
     /// </summary>
     private bool AttemptNPCSpawn()
     {
-        int rng = Random.Range(0, 100);
+        int rng = UnityEngine.Random.Range(0, 100);
         if (rng < _spawnChance)
         {
             return true;
@@ -132,7 +136,7 @@ public class NPCSpawnManager : MonoBehaviour
     /// </summary>
     private void SpawnNewNPC()
     {
-        //Debug.Log("Spawn Manager : Spawning new NPC");
+        Debug.Log("Spawn Manager : Spawning new NPC");
         //selecting a valid spawn point :
         List<Transform> availableSpawnPoints = new List<Transform>();
         foreach(var spawnpoint in _spawnPointsOccupationDict)
@@ -153,17 +157,18 @@ public class NPCSpawnManager : MonoBehaviour
         newNpc.GetComponent<NPCBehaviourController>().SpawnPoint = selectedSpawnPoint;
         //updating dict values :
         CurNPCNumber++;
+        Debug.Log("cur num npc: " + CurNPCNumber);
         _spawnPointsOccupationDict[selectedSpawnPoint] = true;
     }
 
     private Transform SelectSpawnPoint(List<Transform> availableSpawnPoint)
     {
-        return availableSpawnPoint[Random.Range(0, availableSpawnPoint.Count)];
+        return availableSpawnPoint[UnityEngine.Random.Range(0, availableSpawnPoint.Count)];
     }
 
     private GameObject SelectNPC()
     {
-        return _availableNPC[Random.Range(0, _availableNPC.Length)];
+        return _availableNPC[UnityEngine.Random.Range(0, _availableNPC.Length)];
     }
 
     #region DEATH OF NPC FUNCTIONS
