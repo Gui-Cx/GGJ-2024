@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
         switch (currentState)
         {
             case PlayerState.Idle:
-                rigidbody2d.AddForce(Vector2.right * movementDirection);
+                rigidbody2d.AddForce(speed*Vector2.right * movementDirection);
                 break;
             case PlayerState.InElevator:
                 transform.position = currentElevator.transform.position;
