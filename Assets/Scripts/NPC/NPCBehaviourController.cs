@@ -16,17 +16,6 @@ public enum NPC_TYPES
     SadClown
 }
 
-public enum ITEM_TYPE //TODO : MOVE OUT OF HERE
-{
-    RedNose,
-    Flower,
-    Ballon,
-    Pie,
-    Hug,
-    Trumpet,
-    Gun
-}
-
 public enum NPC_STATE
 {
     Idle,
