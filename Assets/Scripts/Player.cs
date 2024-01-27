@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void SetCurrentItem(ITEM_TYPE item)
+    public void SetCurrentItem(ITEM_TYPE item)
     {
         currentItem = item;
         switch (currentItem)

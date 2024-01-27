@@ -14,6 +14,7 @@ public enum ITEM_TYPE
     Gun
 }
 
+
 [Serializable]
 public struct ItemDataElement
 {
