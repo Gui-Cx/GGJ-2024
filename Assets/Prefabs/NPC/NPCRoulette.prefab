@@ -651,11 +651,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a55d200e5e886e84ebfaf734e593a887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _curNpcData: {fileID: 11400000, guid: e52a2a34442731148a7c942050812ad5, type: 2}
+  _curNpcData: {fileID: 11400000, guid: d05e96ada7d51794cbb6b598efb96131, type: 2}
   _availableNPCData:
-  - {fileID: 11400000, guid: e52a2a34442731148a7c942050812ad5, type: 2}
-  - {fileID: 11400000, guid: 102c8ce422699ce46942acb40a8c627b, type: 2}
-  - {fileID: 11400000, guid: f8fcdce991dc4a84a95b1874d965e7ce, type: 2}
+  - {fileID: 11400000, guid: d05e96ada7d51794cbb6b598efb96131, type: 2}
+  - {fileID: 11400000, guid: 07f2c6c1f8c6a0d488bc8b7908228991, type: 2}
   _state: 0
   SpawnPoint: {fileID: 0}
 --- !u!114 &5244143766612524366
@@ -752,5 +751,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 1}
   m_EdgeRadius: 0
