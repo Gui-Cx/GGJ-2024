@@ -23,7 +23,8 @@ public enum ITEM_TYPE //TODO : MOVE OUT OF HERE
     Ballon,
     Pie,
     Hug,
-    Trumpet
+    Trumpet,
+    Gun
 }
 
 public enum NPC_STATE
@@ -50,55 +51,96 @@ public enum NPC_STATE
 /// - Sad clowns
 /// </summary>
 [RequireComponent(typeof(NPCItemHandler))]
+[RequireComponent(typeof(NPCHappinessBarController))]
 public class NPCBehaviourController : MonoBehaviour
 {
     #region SERIALIZED VARIABLES
-    [SerializeField, InspectorName("NPC Data")] private NPCTypeData _npcData;
+    [SerializeField, InspectorName("Current NPC Data")] private NPCTypeData _curNpcData;
+    [SerializeField, InspectorName("Available NPC Data")] private NPCTypeData[] _availableNPCData;
     #endregion
 
     #region VARIABLES
-    private NPC_STATE _state;
+    private NPC_TYPES _type;
+    [SerializeField] private NPC_STATE _state;
     private Dictionary<ITEM_TYPE, NPC_STATE> _itemInteractionDict;
+    private NPCHappinessBarController _happinessBarController;
     #endregion
 
     private void OnValidate()
     {
-        Assert.IsNotNull(_npcData);
+        Assert.IsNotNull(_curNpcData);
     }
 
     private void Awake()
     {
+        _happinessBarController = GetComponent<NPCHappinessBarController>();
         _state = NPC_STATE.Idle;
+        UpdateItemInteractionTable();
+    }
+
+    private void UpdateItemInteractionTable()
+    {
+        _type = _curNpcData.Type;
         _itemInteractionDict = new Dictionary<ITEM_TYPE, NPC_STATE>();
-        foreach(var item in _npcData.ItemInteractionTable)
+        foreach (var item in _curNpcData.ItemInteractionTable)
         {
             _itemInteractionDict[item.Type] = item.OutcomeState;
         }
     }
 
+    public void Dies()
+    {
+        Debug.Log("HE'S DEAD JOHN");
+        _state = NPC_STATE.Dead;
+        gameObject.SetActive(false); //TODO : PROBABLY CHANGE THAT
+        NPCEvents.Instance.Event.Invoke(NPCGameEventType.Death);
+    }
+
+    /// <summary>
+    /// Function that will handle the switch of interaction table
+    /// </summary>
+    public void SwitchNPCData()
+    {
+        int rng = UnityEngine.Random.Range(0, _availableNPCData.Length);
+        _curNpcData = _availableNPCData[rng];
+        UpdateItemInteractionTable();
+    }
+
+    #region STATE RELATED FUNCTIONS
+    public void SwitchState(NPC_STATE state)
+    {
+        _state = state;
+        Debug.Log("NPC " + this.gameObject.name + " : Switching back to state : " + _state);
+    }
+
+    private IEnumerator NotSatisfiedTimer()
+    {
+        yield return new WaitForSeconds(1f);
+        SwitchState(NPC_STATE.Idle);
+    }
+    #endregion
+
     #region ITEM RELATED FUNCTIONS
     /// <summary>
     /// Function triggered (internally) when the correct item has been applied on the NPC
+    /// It will trigger its happiness time then go back to idle once that's done
     /// </summary>
     public void CorrectItemApplied()
     {
-        Debug.Log("NPC " + this.gameObject.name + " : CORRECT ITEM APPLIED");
-        _state = NPC_STATE.Satisfied;
+        SwitchState(NPC_STATE.Satisfied);
+        _happinessBarController.ActivateHappinessTime();
+        SwitchNPCData();
+        Debug.Log("NPC " + this.gameObject.name + " : CORRECT ITEM APPLIED | State : "+_state+" and switching data");
     }
 
     /// <summary>
     /// Function triggered (internally) when the incorrect item has been applied on the NPC
-    /// It will trigger either DEATH (for example rednose to the old) OR simply nothing
     /// </summary>
     public void IncorrectItemApplied()
     {
         Debug.Log("NPC " + this.gameObject.name + " : INCORRECT ITEM APPLIED");
-        _state = NPC_STATE.NotSatisfied;
-    }
-
-    public void Dies()
-    {
-        Debug.Log("HE'S DEAD JOHN");
+        SwitchState(NPC_STATE.NotSatisfied);
+        StartCoroutine(NotSatisfiedTimer());
     }
 
     /// <summary>

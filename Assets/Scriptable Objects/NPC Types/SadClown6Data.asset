@@ -10,19 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5daa61dea0b3d12408dc18923ece9a36, type: 3}
-  m_Name: WheelchairData
+  m_Name: SadClown6Data
   m_EditorClassIdentifier: 
-  <Type>k__BackingField: 4
+  <Type>k__BackingField: 5
   <ItemInteractionTable>k__BackingField:
   - Type: 0
-    OutcomeState: 0
+    OutcomeState: 2
   - Type: 1
-    OutcomeState: 0
+    OutcomeState: 2
   - Type: 2
-    OutcomeState: 0
+    OutcomeState: 2
   - Type: 3
-    OutcomeState: 0
+    OutcomeState: 2
   - Type: 4
-    OutcomeState: 0
+    OutcomeState: 2
   - Type: 5
-    OutcomeState: 0
+    OutcomeState: 1
+  - Type: 6
+    OutcomeState: 3
