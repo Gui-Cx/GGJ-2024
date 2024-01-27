@@ -572,6 +572,7 @@ MonoBehaviour:
   - {fileID: 773138332}
   MaxHospitalCapacity: 5
   CurNPCNumber: 0
+  _initialSpawnNPCNumber: 3
   _availableNPC:
   - {fileID: 9199155297810892559, guid: 02c91ca7f8879da47948f39d21ba5f88, type: 3}
 --- !u!1001 &6625946387642535960

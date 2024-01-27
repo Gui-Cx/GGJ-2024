@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions;
 using static NPCEvents;
 
 /// <summary>
@@ -45,8 +46,19 @@ public class NPCSpawnManager : MonoBehaviour
     [Header("NPC Elements")]
     public int MaxHospitalCapacity=20;
     public int CurNPCNumber;
+    [SerializeField] private int _initialSpawnNPCNumber;
     [SerializeField] private GameObject[] _availableNPC;
     #endregion
+
+    private void OnValidate()
+    {
+        Assert.IsNotNull(_availableNPC);
+        Assert.IsNotNull(_availableNPC);
+        if (_initialSpawnNPCNumber > MaxHospitalCapacity)
+        {
+            Debug.LogError("Spawn Manager : inputted more initial npcs than max hospital capacity");
+        }
+    }
 
     public void Start()
     {
@@ -71,6 +83,10 @@ public class NPCSpawnManager : MonoBehaviour
     /// </summary>
     private void InitialNPCSpawn()
     {
+        for(int i = 0;i<_initialSpawnNPCNumber;++i)
+        {
+            SpawnNewNPC();
+        }
         //At the end of the function :
         StartCoroutine(SpawnTimer());
     }
@@ -118,7 +134,6 @@ public class NPCSpawnManager : MonoBehaviour
     private void SpawnNewNPC()
     {
         Debug.Log("Spawn Manager : Spawning new NPC");
-        CurNPCNumber++;
         //selecting a valid spawn point :
         List<Transform> availableSpawnPoints = new List<Transform>();
         foreach(var spawnpoint in _spawnPointsOccupationDict)
@@ -133,6 +148,7 @@ public class NPCSpawnManager : MonoBehaviour
         GameObject newNpc = Instantiate(SelectNPC());
         newNpc.transform.position = selectedSpawnPoint.transform.position;
         //updating dict values :
+        CurNPCNumber++;
         _spawnPointsOccupationDict[selectedSpawnPoint] = true;
     }
 
