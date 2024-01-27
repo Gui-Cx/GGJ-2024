@@ -9,7 +9,7 @@ public class MainClown : MonoBehaviour
 {
     // Left = -1; None = 0; Right = 1
     private int movementDirection = 0;
-    
+
     private Rigidbody2D rigidbody2d;
     // Start is called before the first frame update
     void Awake()
@@ -26,6 +26,16 @@ public class MainClown : MonoBehaviour
     void Update()
     {
         rigidbody2d.AddForce(Vector2.right*movementDirection);
+    }
+    
+    void OnGrab(InputValue context)
+    {
+        Debug.LogFormat("Cx : A pressed, Grab");
+    }
+
+    void OnInteract(InputValue context)
+    {
+        Debug.LogFormat("Cx : E pressed, Interact");
     }
 
     void OnMove(InputValue context)
