@@ -53,6 +53,9 @@ public class NPCBehaviourController : MonoBehaviour
     [SerializeField] private NPC_STATE _state;
     private Dictionary<ITEM_TYPE, NPC_STATE> _itemInteractionDict;
     private NPCHappinessBarController _happinessBarController;
+    private NPCSymbolController _symbolController;
+
+    private ITEM_TYPE _wantedItem;
 
     [HideInInspector] public Transform SpawnPoint;
     #endregion
@@ -65,10 +68,18 @@ public class NPCBehaviourController : MonoBehaviour
     private void Awake()
     {
         _happinessBarController = GetComponent<NPCHappinessBarController>();
-        _state = NPC_STATE.Idle;
+        _symbolController = GetComponent<NPCSymbolController>();
+    }
+
+    private void Start()
+    {
+        SwitchState(NPC_STATE.Idle);
         UpdateItemInteractionTable();
     }
 
+    /// <summary>
+    /// Updates the dict of values that link the item types to the outcome (satisfied/not/dead)
+    /// </summary>
     private void UpdateItemInteractionTable()
     {
         _type = _curNpcData.Type;
@@ -76,7 +87,12 @@ public class NPCBehaviourController : MonoBehaviour
         foreach (var item in _curNpcData.ItemInteractionTable)
         {
             _itemInteractionDict[item.Type] = item.OutcomeState;
+            if(item.OutcomeState == NPC_STATE.Satisfied)
+            {
+                _wantedItem = item.Type;
+            }
         }
+        _symbolController.UpdateSymbolItem(_wantedItem);
     }
 
     public void Dies()
@@ -101,7 +117,12 @@ public class NPCBehaviourController : MonoBehaviour
     public void SwitchState(NPC_STATE state)
     {
         _state = state;
+        _symbolController.UpdateSymbolItem(_wantedItem);
         Debug.Log("NPC " + this.gameObject.name + " : Switching back to state : " + _state);
+        if(_state == NPC_STATE.Idle) 
+        {
+            _symbolController.DisplaySymbol();
+        }
     }
 
     private IEnumerator NotSatisfiedTimer()
@@ -120,6 +141,7 @@ public class NPCBehaviourController : MonoBehaviour
     {
         SwitchState(NPC_STATE.Satisfied);
         _happinessBarController.ActivateHappinessTime();
+        _symbolController.HideSymbolDuringHappinessTime();
         SwitchNPCData();
         Debug.Log("NPC " + this.gameObject.name + " : CORRECT ITEM APPLIED | State : "+_state+" and switching data");
     }
