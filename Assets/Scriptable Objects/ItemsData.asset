@@ -17,7 +17,7 @@ MonoBehaviour:
     Symbol: {fileID: 21300000, guid: c1165d39ec8561540b6c8a394a584d9a, type: 3}
     Type: 0
     UseType: 0
-    UseRange: 0
+    UseRange: 100
     UseOffset: {x: 0, y: 0}
   - Name: Flower
     Symbol: {fileID: 21300000, guid: 194c837fecc075b4394e9792090d9a15, type: 3}
