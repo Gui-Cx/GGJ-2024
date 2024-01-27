@@ -106,12 +106,19 @@ public class NPCBehaviourController : MonoBehaviour
         UpdateItemInteractionTable();
     }
 
+    #region STATE RELATED FUNCTIONS
     public void SwitchState(NPC_STATE state)
     {
         _state = state;
         Debug.Log("NPC " + this.gameObject.name + " : Switching back to state : " + _state);
     }
 
+    private IEnumerator NotSatisfiedTimer()
+    {
+        yield return new WaitForSeconds(1f);
+        SwitchState(NPC_STATE.Idle);
+    }
+    #endregion
 
     #region ITEM RELATED FUNCTIONS
     /// <summary>
@@ -133,6 +140,7 @@ public class NPCBehaviourController : MonoBehaviour
     {
         Debug.Log("NPC " + this.gameObject.name + " : INCORRECT ITEM APPLIED");
         SwitchState(NPC_STATE.NotSatisfied);
+        StartCoroutine(NotSatisfiedTimer());
     }
 
     /// <summary>
