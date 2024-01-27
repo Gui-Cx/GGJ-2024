@@ -13,14 +13,12 @@ public class ItemController : MonoBehaviour
     private ContactFilter2D contactFilter2D;
 
     private ItemDataElement currentItem;
-    void Awake()
+    void Start()
     {
-        ContactFilter2D contactFilter2D = new ContactFilter2D();
         contactFilter2D.SetLayerMask(_npcMask);
     }
     public void OnItemUsed(ITEM_TYPE type){
         currentItem = GameManager.Instance.itemsData.ItemDataElements.First(item => item.Type == type);
-
         Vector2 positionVec2 = new Vector2(transform.position.x, transform.position.y);
         switch (currentItem.UseType){
             case USE_TYPE.Circle:

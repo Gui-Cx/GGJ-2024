@@ -99,7 +99,8 @@ public class NPCBehaviourController : MonoBehaviour
     {
         Debug.Log("HE'S DEAD JOHN");
         _state = NPC_STATE.Dead;
-        gameObject.SetActive(false); //TODO : PROBABLY CHANGE THAT
+        //gameObject.SetActive(false); //TODO : PROBABLY CHANGE THAT
+        Destroy(gameObject);
         GameManager.Instance.UpdateNumberOfDeadClients();
         NPCEvents.Instance.Event.Invoke(new NPCGameEventArg() { Npc=gameObject, Type=NPCGameEventType.Death});
     }
@@ -164,6 +165,7 @@ public class NPCBehaviourController : MonoBehaviour
     /// </summary>
     public void OnItemTriggered(ITEM_TYPE type)
     {
+        Debug.LogFormat("Cx : {0} received item {1}, expected {2}, result {3}", gameObject.name, type, _itemInteractionDict.Keys.ToString(), _itemInteractionDict[type]);
         if(_itemInteractionDict.ContainsKey(type) && _itemInteractionDict[type] == NPC_STATE.Satisfied)
         {
             CorrectItemApplied();

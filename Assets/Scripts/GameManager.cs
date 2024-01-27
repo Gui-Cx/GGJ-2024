@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     }
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         _instance = this;
     }
     #endregion
