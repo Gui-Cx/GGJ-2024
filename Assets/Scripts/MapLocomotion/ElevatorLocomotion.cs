@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ElevatorLocomotion : MonoBehaviour
 {
-    [SerializeField] float timing = 3f;
+    [SerializeField] float timing;
     public EmptyElevator currentEmpty;
     [SerializeField] EmptyElevator startEmptyElevator;
     public bool isMoving;
@@ -75,8 +75,6 @@ public class ElevatorLocomotion : MonoBehaviour
         playerIsIn = true;
         player.EnterInElevator(this);
         DisplayArrows(true);
-
-        
     }
 
     public void QuitElevator()

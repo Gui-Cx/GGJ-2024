@@ -14,6 +14,7 @@ public class Interactor : MonoBehaviour
     {
         _collider = Physics2D.OverlapCircle(new Vector2(_interactionPoint.position.x, _interactionPoint.position.y), _interactionRadius, _interactableMask);  
         if (_collider != null) _collider.TryGetComponent(out currentInteractable);
+        else { currentInteractable = null; }
     }
 
     private void OnDrawGizmos()
