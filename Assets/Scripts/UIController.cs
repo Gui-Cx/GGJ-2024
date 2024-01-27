@@ -24,6 +24,7 @@ public class UIController : MonoBehaviour
     }
     private void Awake()
     {
+        DontDestroyOnLoad(this);
         _instance = this;
     }
     #endregion
@@ -36,9 +37,14 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _endMenu;
     [SerializeField] private TextMeshProUGUI _endScoreText;
 
+    [Header("Start Menu Elements")]
+    [SerializeField] private GameObject _startMenu;
+
     private void Start()
     {
         _endMenu.SetActive(false);
+        _gameTimer.SetActive(false);
+        _startMenu.SetActive(true);
     }
 
     public void UpdateGameTimer(float hourValue, float minuteValue)
@@ -81,5 +87,12 @@ public class UIController : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void StartGame(int buildIndex)
+    {
+        SceneManager.LoadScene(buildIndex);
+        _startMenu.SetActive(false);
+        _gameTimer.SetActive(true);
     }
 }
