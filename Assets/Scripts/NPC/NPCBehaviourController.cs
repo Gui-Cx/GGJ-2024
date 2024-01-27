@@ -99,7 +99,8 @@ public class NPCBehaviourController : MonoBehaviour
     {
         Debug.Log("HE'S DEAD JOHN");
         _state = NPC_STATE.Dead;
-        gameObject.SetActive(false); //TODO : PROBABLY CHANGE THAT
+        //gameObject.SetActive(false); //TODO : PROBABLY CHANGE THAT
+        Destroy(gameObject);
         GameManager.Instance.UpdateNumberOfDeadClients();
         NPCEvents.Instance.Event.Invoke(new NPCGameEventArg() { Npc=gameObject, Type=NPCGameEventType.Death});
     }
