@@ -23,7 +23,7 @@ public class ElevatorLocomotion : MonoBehaviour
 
     private void Update()
     {
-        print(isMoving);
+        //print(isMoving);
     }
     public void MoveToEmptyElevator(EmptyElevator target)
     {
@@ -64,12 +64,14 @@ public class ElevatorLocomotion : MonoBehaviour
 
     public void PlayerEnter()
     {
+        playerIsIn = true;
         if (currentEmpty.upNeighbor != null) spriteUpArrow.enabled = true;
         if (currentEmpty.downNeighbor != null) spriteDownArrow.enabled = true;
     }
 
     void QuitElevator()
     {
+        playerIsIn = false;
         spriteUpArrow.enabled = false;
         spriteDownArrow.enabled = false;
         Debug.Log("quit");
@@ -77,7 +79,7 @@ public class ElevatorLocomotion : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("pouet");
+        if (collision.gameObject.GetComponent<Player>()) { PlayerEnter(); print("Enter in Elevator"); }
     }
 }
 

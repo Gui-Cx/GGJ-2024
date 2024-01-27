@@ -5,16 +5,18 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
-public class MainClown : MonoBehaviour
+public class Player : MonoBehaviour
 {
     // Left = -1; None = 0; Right = 1
     private int movementDirection = 0;
 
     private Rigidbody2D rigidbody2d;
+    private Interactor interactor;
     // Start is called before the first frame update
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        interactor = GetComponent<Interactor>();
     }    
     
     void Start()
@@ -36,6 +38,7 @@ public class MainClown : MonoBehaviour
     void OnInteract(InputValue context)
     {
         Debug.LogFormat("Cx : E pressed, Interact");
+        if (interactor.currentInteractable != null) interactor.currentInteractable.Interact(interactor);
     }
 
     void OnMove(InputValue context)
