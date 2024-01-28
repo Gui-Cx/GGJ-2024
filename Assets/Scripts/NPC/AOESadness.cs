@@ -57,7 +57,7 @@ public class AOESadness : MonoBehaviour
     {
         float sadnessRadius = 0;
         if (_currentSadnessRate != 0) sadnessRadius = Mathf.Lerp(_minSadnessRadius, _maxSadnessRadius, _currentSadnessRate);
-        print(sadnessRadius);
+        //print(sadnessRadius);
         Vector3Int newCellPosition = _grid.WorldToCell(transform.position);
 
         if (newCellPosition != _cellPosition ||lastRadius!=sadnessRadius)

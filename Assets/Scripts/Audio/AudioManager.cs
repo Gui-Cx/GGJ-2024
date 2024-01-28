@@ -5,7 +5,16 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance { get; private set; }
+    public static AudioManager Instance {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new AudioManager();
+            }
+            return _instance;
+        }
+    }
 
     private List<EventInstance> events;
     private List<StudioEventEmitter> emitters;
@@ -14,12 +23,10 @@ public class AudioManager : MonoBehaviour
     private EventInstance gameOverMusicEventInstance;
     private int bonheurLevel;
 
+    private static AudioManager _instance;
     private void Awake()
     {
-        if (Instance != this)
-            Debug.LogError("Singleton Error for audio manager");
-
-        Instance = this;
+        _instance = this;
 
         events = new List<EventInstance>();
         emitters = new List<StudioEventEmitter>();
