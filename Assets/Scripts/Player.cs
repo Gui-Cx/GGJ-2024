@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        Debug.LogFormat("Cx : Interact");
+        //Debug.LogFormat("Cx : Interact");
         if (context.started && interactor.currentInteractable != null)
         {
             interactor.currentInteractable.Interact(interactor);
@@ -108,13 +108,13 @@ public class Player : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.LogFormat("Cx : Direction is {0}", context.ReadValue<float>());
+        //Debug.LogFormat("Cx : Direction is {0}", context.ReadValue<float>());
         movementDirection = (int)Math.Round(context.ReadValue<float>());
     }
 
     public void OnElevator(InputAction.CallbackContext context)
     {
-        Debug.LogFormat("Cx : Direction is {0}", context.ReadValue<float>());
+        //Debug.LogFormat("Cx : Direction is {0}", context.ReadValue<float>());
         verticalMovementDirection = (int)Math.Round(context.ReadValue<float>());
 
     }
@@ -170,8 +170,14 @@ public class Player : MonoBehaviour
             case ITEM_TYPE.Gun:
                 animator.SetTrigger("GetGun");
                 break;
-            case ITEM_TYPE.Ballon:
+            case ITEM_TYPE.Ballon_Dog:
                 animator.SetTrigger("GetBallon");
+                break;
+            case ITEM_TYPE.Ballon_Cringe:
+                animator.SetTrigger("GetCringeBallon");
+                break;
+            case ITEM_TYPE.Ballon_Heart:
+                animator.SetTrigger("GetHeartBallon");
                 break;
             case ITEM_TYPE.Pie:
                 animator.SetTrigger("GetPie");

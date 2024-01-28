@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5daa61dea0b3d12408dc18923ece9a36, type: 3}
-  m_Name: Baby3Data
+  m_Name: SadClown8Data
   m_EditorClassIdentifier: 
-  <Type>k__BackingField: 1
+  <Type>k__BackingField: 5
   <ItemInteractionTable>k__BackingField:
   - Type: 0
     OutcomeState: 2
@@ -21,7 +21,7 @@ MonoBehaviour:
   - Type: 2
     OutcomeState: 2
   - Type: 3
-    OutcomeState: 1
+    OutcomeState: 2
   - Type: 4
     OutcomeState: 2
   - Type: 5
@@ -29,6 +29,6 @@ MonoBehaviour:
   - Type: 6
     OutcomeState: 2
   - Type: 7
-    OutcomeState: 2
+    OutcomeState: 1
   - Type: 8
-    OutcomeState: 3
+    OutcomeState: 2
