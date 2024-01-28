@@ -5672,6 +5672,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1730139315688097780, guid: cb0b24337c74d2c40999af316765a4fc, type: 3}
+      propertyPath: TilemapGrid
+      value: 
+      objectReference: {fileID: 76460853}
+    - target: {fileID: 1730139315688097780, guid: cb0b24337c74d2c40999af316765a4fc, type: 3}
+      propertyPath: BackgroundTilemap
+      value: 
+      objectReference: {fileID: 413127224}
     - target: {fileID: 2091938991395330787, guid: cb0b24337c74d2c40999af316765a4fc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.986781
