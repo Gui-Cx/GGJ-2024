@@ -9,12 +9,13 @@ using static UnityEngine.GraphicsBuffer;
 /// </summary>
 public class AOEHappiness : MonoBehaviour
 {
-    private ParticleSystem _particleSystem;
     [Header("AOE Elements")]
-    [SerializeField] private int _speedMultiplicativeModifier=2;
+    [SerializeField] private int _speedMultiplicativeModifier = 2;
+
+    private ParticleSystem _particleSystem;
 
     private int _prevPlayerSpeed;
-    private bool _isBoostingPlayer=false;
+    private bool _isBoostingPlayer = false;
 
     private void Awake()
     {
