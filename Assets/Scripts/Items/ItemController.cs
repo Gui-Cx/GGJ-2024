@@ -24,41 +24,50 @@ public class ItemController : MonoBehaviour
         player = GetComponent<Player>();
         contactFilter2D.SetLayerMask(_npcMask);
     }
-    public void OnItemUsed(ITEM_TYPE type){
+    public void OnItemUsed(ITEM_TYPE type,float time=0f){
         currentItem = GameManager.Instance.itemsData.ItemDataElements.First(item => item.Type == type);
         Vector2 positionVec2 = new Vector2(transform.position.x, transform.position.y);
         Vector2 offset;
         switch (currentItem.UseType){
-            case USE_TYPE.Circle:
-                Debug.LogFormat("Item type {0} triggered Circle", currentItem.Type);
-                offset = positionVec2 + (player.isFacingRight ? 1 : -1) * currentItem.UseOffset;
-                castCircle(offset, currentItem.UseRange);
+            case USE_TYPE.Circle:  
+                if (time == 0f)
+                {
+                    Debug.LogFormat("Item type {0} triggered Circle", currentItem.Type);
+                    offset = positionVec2 + (player.isFacingRight ? 1 : -1) * currentItem.UseOffset;
+                    castCircle(offset, currentItem.UseRange);
+                }
             break;
             case USE_TYPE.Ray:
-                Debug.LogFormat("Item type {0} triggered Ray", currentItem.Type);
-                offset = positionVec2 + (player.isFacingRight ? 1 : -1) * currentItem.UseOffset;
-                castRay(offset, (player.isFacingRight ? Vector2.right : Vector2.left), currentItem.UseRange);
+                if (time == 0f)
+                {
+                    offset = positionVec2 + (player.isFacingRight ? 1 : -1) * currentItem.UseOffset;
+                    castRay(offset, (player.isFacingRight ? Vector2.right : Vector2.left), currentItem.UseRange);
+                    Debug.LogFormat("Item type {0} triggered Ray", currentItem.Type);
+                }
+
             break;
             case USE_TYPE.The_Pie:
                 Debug.LogFormat("Item type {0} triggered the Piiiie", currentItem.Type);
-                if(canThrowPie)ThrowPie();
+                //wait for release
+                if(canThrowPie)ThrowPie(time);
             break;
         }
     }
 
-    private void ThrowPie()
+    private void ThrowPie(float time)
     {
-
+        if (time < 1f) { return; }
+        float speedThrow = Mathf.Min(Mathf.Max(time * 3f, 2f),10f);
         if (GetComponent<Player>().isFacingRight)
         {
             Pie currentPie = Instantiate(pie, transform.position+new Vector3(1,0,0), Quaternion.identity).GetComponent<Pie>();
-            currentPie.speed = 5f;
+            currentPie.speed = speedThrow;
             currentPie.goRight = true;
         }
         else
         {
             Pie currentPie = Instantiate(pie, transform.position + new Vector3(-1, 0, 0), Quaternion.identity).GetComponent<Pie>();
-            currentPie.speed = 5f;
+            currentPie.speed = speedThrow;
             currentPie.goRight = false;
         }
         canThrowPie = false;

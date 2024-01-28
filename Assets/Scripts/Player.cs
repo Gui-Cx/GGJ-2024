@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
 
     public bool isFacingRight=true;
 
+    float timingHoldUseItem;
+
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -72,30 +74,41 @@ public class Player : MonoBehaviour
         isFacingRight=!isFacingRight;
     }
     
-    void OnUseItem(InputValue context)
+    public void OnUseItem(InputAction.CallbackContext context)
     {
-        //SetCurrentItem(ITEM_TYPE.Hug);
         Debug.LogFormat("Cx : UseItem");
-        itemController.OnItemUsed(currentItem);
+       
+        if (context.started)
+        {
+            itemController.OnItemUsed(currentItem);
+            timingHoldUseItem = Time.time;
+        }
+        if (context.canceled)
+        {
+            itemController.OnItemUsed(currentItem, Time.time - timingHoldUseItem);
+
+        }
     }
 
-    void OnInteract(InputValue context)
+    public void OnInteract(InputAction.CallbackContext context)
     {
         Debug.LogFormat("Cx : Interact");
-        if (interactor.currentInteractable != null) interactor.currentInteractable.Interact(interactor);
-        
+        if (context.started && interactor.currentInteractable != null)
+        {
+            interactor.currentInteractable.Interact(interactor);
+        }
+             
+    }
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        Debug.LogFormat("Cx : Direction is {0}", context.ReadValue<float>());
+        movementDirection = (int)Math.Round(context.ReadValue<float>());
     }
 
-    void OnMove(InputValue context)
+    public void OnElevator(InputAction.CallbackContext context)
     {
-        Debug.LogFormat("Cx : Direction is {0}", context.Get<float>());
-        movementDirection = (int)Math.Round(context.Get<float>());
-    }
-
-    void OnElevator(InputValue context)
-    {
-        Debug.LogFormat("Cx : Direction is {0}", context.Get<float>());
-        verticalMovementDirection = (int)Math.Round(context.Get<float>());
+        Debug.LogFormat("Cx : Direction is {0}", context.ReadValue<float>());
+        verticalMovementDirection = (int)Math.Round(context.ReadValue<float>());
 
     }
 
