@@ -58,7 +58,8 @@ public class NPCHappinessBarController : MonoBehaviour
     /// <returns></returns>
     private IEnumerator BarDownUpdate()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(_barDownUpdateTimer);
+        _aoeSadness.SetSadness(_curLevel, _happinessThreshold);
         if (!_happinessIsActive)
         {
             _curLevel--;
@@ -67,7 +68,6 @@ public class NPCHappinessBarController : MonoBehaviour
         {
             //Debug.Log("NPC : " + gameObject.name + " IS SAD");
             //TODO : Do something here to "emit sadness"
-            _aoeSadness.SetSadness(_curLevel,_happinessThreshold);
             GetComponent<NPCBehaviourController>().SwitchState(NPC_STATE.Sad);
             GameManager.Instance.DecreaseScore(_scoreDecrease); //we decrease (each seconds) the score by the score decrease 
             UpdateHappinessBarColor(Color.red);
