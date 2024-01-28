@@ -19815,7 +19815,7 @@ MonoBehaviour:
     itemParticleSystem: {fileID: 8121042390689774668}
   - itemType: 0
     itemParticleSystem: {fileID: 7186877389289941538}
-  particleParent: {fileID: 0}
+  particleParent: {fileID: 2174800008349579906}
 --- !u!114 &5578071634887470932
 MonoBehaviour:
   m_ObjectHideFlags: 0

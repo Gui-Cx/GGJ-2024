@@ -5143,6 +5143,7 @@ Transform:
   - {fileID: 5221144111603761256}
   - {fileID: 3277081589201689485}
   - {fileID: 1519897359477824138}
+  - {fileID: 7786097661403332574}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &89875574516573383
@@ -5170,7 +5171,7 @@ MonoBehaviour:
     itemParticleSystem: {fileID: 4133419935782259115}
   - itemType: 0
     itemParticleSystem: {fileID: 2472963688068081042}
-  particleParent: {fileID: 0}
+  particleParent: {fileID: 3421038089806300015}
 --- !u!114 &3436095440098622070
 MonoBehaviour:
   m_ObjectHideFlags: 0

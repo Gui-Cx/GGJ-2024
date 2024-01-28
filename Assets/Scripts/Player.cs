@@ -86,9 +86,9 @@ public class Player : MonoBehaviour
 
     void Flip()
     {
-        isFacingRight=!isFacingRight;
         particleParent.transform.Rotate(new Vector3(0, 180, 0));
         gameObject.GetComponent<SpriteRenderer>().flipX = !gameObject.GetComponent<SpriteRenderer>().flipX;
+        isFacingRight=!isFacingRight;
     }
     
     public void OnUseItem(InputAction.CallbackContext context)
