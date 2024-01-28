@@ -21,6 +21,7 @@ public class EmptyElevator : MonoBehaviour,IInteractable
         if (elevator.currentEmpty != this && !elevator.isMoving)
         {
             Debug.Log("call elevator");
+            AudioManager.Instance.PlayOneShot(FMODEvents.instance.CallElevator, this.transform.position);
             elevator.MoveToEmptyElevator(this);
         }
         return true;

@@ -81,6 +81,7 @@ public class NPCBehaviourController : MonoBehaviour
     {
         SwitchState(NPC_STATE.Idle);
         UpdateItemInteractionTable();
+        GameManager.Instance.UpdateNumberTotalOfClients();
     }
 
     /// <summary>
@@ -124,6 +125,14 @@ public class NPCBehaviourController : MonoBehaviour
     #region STATE RELATED FUNCTIONS
     public void SwitchState(NPC_STATE state)
     {
+        if (_state == NPC_STATE.Sad && state != NPC_STATE.Sad)
+        {
+            GameManager.Instance.UpdateSadNumber(false);
+        }
+        if (_state != NPC_STATE.Sad && state == NPC_STATE.Sad)
+        {
+            GameManager.Instance.UpdateSadNumber(true);
+        }
         _state = state;
         _symbolController.UpdateSymbolItem(_wantedItem);
         //Debug.Log("NPC " + this.gameObject.name + " : Switching back to state : " + _state);

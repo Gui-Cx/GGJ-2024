@@ -11,6 +11,9 @@ public class AudioManager : MonoBehaviour
     private List<StudioEventEmitter> emitters;
 
     private EventInstance musicEventInstance;
+    private EventInstance gameOverMusicEventInstance;
+    private int bonheurLevel;
+
     private void Awake()
     {
         if (Instance != this)
@@ -25,6 +28,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         InitializeMusic(FMODEvents.instance.music);
+        InitializeGameOverMusic(FMODEvents.instance.music);
     }
 
     public StudioEventEmitter InitializeEventEmitter(EventReference eventRef, GameObject emitterGameObject)
@@ -40,12 +44,20 @@ public class AudioManager : MonoBehaviour
         EventInstance eventInstance = RuntimeManager.CreateInstance(eventRef);
         events.Add(eventInstance);
         return eventInstance;
-
     }
 
-    public void SetMusicVersion(float version)
+    public void PlayOneShot(EventReference sound, Vector3 worldPos)
     {
-        musicEventInstance.setParameterByName("Triggre", version);
+        RuntimeManager.PlayOneShot(sound, worldPos);
+    }
+
+    public void SetMusicVersion(int version)
+    {
+        if(version != bonheurLevel)
+        {
+            musicEventInstance.setParameterByName("BonheurLevel", version);
+            bonheurLevel = version;
+        }
     }
 
     private void InitializeMusic(EventReference musicEventReference)
@@ -53,7 +65,16 @@ public class AudioManager : MonoBehaviour
         musicEventInstance = CreateEventInstance(musicEventReference);
         musicEventInstance.start();
     }
-    private void CleanUp()
+    private void InitializeGameOverMusic(EventReference musicEventReference)
+    {
+        gameOverMusicEventInstance = CreateEventInstance(musicEventReference);
+    }
+
+    public void PlayGameOverMusic()
+    {
+        gameOverMusicEventInstance.start();
+    }
+    public void CleanUp()
     {
         foreach(EventInstance eventInstance in events)
         {
