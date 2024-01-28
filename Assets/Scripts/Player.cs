@@ -91,12 +91,14 @@ public class Player : MonoBehaviour
         isFacingRight=!isFacingRight;
     }
     
+    public void PlayParticles(){
+        ItemParticleSystem correspondingItemParticleSystem = itemParticleSystems.First(item => item.itemType == currentItem);
+        correspondingItemParticleSystem?.itemParticleSystem?.Play();
+    }
+
     public void OnUseItem(InputAction.CallbackContext context)
     {
-        Debug.LogFormat("Cx : UseItem");
-        ParticleSystem currentParticles = itemParticleSystems.First(item => item.itemType == currentItem).itemParticleSystem;
-        currentParticles.Play();
-        
+        Debug.LogFormat("Cx : UseItem");        
         if (context.started)
         {
             isPressedThrow = true;
