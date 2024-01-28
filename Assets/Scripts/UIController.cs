@@ -86,6 +86,8 @@ public class UIController : MonoBehaviour
 
     public void RestartGame()
     {
+        Debug.Log("restarting game");
+        _endMenu.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
