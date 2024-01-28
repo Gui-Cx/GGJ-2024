@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
 
     public bool IsBoostedByHappinessAOE=false;
 
-    bool isFacingRight=true;
+    public bool isFacingRight=true;
 
     void Awake()
     {

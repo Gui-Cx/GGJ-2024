@@ -15,6 +15,8 @@ public class ItemController : MonoBehaviour
     private ItemDataElement currentItem;
 
     [SerializeField] GameObject pie;
+    int reloadPieTime=1;
+    bool canThrowPie = true;
     void Start()
     {
         contactFilter2D.SetLayerMask(_npcMask);
@@ -33,16 +35,43 @@ public class ItemController : MonoBehaviour
             break;
             case USE_TYPE.The_Pie:
                 Debug.LogFormat("Item type {0} triggered the Piiiie", currentItem.Type);
-                ThrowPie();
+                if(canThrowPie)ThrowPie();
             break;
         }
     }
 
     private void ThrowPie()
     {
-        Instantiate(pie, transform.position, Quaternion.identity);
+
+        if (GetComponent<Player>().isFacingRight)
+        {
+            Pie currentPie = Instantiate(pie, transform.position+new Vector3(1,0,0), Quaternion.identity).GetComponent<Pie>();
+            currentPie.speed = 5f;
+            currentPie.goRight = true;
+        }
+        else
+        {
+            Pie currentPie = Instantiate(pie, transform.position + new Vector3(-1, 0, 0), Quaternion.identity).GetComponent<Pie>();
+            currentPie.speed = 5f;
+            currentPie.goRight = false;
+        }
+        canThrowPie = false;
+        StartCoroutine(CountdownPie(reloadPieTime));
+
     }
-    
+
+
+    IEnumerator CountdownPie(int microseconds)
+    {
+        int counter = microseconds;
+        while (counter > 0)
+        {
+            yield return new WaitForSeconds(0.1f);
+            counter--;
+        }
+        canThrowPie = true;
+    }
+
     private void castCircle(Vector2 position, float radius)
     {
         List<Collider2D> npcColliders = new List<Collider2D>();
