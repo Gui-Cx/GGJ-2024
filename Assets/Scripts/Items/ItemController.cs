@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Slider = UnityEngine.UI.Slider;
 
 public class ItemController : MonoBehaviour
 {
@@ -14,11 +16,24 @@ public class ItemController : MonoBehaviour
 
     private ItemDataElement currentItem;
 
+    [Header("Throw Pie")]
+    [SerializeField] private GameObject throwBar;
+    private Slider _slider;
     [SerializeField] GameObject pie;
     private Player player;
-    
-    int reloadPieTime=1;
+    [SerializeField] int reloadPieTime=1;
+
     bool canThrowPie = true;
+    [SerializeField] float maxTime;
+    [SerializeField] float minTime;
+
+
+
+    private void Awake()
+    {
+        _slider = throwBar.GetComponent<Slider>();
+        _slider.value = 0;
+    }
     void Start()
     {
         player = GetComponent<Player>();
@@ -54,10 +69,14 @@ public class ItemController : MonoBehaviour
         }
     }
 
+    public void GetTimeHold(float time)
+    {
+        _slider.value = (time-minTime) / maxTime;
+    }
     private void ThrowPie(float time)
     {
-        if (time < 1f) { return; }
-        float speedThrow = Mathf.Min(Mathf.Max(time * 3f, 2f),10f);
+        if (time < minTime) { return; }
+        float speedThrow = Mathf.Min(Mathf.Max(time * 3f, minTime),maxTime);
         if (GetComponent<Player>().isFacingRight)
         {
             Pie currentPie = Instantiate(pie, transform.position+new Vector3(1,0,0), Quaternion.identity).GetComponent<Pie>();
@@ -72,6 +91,7 @@ public class ItemController : MonoBehaviour
         }
         canThrowPie = false;
         StartCoroutine(CountdownPie(reloadPieTime));
+        GetTimeHold(0);
 
     }
 

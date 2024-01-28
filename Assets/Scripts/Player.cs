@@ -1,7 +1,9 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.UI;
 using Random = System.Random;
 
 enum PlayerState
@@ -34,6 +36,7 @@ public class Player : MonoBehaviour
     public bool isFacingRight=true;
 
     float timingHoldUseItem;
+    bool isPressedThrow;
 
     void Awake()
     {
@@ -66,6 +69,8 @@ public class Player : MonoBehaviour
                 break;
         }
         // print(interactor.currentInteractable);
+        if(isPressedThrow)itemController.GetTimeHold(Time.time - timingHoldUseItem);
+
     }
 
     void Flip()
@@ -80,13 +85,15 @@ public class Player : MonoBehaviour
        
         if (context.started)
         {
+            isPressedThrow = true;
             itemController.OnItemUsed(currentItem);
-            timingHoldUseItem = Time.time;
+            timingHoldUseItem = Time.time;       
         }
         if (context.canceled)
         {
             itemController.OnItemUsed(currentItem, Time.time - timingHoldUseItem);
-
+            timingHoldUseItem = Time.time;
+            isPressedThrow = false;
         }
     }
 
