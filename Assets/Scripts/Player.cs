@@ -68,8 +68,7 @@ public class Player : MonoBehaviour
                 if (verticalMovementDirection != 0) { TryUseElevator(verticalMovementDirection); }
                 break;
         }
-        // print(interactor.currentInteractable);
-        if(isPressedThrow)itemController.GetTimeHold(Time.time - timingHoldUseItem);
+        if(isPressedThrow) itemController.GetTimeHold(Time.time - timingHoldUseItem);
 
     }
 
