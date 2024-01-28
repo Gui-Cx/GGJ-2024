@@ -48,8 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   _sadnessMaterial: {fileID: 2100000, guid: 3c8f97ce3c0c4944b87b33ba7d8f6252, type: 2}
-  _minSadnessRadius: 2
-  _maxSadnessRadius: 5
+  _minSadnessRadius: 1
+  _maxSadnessRadius: 2
   _minEmissionRate: 10
   _maxEmissionRate: 20
 --- !u!198 &423134228169675886
