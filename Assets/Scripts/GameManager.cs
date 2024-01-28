@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _numSatisfiedClients = 0;
     [SerializeField] private int _numDeadClients = 0;
     [SerializeField] private int _numNotAmusedClients = 0;
+    [SerializeField] private int _numSadClients = 0;
+    [SerializeField] private int _numTotalClients = 0;
 
     [Header("Tilemap elements")]
     [SerializeField] public Grid TilemapGrid;
@@ -90,6 +92,8 @@ public class GameManager : MonoBehaviour
     private void TriggerEndOfGame()
     {
         Debug.Log("GAME IS OVER");
+        AudioManager.Instance.CleanUp();
+        AudioManager.Instance.PlayGameOverMusic();
         UIController.Instance.EnableEndMenu();
         DisplayFinalScore();
     }
@@ -115,14 +119,33 @@ public class GameManager : MonoBehaviour
     public void UpdateNumberOfDeadClients()
     {
         _numDeadClients++;
+        _numTotalClients--;
     }
     public void UpdateNumberOfNotAmusedClients()
     {
         _numNotAmusedClients++;
     }
+    public void UpdateNumberTotalOfClients()
+    {
+        _numTotalClients++;
+        SetMusicLevel();
+    }
+
+    public void UpdateSadNumber(bool isSad)
+    {
+        _ = isSad? _numSadClients++ : _numSadClients--;
+        SetMusicLevel();
+    }
+
     private void DisplayFinalScore()
     {
         UIController.Instance.UpdateEndScore(_curScore, _numSatisfiedClients, _numNotAmusedClients, _numDeadClients);
+    }
+
+    public void SetMusicLevel()
+    {
+        int level = (int) (4 * _numSadClients / _numTotalClients);
+        AudioManager.Instance.SetMusicVersion(4-level);
     }
     #endregion
 }

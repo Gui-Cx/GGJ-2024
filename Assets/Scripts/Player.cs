@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,6 +12,14 @@ enum PlayerState
     Idle,
     InElevator
 }
+
+[System.Serializable]
+public class ItemParticleSystem
+{
+    public ITEM_TYPE itemType;
+    public ParticleSystem itemParticleSystem;
+}
+
 
 
 public class Player : MonoBehaviour
@@ -37,6 +46,9 @@ public class Player : MonoBehaviour
 
     float timingHoldUseItem;
     bool isPressedThrow;
+    public ItemParticleSystem[] itemParticleSystems;
+
+    [SerializeField] GameObject particleParent;    
 
     void Awake()
     {
@@ -74,6 +86,7 @@ public class Player : MonoBehaviour
 
     void Flip()
     {
+        particleParent.transform.Rotate(new Vector3(0, 180, 0));
         gameObject.GetComponent<SpriteRenderer>().flipX = !gameObject.GetComponent<SpriteRenderer>().flipX;
         isFacingRight=!isFacingRight;
     }

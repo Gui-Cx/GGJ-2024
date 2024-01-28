@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{56b71b6a-1da3-49b8-91ee-052a0d3edb26}">
+		<property name="assetPath">
+			<value>TravelingEscalator.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3.5953061224489797</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0ac6ae44-ec7a-4c9b-8d92-3e63f4ab0053}</destination>
+		</relationship>
+	</object>
+</objects>

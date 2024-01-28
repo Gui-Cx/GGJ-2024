@@ -319,6 +319,7 @@ Transform:
   - {fileID: 8207043515605261361}
   - {fileID: 3277081589201689485}
   - {fileID: 1519897359477824138}
+  - {fileID: 6472672137372995723}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &89875574516573383
@@ -337,6 +338,16 @@ MonoBehaviour:
   currentItem: 0
   IsBoostedByHappinessAOE: 0
   isFacingRight: 1
+  itemParticleSystems:
+  - itemType: 1
+    itemParticleSystem: {fileID: 1943427012078802606}
+  - itemType: 7
+    itemParticleSystem: {fileID: 1937597005244413071}
+  - itemType: 6
+    itemParticleSystem: {fileID: 5681032878780281931}
+  - itemType: 0
+    itemParticleSystem: {fileID: 5994588298189134749}
+  particleParent: {fileID: 3769398020538741597}
 --- !u!114 &3436095440098622070
 MonoBehaviour:
   m_ObjectHideFlags: 0

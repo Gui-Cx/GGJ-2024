@@ -10,6 +10,12 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Music")]
     [field: SerializeField] public EventReference music { get; private set; }
 
+    [field: Header("Ascenseur")]
+    [field: SerializeField] public EventReference CallElevator { get; private set; }
+    [field: SerializeField] public EventReference TravelingElevator { get; private set; }
+    [field: SerializeField] public EventReference ElevatorArrives { get; private set; }
+
+
 
     private void Awake()
     {
