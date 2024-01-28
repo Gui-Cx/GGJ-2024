@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{204cc939-8f79-4156-a4af-c6c0248c9107}">
+		<property name="assetPath">
+			<value>CallElevator.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.8461451247165532</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0ac6ae44-ec7a-4c9b-8d92-3e63f4ab0053}</destination>
+		</relationship>
+	</object>
+</objects>

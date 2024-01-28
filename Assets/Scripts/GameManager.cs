@@ -90,6 +90,8 @@ public class GameManager : MonoBehaviour
     private void TriggerEndOfGame()
     {
         Debug.Log("GAME IS OVER");
+        AudioManager.Instance.CleanUp();
+        AudioManager.Instance.PlayGameOverMusic();
         UIController.Instance.EnableEndMenu();
         DisplayFinalScore();
     }
@@ -123,6 +125,11 @@ public class GameManager : MonoBehaviour
     private void DisplayFinalScore()
     {
         UIController.Instance.UpdateEndScore(_curScore, _numSatisfiedClients, _numNotAmusedClients, _numDeadClients);
+    }
+
+    public void SetMusicLevel()
+    {
+        //AudioManager.Instance.SetMusicVersion();
     }
     #endregion
 }

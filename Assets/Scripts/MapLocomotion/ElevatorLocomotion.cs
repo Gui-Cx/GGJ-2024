@@ -24,6 +24,7 @@ public class ElevatorLocomotion : MonoBehaviour, IInteractable
     {
         isMoving = true;
         DisplayArrows(false);
+        AudioManager.Instance.PlayOneShot(FMODEvents.instance.TravelingElevator, this.transform.position);
         StartCoroutine(StartMoving(target));
     }
 
@@ -57,6 +58,7 @@ public class ElevatorLocomotion : MonoBehaviour, IInteractable
         SetCurrentEmpty(target);
         isMoving = false;
         if (playerIsIn) DisplayArrows(true);
+        AudioManager.Instance.PlayOneShot(FMODEvents.instance.ElevatorArrives, this.transform.position);
     }
 
 

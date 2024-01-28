@@ -35,11 +35,38 @@ MonoBehaviour:
   Path: FMODProject/Test/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638420025927091612
+  lastModified: 638420388897549962
   FileSizes:
   - Name: Desktop
     Value: 985152
   Exists: 1
+--- !u!114 &-7280664222700092789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Effetcs/ElevatorArrives
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Effetcs/ElevatorArrives
+  Guid:
+    Data1: 1775096665
+    Data2: 1251191676
+    Data3: 477227424
+    Data4: -538463635
+  Banks:
+  - {fileID: 8777530531100486521}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-6662398138907245882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +91,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-2164896326148675415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Effetcs/CallElevator
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Effetcs/CallElevator
+  Guid:
+    Data1: 1355455013
+    Data2: 1298279289
+    Data3: 1065262491
+    Data4: 1216716828
+  Banks:
+  - {fileID: 8777530531100486521}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1797344700331700880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,14 +162,18 @@ MonoBehaviour:
   - {fileID: 7957131543062937995}
   - {fileID: 3260474547947889350}
   - {fileID: -7795508994800111456}
+  - {fileID: 8777530531100486521}
   EditorEvents:
   - {fileID: 544027972734027787}
+  - {fileID: -2164896326148675415}
+  - {fileID: -7280664222700092789}
+  - {fileID: 7356576364386478117}
   EditorParameters: []
   MasterBanks:
   - {fileID: 3260474547947889350}
   StringsBanks:
   - {fileID: 7957131543062937995}
-  cacheTime: 638420025927091612
+  cacheTime: 638420396775509735
   cacheVersion: 131616
 --- !u!114 &544027972734027787
 MonoBehaviour:
@@ -187,7 +245,7 @@ MonoBehaviour:
   Path: FMODProject/Test/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638420025780712923
+  lastModified: 638420394169492853
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -236,6 +294,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &7356576364386478117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Effetcs/TravelingElevator
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Effetcs/TravelingElevator
+  Guid:
+    Data1: -1856417557
+    Data2: 1211606910
+    Data3: -200555900
+    Data4: -459249590
+  Banks:
+  - {fileID: 8777530531100486521}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1500
 --- !u!114 &7895506046442670313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,8 +356,28 @@ MonoBehaviour:
   Path: FMODProject/Test/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638420025780733526
+  lastModified: 638420394169527991
   FileSizes:
   - Name: Desktop
-    Value: 862
+    Value: 1092
+  Exists: 1
+--- !u!114 &8777530531100486521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SoundsEffect.bank
+  m_EditorClassIdentifier: 
+  Path: FMODProject/Test/Build/Desktop/SoundsEffect.bank
+  Name: SoundsEffect
+  StudioPath: bank:/SoundsEffect
+  lastModified: 638420396775509735
+  FileSizes:
+  - Name: Desktop
+    Value: 78624
   Exists: 1
