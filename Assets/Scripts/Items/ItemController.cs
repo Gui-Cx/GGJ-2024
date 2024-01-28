@@ -27,6 +27,7 @@ public class ItemController : MonoBehaviour
     bool canThrowPie = true;
     [SerializeField] float maxTime;
     [SerializeField] float minTime;
+    bool displayTime;
 
 
 
@@ -40,6 +41,7 @@ public class ItemController : MonoBehaviour
         player = GetComponent<Player>();
         contactFilter2D.SetLayerMask(_npcMask);
     }
+
     public void OnItemUsed(ITEM_TYPE type,float time=0f){
         currentItem = GameManager.Instance.itemsData.ItemDataElements.First(item => item.Type == type);
         Vector2 positionVec2 = new Vector2(transform.position.x, transform.position.y);
@@ -73,7 +75,7 @@ public class ItemController : MonoBehaviour
 
     public void GetTimeHold(float time)
     {
-        _slider.value = (time-minTime) / maxTime;
+        if(currentItem.UseType == USE_TYPE.The_Pie) _slider.value = (time-minTime) / maxTime;
     }
     private void ThrowPie(float time)
     {
