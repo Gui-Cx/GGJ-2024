@@ -22,6 +22,8 @@ public class AOESadness : MonoBehaviour
 
     //Value between 0 and 1, corresponds to the percentage of sadness
     private float _currentSadnessRate;
+    //Position of the cell on the gridmap at which the pnc is located
+    private Vector3Int _cellPosition;
 
     void Awake()
     {
@@ -51,29 +53,33 @@ public class AOESadness : MonoBehaviour
 
     private void GrayscaleEffect()
     {
-        _grayscaleTilemap.ClearAllTiles();
-
         float sadnessRadius = _currentSadnessRate == 0 ? 0 : _minSadnessRadius + _maxSadnessRadius * _currentSadnessRate;
 
-        Vector3Int cellPosition = _grid.WorldToCell(transform.position);
-        TileBase tile;
-
-        int xMin = cellPosition.x - Mathf.RoundToInt(sadnessRadius);
-        int xMax = cellPosition.x + Mathf.RoundToInt(sadnessRadius);
-        int yMin = cellPosition.y - Mathf.RoundToInt(sadnessRadius);
-        int yMax = cellPosition.y + Mathf.RoundToInt(sadnessRadius);
-
-        for(int tileX = xMin; tileX < xMax; tileX++)
+        Vector3Int newCellPosition = _grid.WorldToCell(transform.position);
+        
+        if (newCellPosition != _cellPosition)
         {
-            for (int tileY = yMin; tileY < yMax; tileY++)
-            {
-                Vector3Int tilePosition = new Vector3Int(tileX, tileY);
+            _grayscaleTilemap.ClearAllTiles();
 
-                tile = _backgroundTilemap.GetTile(tilePosition);
-                _grayscaleTilemap.SetTile(tilePosition, tile);
+            _cellPosition = newCellPosition;
+
+            int xMin = _cellPosition.x - Mathf.RoundToInt(sadnessRadius);
+            int xMax = _cellPosition.x + Mathf.RoundToInt(sadnessRadius);
+            int yMin = _cellPosition.y - Mathf.RoundToInt(sadnessRadius);
+            int yMax = _cellPosition.y + Mathf.RoundToInt(sadnessRadius);
+
+            TileBase tile;
+            for (int tileX = xMin; tileX < xMax; tileX++)
+            {
+                for (int tileY = yMin; tileY < yMax; tileY++)
+                {
+                    Vector3Int tilePosition = new Vector3Int(tileX, tileY);
+
+                    tile = _backgroundTilemap.GetTile(tilePosition);
+                    _grayscaleTilemap.SetTile(tilePosition, tile);
+                }
             }
         }
-
     }
 
     private void SetEmission()
