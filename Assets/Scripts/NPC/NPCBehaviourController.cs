@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager.UI;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Assertions;
 

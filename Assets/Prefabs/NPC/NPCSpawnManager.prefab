@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnTimer: 10
   _spawnChance: 40
-  _movementChance: 30
+  _movementChance: 40
   _spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
