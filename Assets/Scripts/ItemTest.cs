@@ -6,13 +6,13 @@ public class ItemTest : MonoBehaviour, IInteractable, IProduct
 {
     public string ProductName { get => "Test Omg";}
 
-    private ParticleSystem particleSystem;
+    private ParticleSystem _particleSystem;
 
     public void Initialize()
     {
-        particleSystem = GetComponent<ParticleSystem>();
-        particleSystem?.Stop();
-        particleSystem?.Play();
+        _particleSystem = GetComponent<ParticleSystem>();
+        _particleSystem?.Stop();
+        _particleSystem?.Play();
     }
     public bool Interact(Interactor interactor)
     {

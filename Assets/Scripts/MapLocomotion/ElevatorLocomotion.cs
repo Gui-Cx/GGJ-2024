@@ -62,8 +62,8 @@ public class ElevatorLocomotion : MonoBehaviour, IInteractable
 
     public void SetCurrentEmpty(EmptyElevator target)
     {
-        if(currentEmpty) currentEmpty.collider.enabled = true;
-        target.collider.enabled = false;
+        if(currentEmpty) currentEmpty.Collider.enabled = true;
+        target.Collider.enabled = false;
         currentEmpty = target;
     }
 

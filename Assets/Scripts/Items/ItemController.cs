@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -18,23 +16,23 @@ public class ItemController : MonoBehaviour
     private ItemDataElement currentItem;
 
     [Header("Throw Pie")]
-    [SerializeField] private GameObject throwBar;
-    private Slider _slider;
+    [SerializeField] private Slider throwBar;
     [SerializeField] GameObject pie;
-    private Player player;
     [SerializeField] int reloadPieTime=1;
 
-    bool canThrowPie = true;
-    [SerializeField] float maxTime;
-    [SerializeField] float minTime;
+    [Header("Parameters")]
+    [SerializeField] float throwStrength;
+    [SerializeField] float maxPressTime;
+    [SerializeField] float minPressTime;
+    [SerializeField] Gradient sliderColor;
+
+    private Player player;
     bool displayTime;
-
-
+    bool canThrowPie = true;
 
     private void Awake()
     {
-        _slider = throwBar.GetComponent<Slider>();
-        _slider.value = 0;
+        throwBar.value = 0;
     }
     void Start()
     {
@@ -75,12 +73,17 @@ public class ItemController : MonoBehaviour
 
     public void GetTimeHold(float time)
     {
-        if(currentItem.UseType == USE_TYPE.The_Pie) _slider.value = (time-minTime) / maxTime;
+        if (currentItem.UseType == USE_TYPE.The_Pie)
+        {
+            throwBar.value = (time - minPressTime) / maxPressTime;
+            throwBar.fillRect.GetComponent<UnityEngine.UI.Image>().color = sliderColor.Evaluate(throwBar.value);
+        }
     }
     private void ThrowPie(float time)
     {
-        if (time < minTime) { return; }
-        float speedThrow = Mathf.Min(Mathf.Max(time * 3f, minTime),maxTime);
+        if (time < minPressTime) { return; }
+        float speedThrow = throwStrength * (Mathf.Clamp(time, 0, maxPressTime) - minPressTime) / (maxPressTime - minPressTime);
+
         if (GetComponent<Player>().isFacingRight)
         {
             Pie currentPie = Instantiate(pie, transform.position+new Vector3(1,0,0), Quaternion.identity).GetComponent<Pie>();

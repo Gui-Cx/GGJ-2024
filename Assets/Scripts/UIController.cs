@@ -10,22 +10,14 @@ using UnityEngine.SceneManagement;
 public class UIController : MonoBehaviour
 {
     #region SINGLETON DESIGN PATTERN
-    private static UIController _instance;
-    public static UIController Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = new UIController();
-            }
-            return _instance;
-        }
-    }
+    public static UIController Instance;
+
     private void Awake()
     {
+        if (Instance == null) Instance = this;
+        else Destroy(this);
+
         DontDestroyOnLoad(this);
-        _instance = this;
     }
     #endregion
 

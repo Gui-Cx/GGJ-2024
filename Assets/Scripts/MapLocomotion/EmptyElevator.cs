@@ -9,11 +9,11 @@ public class EmptyElevator : MonoBehaviour,IInteractable
     [SerializeField] public EmptyElevator downNeighbor;
 
 
-    public BoxCollider2D collider;
+    public BoxCollider2D Collider;
 
     private void Awake()
     {
-        collider = GetComponent<BoxCollider2D>();
+        Collider = GetComponent<BoxCollider2D>();
     }
 
     public bool Interact(Interactor interactor)

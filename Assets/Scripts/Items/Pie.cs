@@ -14,7 +14,7 @@ public class Pie : MonoBehaviour
     {
         rd=GetComponent<Rigidbody2D>();
         rd.velocity= speed *((goRight?1:-1) * new Vector3(1f,0, 0) + new Vector3(0, 1f, 0));
-        print((goRight ? 1 : -1) * speed * new Vector3(1f, 1f, 0));
+        print("Pie velocity" + rd.velocity);
         Destroy(this.gameObject, 5);
     }
     private void sendMessageToNPCHit(Collision2D npcHit)

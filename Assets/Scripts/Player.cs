@@ -80,8 +80,6 @@ public class Player : MonoBehaviour
     
     public void OnUseItem(InputAction.CallbackContext context)
     {
-        Debug.LogFormat("Cx : UseItem");
-       
         if (context.started)
         {
             isPressedThrow = true;
