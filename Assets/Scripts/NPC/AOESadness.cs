@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class AOESadness : MonoBehaviour
 {
@@ -17,6 +15,9 @@ public class AOESadness : MonoBehaviour
     [SerializeField] private float _minEmissionRate;
     [SerializeField] private float _maxEmissionRate;
 
+    private Grid _grid;
+    private Tilemap _backgroundTilemap;
+    private Tilemap _grayscaleTilemap;
     private ParticleSystem _particleSystem;
 
     //Value between 0 and 1, corresponds to the percentage of sadness
@@ -32,6 +33,13 @@ public class AOESadness : MonoBehaviour
         SetSadness(5, 10);
     }
 
+    public void SetGridInfo(Grid grid, Tilemap backgroundTilemap, Tilemap grayscaleTilemap)
+    {
+        _grid = grid;
+        _backgroundTilemap = backgroundTilemap;
+        _grayscaleTilemap = grayscaleTilemap;
+    }
+
     /// <summary>
     /// Sets the sadness rate. Depends on the current happyness value and the threshold value
     /// at which the NPC starts being sad.
@@ -43,22 +51,34 @@ public class AOESadness : MonoBehaviour
         _currentSadnessRate = Mathf.Clamp01((float)(thresholdValue - happyness) / thresholdValue);
 
         SetEmission();
-        SetSadnessRadius();
+        GrayscaleEffect();
     }
 
-    private void SetSadnessRadius()
+    private void GrayscaleEffect()
     {
-        if (_currentSadnessRate == 0) return;
+        _grayscaleTilemap.ClearAllTiles();
 
-        float sadnessRadius = _minSadnessRadius + _maxSadnessRadius * _currentSadnessRate;
+        float sadnessRadius = _currentSadnessRate == 0 ? 0 : _minSadnessRadius + _maxSadnessRadius * _currentSadnessRate;
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, sadnessRadius);
+        Vector3Int cellPosition = _grid.WorldToCell(transform.position);
+        TileBase tile;
 
-        foreach(Collider collider in colliders)
+        int xMin = cellPosition.x - Mathf.RoundToInt(sadnessRadius);
+        int xMax = cellPosition.x + Mathf.RoundToInt(sadnessRadius);
+        int yMin = cellPosition.y - Mathf.RoundToInt(sadnessRadius);
+        int yMax = cellPosition.y + Mathf.RoundToInt(sadnessRadius);
+
+        for(int tileX = xMin; tileX < xMax; tileX++)
         {
-            Renderer renderer = collider.gameObject.GetComponentInChildren<Renderer>();
-            if (renderer != null) renderer.material = _sadnessMaterial;
+            for (int tileY = yMin; tileY < yMax; tileY++)
+            {
+                Vector3Int tilePosition = new Vector3Int(tileX, tileY);
+
+                tile = _backgroundTilemap.GetTile(tilePosition);
+                _grayscaleTilemap.SetTile(tilePosition, tile);
+            }
         }
+
     }
 
     private void SetEmission()
