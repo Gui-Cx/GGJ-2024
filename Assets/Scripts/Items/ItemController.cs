@@ -26,6 +26,12 @@ public class ItemController : MonoBehaviour
     [SerializeField] float minPressTime;
     [SerializeField] Gradient sliderColor;
 
+    [Header("gizmo")]
+    Vector2 gizmosoffset;
+    float gizmosradius;
+    Vector2 gizmosfrom;
+    Vector2 gizmosto;
+
     private Player player;
     bool displayTime;
     bool canThrowPie = true;

@@ -121,15 +121,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Tilemap
     originalName: 
-    pivot: {x: 0.5625, y: 0}
+    pivot: {x: 0.59504133, y: -0.067307696}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 512
-      height: 448
+      width: 484
+      height: 416
     spriteID: 02045352e10002541b843080716c05fb
     spriteBone: []
     spriteOutline: []
@@ -152,9 +152,9 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 0
-        y: 0
-        width: 512
-        height: 448
+        y: 28
+        width: 484
+        height: 416
       spriteId: 02045352e10002541b843080716c05fb
     linkedCells: []
     parentIndex: -1
