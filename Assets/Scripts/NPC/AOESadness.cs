@@ -28,11 +28,6 @@ public class AOESadness : MonoBehaviour
         _particleSystem = GetComponent<ParticleSystem>();
     }
 
-    void Update()
-    {
-        SetSadness(5, 10);
-    }
-
     public void SetGridInfo(Grid grid, Tilemap backgroundTilemap, Tilemap grayscaleTilemap)
     {
         _grid = grid;
