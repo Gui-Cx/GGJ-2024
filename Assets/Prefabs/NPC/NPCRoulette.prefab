@@ -732,6 +732,7 @@ MonoBehaviour:
   _availableNPCData:
   - {fileID: 11400000, guid: d05e96ada7d51794cbb6b598efb96131, type: 2}
   - {fileID: 11400000, guid: 07f2c6c1f8c6a0d488bc8b7908228991, type: 2}
+  - {fileID: 11400000, guid: 6b9df9f4d06cdfe4bb4044713a8dda51, type: 2}
   _movementData: {fileID: 11400000, guid: 55a01bd08b21eef4eae9603fab312d4e, type: 2}
   _state: 0
   _anim: {fileID: 5357768684245781940}

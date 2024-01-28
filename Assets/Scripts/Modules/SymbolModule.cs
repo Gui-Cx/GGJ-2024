@@ -23,6 +23,7 @@ public class SymbolModule : MonoBehaviour
     private void Awake()
     {
         _symbolSprites = new Dictionary<ITEM_TYPE, Sprite>();
+        
         foreach(var item in _itemData.ItemDataElements)
         {
             _symbolSprites.Add(item.Type, item.Symbol);

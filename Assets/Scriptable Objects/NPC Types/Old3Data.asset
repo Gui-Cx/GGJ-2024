@@ -23,8 +23,12 @@ MonoBehaviour:
   - Type: 3
     OutcomeState: 2
   - Type: 4
-    OutcomeState: 1
+    OutcomeState: 2
   - Type: 5
-    OutcomeState: 3
+    OutcomeState: 2
   - Type: 6
+    OutcomeState: 1
+  - Type: 7
+    OutcomeState: 3
+  - Type: 8
     OutcomeState: 3

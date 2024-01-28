@@ -8,7 +8,9 @@ public enum ITEM_TYPE
 {
     RedNose,
     Flower,
-    Ballon,
+    Ballon_Dog,
+    Ballon_Heart,
+    Ballon_Cringe,
     Pie,
     Hug,
     Trumpet,

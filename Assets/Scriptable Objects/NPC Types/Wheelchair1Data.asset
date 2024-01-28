@@ -15,16 +15,20 @@ MonoBehaviour:
   <Type>k__BackingField: 4
   <ItemInteractionTable>k__BackingField:
   - Type: 0
-    OutcomeState: 2
-  - Type: 1
     OutcomeState: 1
+  - Type: 1
+    OutcomeState: 2
   - Type: 2
     OutcomeState: 2
   - Type: 3
-    OutcomeState: 3
+    OutcomeState: 2
   - Type: 4
     OutcomeState: 2
   - Type: 5
-    OutcomeState: 2
+    OutcomeState: 3
   - Type: 6
+    OutcomeState: 2
+  - Type: 7
+    OutcomeState: 2
+  - Type: 8
     OutcomeState: 3
