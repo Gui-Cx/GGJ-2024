@@ -27,8 +27,13 @@ public class ItemController : MonoBehaviour
     bool canThrowPie = true;
     [SerializeField] float maxTime;
     [SerializeField] float minTime;
+    bool displayTime;
 
-
+    [Header("gizmo")]
+    Vector2 gizmosoffset;
+    float gizmosradius;
+    Vector2 gizmosfrom;
+    Vector2 gizmosto;
 
     private void Awake()
     {
@@ -40,6 +45,7 @@ public class ItemController : MonoBehaviour
         player = GetComponent<Player>();
         contactFilter2D.SetLayerMask(_npcMask);
     }
+
     public void OnItemUsed(ITEM_TYPE type,float time=0f){
         currentItem = GameManager.Instance.itemsData.ItemDataElements.First(item => item.Type == type);
         Vector2 positionVec2 = new Vector2(transform.position.x, transform.position.y);
@@ -52,6 +58,9 @@ public class ItemController : MonoBehaviour
                     Debug.LogFormat("Item type {0} triggered Circle", currentItem.Type);
                     offset = positionVec2 + (player.isFacingRight ? 1 : -1) * currentItem.UseOffset;
                     castCircle(offset, currentItem.UseRange);
+                    gizmosoffset = offset;
+                    gizmosradius = currentItem.UseRange;
+
                 }
             break;
             case USE_TYPE.Ray:
@@ -60,6 +69,8 @@ public class ItemController : MonoBehaviour
                     offset = positionVec2 + (player.isFacingRight ? 1 : -1) * currentItem.UseOffset;
                     castRay(offset, (player.isFacingRight ? Vector2.right : Vector2.left), currentItem.UseRange);
                     Debug.LogFormat("Item type {0} triggered Ray", currentItem.Type);
+                    gizmosfrom = offset;
+                    gizmosto = offset + (player.isFacingRight ? Vector2.right : Vector2.left) * currentItem.UseRange;
                 }
 
             break;
@@ -73,7 +84,7 @@ public class ItemController : MonoBehaviour
 
     public void GetTimeHold(float time)
     {
-        _slider.value = (time-minTime) / maxTime;
+        if(currentItem.UseType == USE_TYPE.The_Pie) _slider.value = (time-minTime) / maxTime;
     }
     private void ThrowPie(float time)
     {
@@ -156,6 +167,22 @@ public class ItemController : MonoBehaviour
         if (npcHit.TryGetComponent<NPCItemHandler>(out npcItemHandler))
         {
             npcItemHandler.OnItemTriggered(currentItem.Type);
+        }
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        if(currentItem.UseType == USE_TYPE.Circle)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(gizmosoffset, gizmosradius);
+        }
+       
+        if (currentItem.UseType == USE_TYPE.Ray)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(gizmosfrom,gizmosto);
         }
     }
 }
