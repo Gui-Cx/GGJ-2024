@@ -82,10 +82,14 @@ MonoBehaviour:
   Path: FMODProject/Test/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
+<<<<<<< HEAD
   lastModified: 638420456872772864
+=======
+  lastModified: 638420498891041795
+>>>>>>> 83e7c51 (update music bank)
   FileSizes:
   - Name: Desktop
-    Value: 1092
+    Value: 1130
   Exists: 1
 --- !u!114 &-7280664222700092789
 MonoBehaviour:
@@ -153,10 +157,18 @@ MonoBehaviour:
   Path: FMODProject/Test/Build/Desktop/SoundsEffect.bank
   Name: SoundsEffect
   StudioPath: bank:/SoundsEffect
+<<<<<<< HEAD
   lastModified: 638420456872833636
+=======
+<<<<<<< HEAD
+  lastModified: 638420468337601322
+=======
+  lastModified: 638420498904841775
+>>>>>>> 4f75f12 (update music bank)
+>>>>>>> 83e7c51 (update music bank)
   FileSizes:
   - Name: Desktop
-    Value: 78624
+    Value: 86688
   Exists: 1
 --- !u!114 &-3776159719989073447
 MonoBehaviour:
@@ -259,12 +271,21 @@ MonoBehaviour:
   - {fileID: -9060095951450238813}
   - {fileID: 4107408289342798305}
   - {fileID: 1312886054601697531}
+  - {fileID: 3920059908627333626}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1577349199369142536}
   StringsBanks:
   - {fileID: -7491019609888845815}
+<<<<<<< HEAD
   cacheTime: 638420456872833636
+=======
+<<<<<<< HEAD
+  cacheTime: 638420468337738776
+=======
+  cacheTime: 638420498904841775
+>>>>>>> 4f75f12 (update music bank)
+>>>>>>> 83e7c51 (update music bank)
   cacheVersion: 131616
 --- !u!114 &496846567446664241
 MonoBehaviour:
@@ -281,10 +302,18 @@ MonoBehaviour:
   Path: FMODProject/Test/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
+<<<<<<< HEAD
   lastModified: 638420456872822858
+=======
+<<<<<<< HEAD
+  lastModified: 638420468337738776
+=======
+  lastModified: 638420498903133426
+>>>>>>> 4f75f12 (update music bank)
+>>>>>>> 83e7c51 (update music bank)
   FileSizes:
   - Name: Desktop
-    Value: 1502688
+    Value: 2042144
   Exists: 1
 --- !u!114 &544027972734027787
 MonoBehaviour:
@@ -356,7 +385,15 @@ MonoBehaviour:
   Path: FMODProject/Test/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
+<<<<<<< HEAD
   lastModified: 638420456872772864
+=======
+<<<<<<< HEAD
+  lastModified: 638420468337468401
+=======
+  lastModified: 638420498890996596
+>>>>>>> 4f75f12 (update music bank)
+>>>>>>> 83e7c51 (update music bank)
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -388,7 +425,7 @@ MonoBehaviour:
   - {fileID: -3776159719989073447}
   MinDistance: 1
   MaxDistance: 20
-  Length: 125513
+  Length: 167351
 --- !u!114 &2378001779595156629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,6 +473,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1036
   Exists: 1
+--- !u!114 &3920059908627333626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Effetcs/PieEvent
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Effetcs/PieEvent
+  Guid:
+    Data1: 436388312
+    Data2: 1122159470
+    Data3: 1572594365
+    Data4: 1052681018
+  Banks:
+  - {fileID: -5170365870672655959}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 721
 --- !u!114 &4107408289342798305
 MonoBehaviour:
   m_ObjectHideFlags: 0

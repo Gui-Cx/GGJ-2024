@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -10,6 +11,7 @@ public class AOESadness : MonoBehaviour
     [Header("Sadness Radius")]
     [SerializeField] private float _minSadnessRadius;
     [SerializeField] private float _maxSadnessRadius;
+    private List<Vector3Int> lastCells;
 
     [Header("Particle emission")]
     [SerializeField] private float _minEmissionRate;
@@ -28,6 +30,7 @@ public class AOESadness : MonoBehaviour
     void Awake()
     {
         _particleSystem = GetComponent<ParticleSystem>();
+        lastCells = new List<Vector3Int>();
     }
 
     public void SetGridInfo(Grid grid, Tilemap backgroundTilemap, Tilemap grayscaleTilemap)
@@ -51,8 +54,22 @@ public class AOESadness : MonoBehaviour
         //GrayscaleEffect();
     }
 
+
+    private void ClearTiles()
+    {
+        if (lastCells.Count > 0)
+        {
+            foreach (Vector3Int tile in lastCells)
+            {
+                _grayscaleTilemap.SetTile(tile, null);
+            }
+        }  
+    }
     private void GrayscaleEffect()
     {
+
+        ClearTiles();
+        lastCells.Clear();
         float sadnessRadius = _currentSadnessRate == 0 ? 0 : _minSadnessRadius + _maxSadnessRadius * _currentSadnessRate;
 
         Vector3Int newCellPosition = _grid.WorldToCell(transform.position);
@@ -74,10 +91,12 @@ public class AOESadness : MonoBehaviour
                 for (int tileY = yMin; tileY < yMax; tileY++)
                 {
                     Vector3Int tilePosition = new Vector3Int(tileX, tileY);
-
+                    lastCells.Add(tilePosition);
                     tile = _backgroundTilemap.GetTile(tilePosition);
                     _grayscaleTilemap.SetTile(tilePosition, tile);
                 }
+
+
             }
         }
     }
