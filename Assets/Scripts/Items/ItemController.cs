@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -28,7 +29,8 @@ public class ItemController : MonoBehaviour
         currentItem = GameManager.Instance.itemsData.ItemDataElements.First(item => item.Type == type);
         Vector2 positionVec2 = new Vector2(transform.position.x, transform.position.y);
         Vector2 offset;
-        switch (currentItem.UseType){
+        switch (currentItem.UseType)
+        {
             case USE_TYPE.Circle:  
                 if (time == 0f)
                 {
@@ -96,6 +98,23 @@ public class ItemController : MonoBehaviour
             {
                 sendMessageToNPCHit(npcColIterator);
             }
+            return;
+        }
+        //if we arrive here, then it means that the cast has failed : no one was overlapped
+        if(currentItem.Type == ITEM_TYPE.Ballon_Dog)
+        {
+            GetComponent<Player>().SetCurrentItem(ITEM_TYPE.Ballon_Heart);
+            currentItem = GameManager.Instance.itemsData.ItemDataElements.First(item => item.Type == ITEM_TYPE.Ballon_Heart);
+        }
+        else if(currentItem.Type == ITEM_TYPE.Ballon_Heart)
+        {
+            GetComponent<Player>().SetCurrentItem(ITEM_TYPE.Ballon_Cringe);
+            currentItem = GameManager.Instance.itemsData.ItemDataElements.First(item => item.Type == ITEM_TYPE.Ballon_Cringe);
+        } 
+        else if(currentItem.Type == ITEM_TYPE.Ballon_Cringe)
+        {
+            GetComponent<Player>().SetCurrentItem(ITEM_TYPE.Ballon_Dog);
+            currentItem = GameManager.Instance.itemsData.ItemDataElements.First(item => item.Type == ITEM_TYPE.Ballon_Dog);
         }
     }
 

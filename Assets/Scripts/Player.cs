@@ -86,13 +86,12 @@ public class Player : MonoBehaviour
         if (context.canceled)
         {
             itemController.OnItemUsed(currentItem, Time.time - timingHoldUseItem);
-
         }
     }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        Debug.LogFormat("Cx : Interact");
+        //Debug.LogFormat("Cx : Interact");
         if (context.started && interactor.currentInteractable != null)
         {
             interactor.currentInteractable.Interact(interactor);
@@ -101,13 +100,13 @@ public class Player : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.LogFormat("Cx : Direction is {0}", context.ReadValue<float>());
+        //Debug.LogFormat("Cx : Direction is {0}", context.ReadValue<float>());
         movementDirection = (int)Math.Round(context.ReadValue<float>());
     }
 
     public void OnElevator(InputAction.CallbackContext context)
     {
-        Debug.LogFormat("Cx : Direction is {0}", context.ReadValue<float>());
+        //Debug.LogFormat("Cx : Direction is {0}", context.ReadValue<float>());
         verticalMovementDirection = (int)Math.Round(context.ReadValue<float>());
 
     }
