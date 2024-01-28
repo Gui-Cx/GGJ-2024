@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{15dc6b0c-27e9-42e7-b84d-bfe03415acf0}">
+		<property name="name">
+			<value>BonheurLevel</value>
+		</property>
+		<relationship name="folder">
+			<destination>{607eadd3-6cd3-4d61-8534-e1a7b41c1828}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{de3833bb-671d-46c3-b823-5e5e9d051c12}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{de3833bb-671d-46c3-b823-5e5e9d051c12}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>11</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

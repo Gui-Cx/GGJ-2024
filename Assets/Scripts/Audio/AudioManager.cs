@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     private List<StudioEventEmitter> emitters;
 
     private EventInstance musicEventInstance;
+    private int bonheurLevel;
     private void Awake()
     {
         if (Instance != this)
@@ -43,14 +44,18 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    public void SetMusicVersion(float version)
+    public void SetMusicVersion(int version)
     {
-        musicEventInstance.setParameterByName("Triggre", version);
+        if(version != bonheurLevel)
+        {
+            musicEventInstance.setParameterByName("BonheurLevel", version);
+            bonheurLevel = version;
+        }
     }
 
     private void InitializeMusic(EventReference musicEventReference)
     {
-        musicEventInstance = CreateEventInstance(musicEventReference);
+        musicEventInstance =    CreateEventInstance(musicEventReference);
         musicEventInstance.start();
     }
     private void CleanUp()
