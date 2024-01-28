@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6534adba775446a4fa86914a8fceecc3
+guid: bdab21a62b0726a43b8206a162cb150d
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Tilemap
+  - name: UI
     originalName: 
-    pivot: {x: 0.5625, y: 0}
+    pivot: {x: 0.39751554, y: -0.4814815}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 512
-      height: 448
-    spriteID: 02045352e10002541b843080716c05fb
+      width: 161
+      height: 81
+    spriteID: 3f52ba2f715f5684fad6bcc1036c95e9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,23 +142,23 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1215754456
-    name: Tilemap
+    guid: 741814940
+    name: UI
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Tilemap
+    - name: UI
       frameIndex: 0
       cellRect:
         x: 0
-        y: 0
-        width: 512
-        height: 448
-      spriteId: 02045352e10002541b843080716c05fb
+        y: 39
+        width: 161
+        height: 81
+      spriteId: 3f52ba2f715f5684fad6bcc1036c95e9
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 576, y: 448}
+  canvasSize: {x: 128, y: 128}
