@@ -121,7 +121,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: UI
     originalName: 
-    pivot: {x: 0.5833333, y: -0.15384616}
+    pivot: {x: 0.5833333, y: -0.061946902}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -129,8 +129,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 192
-      height: 104
-    spriteID: 8730089cdb1b7874aa8ce881474eb16e
+      height: 113
+    spriteID: 3f52ba2f715f5684fad6bcc1036c95e9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -152,10 +152,10 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 0
-        y: 16
+        y: 7
         width: 192
-        height: 104
-      spriteId: 8730089cdb1b7874aa8ce881474eb16e
+        height: 113
+      spriteId: 3f52ba2f715f5684fad6bcc1036c95e9
     linkedCells: []
     parentIndex: -1
   platformSettings: []
