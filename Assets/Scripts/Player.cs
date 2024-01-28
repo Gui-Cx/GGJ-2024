@@ -118,7 +118,7 @@ public class Player : MonoBehaviour
     public void OnInteract(InputAction.CallbackContext context)
     {
         //Debug.LogFormat("Cx : Interact");
-        if (context.started && interactor.currentInteractable != null)
+        if (context.started && interactor.currentInteractable != null && currentState ==PlayerState.Idle)
         {
             interactor.currentInteractable.Interact(interactor);
         }
@@ -161,8 +161,8 @@ public class Player : MonoBehaviour
         {
             currentState = PlayerState.Idle;
             GetComponent<BoxCollider2D>().enabled = true;
-            if (movementDirection < 0) transform.position +=  new Vector3(-1f,0,0);
-            else transform.position += new Vector3(1f, 0, 0);
+            //if (movementDirection < 0) transform.position +=  new Vector3(-1f,0,0);
+            //else transform.position += new Vector3(1f, 0, 0);
             rigidbody2d.simulated = true;
             currentElevator.QuitElevator();
         }

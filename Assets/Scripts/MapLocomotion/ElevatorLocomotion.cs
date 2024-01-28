@@ -26,6 +26,7 @@ public class ElevatorLocomotion : MonoBehaviour, IInteractable
         DisplayArrows(false);
         AudioManager.Instance.PlayOneShot(FMODEvents.instance.TravelingElevator, this.transform.position);
         StartCoroutine(StartMoving(target));
+        print(target.transform.position);
     }
 
     void DisplayArrows(bool isDisplay)
@@ -49,7 +50,7 @@ public class ElevatorLocomotion : MonoBehaviour, IInteractable
         {
             transform.position = Vector3.Lerp(startingPos, finalPos, (elapsedTime / timing));
             elapsedTime += Time.deltaTime;
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
         ArriveToDestination(target);      
     }
