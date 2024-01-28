@@ -20,7 +20,8 @@ public enum NPC_STATE
     Idle,
     Satisfied,
     NotSatisfied,
-    Dead
+    Dead,
+    Sad
 }
 
 /// <summary>
