@@ -125,7 +125,6 @@ public class ItemController : MonoBehaviour
         List<Collider2D> npcColliders = new List<Collider2D>();
         if (Physics2D.OverlapCircle(position, radius, contactFilter2D, npcColliders) > 0)
         {
-            player.PlayParticles();
             foreach(Collider2D npcColIterator in npcColliders)
             {
                 sendMessageToNPCHit(npcColIterator);

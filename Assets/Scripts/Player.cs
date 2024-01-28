@@ -98,7 +98,10 @@ public class Player : MonoBehaviour
 
     public void OnUseItem(InputAction.CallbackContext context)
     {
-        Debug.LogFormat("Cx : UseItem");        
+        Debug.LogFormat("Cx : UseItem");
+        if (currentItem != ITEM_TYPE.Pie){
+            PlayParticles();
+        }        
         if (context.started)
         {
             isPressedThrow = true;
