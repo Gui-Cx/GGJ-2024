@@ -91,8 +91,16 @@ public class Player : MonoBehaviour
         isFacingRight=!isFacingRight;
     }
     
+    public void PlayParticles(){
+        ItemParticleSystem correspondingItemParticleSystem = itemParticleSystems.First(item => item.itemType == currentItem);
+        correspondingItemParticleSystem?.itemParticleSystem?.Play();
+    }
+
     public void OnUseItem(InputAction.CallbackContext context)
     {
+        if (currentItem != ITEM_TYPE.Pie){
+            PlayParticles();
+        }        
         if (context.started)
         {
             isPressedThrow = true;

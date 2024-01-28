@@ -16,14 +16,14 @@ MonoBehaviour:
   - Name: RedNose
     Symbol: {fileID: 21300000, guid: d13233afbc7adee48b48cc1b3a4f5cde, type: 3}
     Type: 0
-    UseType: 0
-    UseRange: 100
+    UseType: 1
+    UseRange: 1.4
     UseOffset: {x: 0, y: 0}
   - Name: Flower
     Symbol: {fileID: 21300000, guid: 9aa98901b8fe2b3438a784b9d0aa62f7, type: 3}
     Type: 1
-    UseType: 0
-    UseRange: 50
+    UseType: 1
+    UseRange: 3
     UseOffset: {x: 0, y: 0}
   - Name: BallonDog
     Symbol: {fileID: 21300000, guid: 99947f81180d7224c9984cc8d7f6e52c, type: 3}
@@ -53,13 +53,13 @@ MonoBehaviour:
     Symbol: {fileID: 21300000, guid: 7c9e3d13addb77c4d8ee1684f84b4b88, type: 3}
     Type: 6
     UseType: 0
-    UseRange: 40
+    UseRange: 1.5
     UseOffset: {x: 0, y: 0}
   - Name: Trumpet
     Symbol: {fileID: 21300000, guid: 2009bb69ac032f448b51c7cd4d383446, type: 3}
     Type: 7
     UseType: 0
-    UseRange: 10
+    UseRange: 4
     UseOffset: {x: 0, y: 0}
   - Name: Gun
     Symbol: {fileID: 21300000, guid: a9e4dce4de5e1c54f88e41f26851e97b, type: 3}
