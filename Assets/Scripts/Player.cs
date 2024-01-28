@@ -163,8 +163,14 @@ public class Player : MonoBehaviour
             case ITEM_TYPE.Gun:
                 animator.SetTrigger("GetGun");
                 break;
-            case ITEM_TYPE.Ballon:
+            case ITEM_TYPE.Ballon_Dog:
                 animator.SetTrigger("GetBallon");
+                break;
+            case ITEM_TYPE.Ballon_Cringe:
+                animator.SetTrigger("GetCringeBallon");
+                break;
+            case ITEM_TYPE.Ballon_Heart:
+                animator.SetTrigger("GetHeartBallon");
                 break;
             case ITEM_TYPE.Pie:
                 animator.SetTrigger("GetPie");
