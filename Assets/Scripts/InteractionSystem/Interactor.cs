@@ -11,6 +11,12 @@ public class Interactor : MonoBehaviour
 
     Collider2D _collider;
     public IInteractable currentInteractable;
+    [SerializeField] SpriteRenderer Button;
+
+    private void Awake()
+    {
+        Button.enabled = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -20,10 +26,11 @@ public class Interactor : MonoBehaviour
         if (_collider != null)
         {
             _collider.TryGetComponent(out currentInteractable);
+            Button.enabled = true;
         } 
         else 
         {
-            currentInteractable = null;
+            currentInteractable = null; Button.enabled = false;
         }
     }
 
