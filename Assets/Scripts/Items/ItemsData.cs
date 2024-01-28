@@ -17,7 +17,9 @@ public enum ITEM_TYPE
 
 public enum USE_TYPE
 {
-    Circle, Ray, The_Pie
+    Circle,
+    Ray,
+    The_Pie
 }
 
 

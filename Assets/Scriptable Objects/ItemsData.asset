@@ -14,23 +14,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemDataElements>k__BackingField:
   - Name: RedNose
-    Symbol: {fileID: 21300000, guid: c1165d39ec8561540b6c8a394a584d9a, type: 3}
+    Symbol: {fileID: 21300000, guid: d13233afbc7adee48b48cc1b3a4f5cde, type: 3}
     Type: 0
+    UseType: 0
+    UseRange: 100
+    UseOffset: {x: 0, y: 0}
   - Name: Flower
-    Symbol: {fileID: 21300000, guid: 194c837fecc075b4394e9792090d9a15, type: 3}
+    Symbol: {fileID: 21300000, guid: 9aa98901b8fe2b3438a784b9d0aa62f7, type: 3}
     Type: 1
+    UseType: 0
+    UseRange: 50
+    UseOffset: {x: 0, y: 0}
   - Name: Ballon
-    Symbol: {fileID: 21300000, guid: 8c836f43d56ad1d49b03f46c41887f9f, type: 3}
+    Symbol: {fileID: 21300000, guid: 99947f81180d7224c9984cc8d7f6e52c, type: 3}
     Type: 2
+    UseType: 0
+    UseRange: 25
+    UseOffset: {x: 0, y: 0}
   - Name: Pie
-    Symbol: {fileID: 21300000, guid: eb4b37f33eca969409997648d267bd58, type: 3}
+    Symbol: {fileID: 21300000, guid: 008335d53da3c2049a09d51b5ef613ae, type: 3}
     Type: 3
+    UseType: 2
+    UseRange: 30
+    UseOffset: {x: 0, y: 0}
   - Name: Hug
-    Symbol: {fileID: 21300000, guid: a64abea97b95152469b8413e1d9acd45, type: 3}
+    Symbol: {fileID: 21300000, guid: 7c9e3d13addb77c4d8ee1684f84b4b88, type: 3}
     Type: 4
+    UseType: 0
+    UseRange: 40
+    UseOffset: {x: 0, y: 0}
   - Name: Trumpet
-    Symbol: {fileID: 21300000, guid: 1a246bae3a1031249b9196a9fd75de26, type: 3}
+    Symbol: {fileID: 21300000, guid: 2009bb69ac032f448b51c7cd4d383446, type: 3}
     Type: 5
+    UseType: 0
+    UseRange: 10
+    UseOffset: {x: 0, y: 0}
   - Name: Gun
-    Symbol: {fileID: 21300000, guid: ccad2acf89da2de48b818e6e78dd1507, type: 3}
+    Symbol: {fileID: 21300000, guid: a9e4dce4de5e1c54f88e41f26851e97b, type: 3}
     Type: 6
+    UseType: 0
+    UseRange: 35
+    UseOffset: {x: 0, y: 0}

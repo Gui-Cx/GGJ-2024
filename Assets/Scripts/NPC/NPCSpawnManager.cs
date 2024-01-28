@@ -30,7 +30,6 @@ public class NPCSpawnManager : MonoBehaviour
     }
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         _instance = this;
     }
     #endregion
@@ -39,6 +38,7 @@ public class NPCSpawnManager : MonoBehaviour
     [Header("Spawn variables")]
     [SerializeField] private float _spawnTimer=10f;
     [SerializeField, Range(0, 100)] private int _spawnChance;
+    [SerializeField, Range(0, 100)] private int _movementChance;
 
     [Header("Spawn points")]
     [SerializeField] private Transform[] _spawnPoints;
@@ -155,6 +155,10 @@ public class NPCSpawnManager : MonoBehaviour
         GameObject newNpc = Instantiate(SelectNPC());
         newNpc.transform.position = selectedSpawnPoint.transform.position;
         newNpc.GetComponent<NPCBehaviourController>().SpawnPoint = selectedSpawnPoint;
+        if (UnityEngine.Random.Range(0, 100) <= _movementChance)
+        {
+            newNpc.GetComponent<NPCBehaviourController>().MakeMovingNPC();
+        }
         //updating dict values :
         CurNPCNumber++;
         _spawnPointsOccupationDict[selectedSpawnPoint] = true;

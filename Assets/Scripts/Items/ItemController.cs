@@ -1,40 +1,112 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Slider = UnityEngine.UI.Slider;
 
 public class ItemController : MonoBehaviour
 {
-
-    ItemDataElement currentItem;
 
     [SerializeField] LayerMask _npcMask;
 
     private ContactFilter2D contactFilter2D;
 
-    void Awake()
+    private ItemDataElement currentItem;
+
+    [Header("Throw Pie")]
+    [SerializeField] private GameObject throwBar;
+    private Slider _slider;
+    [SerializeField] GameObject pie;
+    private Player player;
+    [SerializeField] int reloadPieTime=1;
+
+    bool canThrowPie = true;
+    [SerializeField] float maxTime;
+    [SerializeField] float minTime;
+
+
+
+    private void Awake()
     {
-        ContactFilter2D contactFilter2D = new ContactFilter2D();
+        _slider = throwBar.GetComponent<Slider>();
+        _slider.value = 0;
+    }
+    void Start()
+    {
+        player = GetComponent<Player>();
         contactFilter2D.SetLayerMask(_npcMask);
     }
-    public void OnItemUsed(){
+    public void OnItemUsed(ITEM_TYPE type,float time=0f){
+        currentItem = GameManager.Instance.itemsData.ItemDataElements.First(item => item.Type == type);
         Vector2 positionVec2 = new Vector2(transform.position.x, transform.position.y);
+        Vector2 offset;
         switch (currentItem.UseType){
-            case USE_TYPE.Circle:
-                Debug.LogFormat("Item type {0} triggered Circle", currentItem.Type);
-                castCircle(positionVec2+currentItem.UseOffset, currentItem.UseRange);
+            case USE_TYPE.Circle:  
+                if (time == 0f)
+                {
+                    Debug.LogFormat("Item type {0} triggered Circle", currentItem.Type);
+                    offset = positionVec2 + (player.isFacingRight ? 1 : -1) * currentItem.UseOffset;
+                    castCircle(offset, currentItem.UseRange);
+                }
             break;
             case USE_TYPE.Ray:
-                Debug.LogFormat("Item type {0} triggered Ray", currentItem.Type);
-                castRay(currentItem.UseRange);
+                if (time == 0f)
+                {
+                    offset = positionVec2 + (player.isFacingRight ? 1 : -1) * currentItem.UseOffset;
+                    castRay(offset, (player.isFacingRight ? Vector2.right : Vector2.left), currentItem.UseRange);
+                    Debug.LogFormat("Item type {0} triggered Ray", currentItem.Type);
+                }
+
             break;
             case USE_TYPE.The_Pie:
                 Debug.LogFormat("Item type {0} triggered the Piiiie", currentItem.Type);
+                //wait for release
+                if(canThrowPie)ThrowPie(time);
             break;
         }
     }
-    
+
+    public void GetTimeHold(float time)
+    {
+        _slider.value = (time-minTime) / maxTime;
+    }
+    private void ThrowPie(float time)
+    {
+        if (time < minTime) { return; }
+        float speedThrow = Mathf.Min(Mathf.Max(time * 3f, minTime),maxTime);
+        if (GetComponent<Player>().isFacingRight)
+        {
+            Pie currentPie = Instantiate(pie, transform.position+new Vector3(1,0,0), Quaternion.identity).GetComponent<Pie>();
+            currentPie.speed = speedThrow;
+            currentPie.goRight = true;
+        }
+        else
+        {
+            Pie currentPie = Instantiate(pie, transform.position + new Vector3(-1, 0, 0), Quaternion.identity).GetComponent<Pie>();
+            currentPie.speed = speedThrow;
+            currentPie.goRight = false;
+        }
+        canThrowPie = false;
+        StartCoroutine(CountdownPie(reloadPieTime));
+        GetTimeHold(0);
+
+    }
+
+
+    IEnumerator CountdownPie(int microseconds)
+    {
+        int counter = microseconds;
+        while (counter > 0)
+        {
+            yield return new WaitForSeconds(0.1f);
+            counter--;
+        }
+        canThrowPie = true;
+    }
+
     private void castCircle(Vector2 position, float radius)
     {
         List<Collider2D> npcColliders = new List<Collider2D>();
@@ -47,10 +119,10 @@ public class ItemController : MonoBehaviour
         }
     }
 
-    private void castRay(float range)
+    private void castRay(Vector2 start, Vector2 direction, float range)
     {
         List<RaycastHit2D> npcHit = new List<RaycastHit2D>();
-        if (Physics2D.Raycast(transform.position, transform.forward, contactFilter2D, npcHit, range) > 0)
+        if (Physics2D.Raycast(start, direction, contactFilter2D, npcHit, range) > 0)
         {
             foreach(RaycastHit2D npcHitIterator in npcHit)
             {
@@ -61,10 +133,10 @@ public class ItemController : MonoBehaviour
 
     private void sendMessageToNPCHit(Collider2D npcHit)
     {
-        NPCBehaviourController npcBehaviourController;
-        if (npcHit.TryGetComponent<NPCBehaviourController>(out npcBehaviourController))
+        NPCItemHandler npcItemHandler;
+        if (npcHit.TryGetComponent<NPCItemHandler>(out npcItemHandler))
         {
-            npcBehaviourController.OnItemTriggered(currentItem.Type);
+            npcItemHandler.OnItemTriggered(currentItem.Type);
         }
     }
 }

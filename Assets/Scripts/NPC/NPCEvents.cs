@@ -41,7 +41,6 @@ public class NPCEvents : MonoBehaviour
     }
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         _instance = this;
         Event = new NpcGameEvent();
     }

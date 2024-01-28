@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 /// <summary>
 /// Script of the GameManager object that will handle the game's objective and overall architecture
@@ -23,7 +24,6 @@ public class GameManager : MonoBehaviour
     }
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         _instance = this;
     }
     #endregion
@@ -38,6 +38,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _numSatisfiedClients = 0;
     [SerializeField] private int _numDeadClients = 0;
     [SerializeField] private int _numNotAmusedClients = 0;
+
+    [Header("Tilemap elements")]
+    [SerializeField] public Grid TilemapGrid;
+    [SerializeField] public Tilemap BackgroundTilemap;
+    [SerializeField] public Tilemap GreyTilemap;
+
+    [SerializeField] public ItemsData itemsData;
 
     private int _curHour = 8;
 

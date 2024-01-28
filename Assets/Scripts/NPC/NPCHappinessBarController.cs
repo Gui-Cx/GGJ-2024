@@ -30,6 +30,11 @@ public class NPCHappinessBarController : MonoBehaviour
 
     private bool _happinessIsActive = false;
 
+    [Header("Animation")]
+    [SerializeField] private Animator _anim;
+
+    private AOESadness _aoeSadness;
+
     private void OnValidate()
     {
         Assert.IsNotNull(_happinessAOE);
@@ -43,6 +48,8 @@ public class NPCHappinessBarController : MonoBehaviour
         _barModule.SetMaxHappiness(_maxLevel);
         UpdateHappinessBarColor(Color.green);
         StartCoroutine(BarDownUpdate());
+        _aoeSadness = GetComponentInChildren<AOESadness>();
+        _aoeSadness.SetGridInfo(GameManager.Instance.TilemapGrid,GameManager.Instance.BackgroundTilemap,GameManager.Instance.GreyTilemap);
     }
 
     /// <summary>
@@ -58,8 +65,9 @@ public class NPCHappinessBarController : MonoBehaviour
         }
         if (_curLevel < _happinessThreshold)
         {
-            Debug.Log("NPC : " + gameObject.name + " IS SAD");
+            //Debug.Log("NPC : " + gameObject.name + " IS SAD");
             //TODO : Do something here to "emit sadness"
+            _aoeSadness.SetSadness(_curLevel,_happinessThreshold);
             GameManager.Instance.DecreaseScore(_scoreDecrease); //we decrease (each seconds) the score by the score decrease 
             UpdateHappinessBarColor(Color.red);
         }
@@ -95,6 +103,7 @@ public class NPCHappinessBarController : MonoBehaviour
         UpdateHappinessBarColor(Color.yellow);
         UpdateVisualHappinessBar();
         StartCoroutine(HappinessTimer());
+        _anim.SetTrigger("Laugth");
     }
 
     private IEnumerator HappinessTimer()

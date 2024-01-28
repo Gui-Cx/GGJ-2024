@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
-using static UnityEditor.Progress;
+using UnityEngine.UI;
 using Random = System.Random;
 
 enum PlayerState
@@ -32,11 +29,14 @@ public class Player : MonoBehaviour
     ElevatorLocomotion currentElevator;
     Animator animator;
 
-    ITEM_TYPE currentItem;
+    [SerializeField] ITEM_TYPE currentItem;
 
     public bool IsBoostedByHappinessAOE=false;
 
-    bool isFacingRight=true;
+    public bool isFacingRight=true;
+
+    float timingHoldUseItem;
+    bool isPressedThrow;
 
     void Awake()
     {
@@ -68,6 +68,9 @@ public class Player : MonoBehaviour
                 if (verticalMovementDirection != 0) { TryUseElevator(verticalMovementDirection); }
                 break;
         }
+        // print(interactor.currentInteractable);
+        if(isPressedThrow)itemController.GetTimeHold(Time.time - timingHoldUseItem);
+
     }
 
     void Flip()
@@ -76,30 +79,43 @@ public class Player : MonoBehaviour
         isFacingRight=!isFacingRight;
     }
     
-    void OnUseItem(InputValue context)
+    public void OnUseItem(InputAction.CallbackContext context)
     {
-        SetCurrentItem(ITEM_TYPE.Hug);
         Debug.LogFormat("Cx : UseItem");
-        
+       
+        if (context.started)
+        {
+            isPressedThrow = true;
+            itemController.OnItemUsed(currentItem);
+            timingHoldUseItem = Time.time;       
+        }
+        if (context.canceled)
+        {
+            itemController.OnItemUsed(currentItem, Time.time - timingHoldUseItem);
+            timingHoldUseItem = Time.time;
+            isPressedThrow = false;
+        }
     }
 
-    void OnInteract(InputValue context)
+    public void OnInteract(InputAction.CallbackContext context)
     {
         Debug.LogFormat("Cx : Interact");
-        if (interactor.currentInteractable != null) interactor.currentInteractable.Interact(interactor);
-        
+        if (context.started && interactor.currentInteractable != null)
+        {
+            interactor.currentInteractable.Interact(interactor);
+        }
+             
+    }
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        Debug.LogFormat("Cx : Direction is {0}", context.ReadValue<float>());
+        movementDirection = (int)Math.Round(context.ReadValue<float>());
     }
 
-    void OnMove(InputValue context)
+    public void OnElevator(InputAction.CallbackContext context)
     {
-        Debug.LogFormat("Cx : Direction is {0}", context.Get<float>());
-        movementDirection = (int)Math.Round(context.Get<float>());
-    }
-
-    void OnElevator(InputValue context)
-    {
-        Debug.LogFormat("Cx : Direction is {0}", context.Get<float>());
-        verticalMovementDirection = (int)Math.Round(context.Get<float>());
+        Debug.LogFormat("Cx : Direction is {0}", context.ReadValue<float>());
+        verticalMovementDirection = (int)Math.Round(context.ReadValue<float>());
 
     }
 
