@@ -51,7 +51,7 @@ public class UIController : MonoBehaviour
         {
             textMinute = "0" + textMinute;
         }
-        _timerText.text = textHour + ":"+ textMinute;
+        _timerText.text = textHour + textMinute;
     }
 
     public void EnableEndMenu()
@@ -68,7 +68,7 @@ public class UIController : MonoBehaviour
     /// <param name="numDeadClients">Number of Dead clients (self-explanatory)</param>
     public void UpdateEndScore(int scoreValue, int numSatisfiedClients, int numNotAmusedClients, int numDeadClients)
     {
-        _endScoreText.text = "Score : "+scoreValue.ToString() + '\n'+"Number of Satisfied Clients : "+numSatisfiedClients.ToString()+'\n'+"Not Amused Clients : "+numNotAmusedClients.ToString()+'\n'+"Number of Dead Clients : "+numDeadClients;
+        _endScoreText.text = "Score : "+scoreValue.ToString() + '\n' + '\n' + "Number of Satisfied Clients : "+numSatisfiedClients.ToString() + '\n' + '\n' + "Not Amused Clients : "+numNotAmusedClients.ToString() + '\n' + '\n' + "Number of Dead Clients : "+numDeadClients;
     }
 
     public void QuitGame()

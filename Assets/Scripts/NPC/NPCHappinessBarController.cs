@@ -58,7 +58,7 @@ public class NPCHappinessBarController : MonoBehaviour
     /// <returns></returns>
     private IEnumerator BarDownUpdate()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(_barDownUpdateTimer);
         if (!_happinessIsActive)
         {
             _curLevel--;

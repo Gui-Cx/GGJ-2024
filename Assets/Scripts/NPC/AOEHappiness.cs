@@ -29,7 +29,7 @@ public class AOEHappiness : MonoBehaviour
             Player player = collision.gameObject.GetComponent<Player>();
             player.IsBoostedByHappinessAOE = true;
             _prevPlayerSpeed = player.speed;
-            player.speed = player.speed * 2;
+            player.speed = player.speed * _speedMultiplicativeModifier;
             _isBoostingPlayer = true;
         }
     }

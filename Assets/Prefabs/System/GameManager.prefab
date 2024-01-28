@@ -46,9 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHourTimer: 18
   _curGameTimer: 0
-  _timerRefreshRate: 2
+  _timerRefreshRate: 0.1
   _curScore: 0
   _numSatisfiedClients: 0
   _numDeadClients: 0
   _numNotAmusedClients: 0
+  TilemapGrid: {fileID: 0}
+  BackgroundTilemap: {fileID: 0}
+  GreyTilemap: {fileID: 0}
   itemsData: {fileID: 11400000, guid: 6fdbdb6e0a573554098dcfd3e8e34eaa, type: 2}
