@@ -121,25 +121,16 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: UI
     originalName: 
-<<<<<<< HEAD
     pivot: {x: 0.5833333, y: -0.061946902}
-=======
-    pivot: {x: 0.5308057, y: -0.4814815}
->>>>>>> 4f75f12 (update music bank)
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-<<<<<<< HEAD
       width: 192
       height: 113
-=======
-      width: 211
-      height: 81
->>>>>>> 4f75f12 (update music bank)
-    spriteID: 3f52ba2f715f5684fad6bcc1036c95e9
+    spriteID: 5a5a4db922ca23749a9bbc929e6717fe
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -161,16 +152,10 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 0
-<<<<<<< HEAD
         y: 7
         width: 192
         height: 113
-=======
-        y: 39
-        width: 211
-        height: 81
->>>>>>> 4f75f12 (update music bank)
-      spriteId: 3f52ba2f715f5684fad6bcc1036c95e9
+      spriteId: 5a5a4db922ca23749a9bbc929e6717fe
     linkedCells: []
     parentIndex: -1
   platformSettings: []

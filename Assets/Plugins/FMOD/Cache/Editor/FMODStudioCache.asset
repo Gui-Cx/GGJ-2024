@@ -1,33 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9060095951450238813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Sound Effetcs/CallElevator
-  m_EditorClassIdentifier: 
-  Path: event:/Sound Effetcs/CallElevator
-  Guid:
-    Data1: 1355455013
-    Data2: 1298279289
-    Data3: 1065262491
-    Data4: 1216716828
-  Banks:
-  - {fileID: -5170365870672655959}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-8047554272833443299
+--- !u!114 &-6700205680454396899
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,107 +15,12 @@ MonoBehaviour:
   Path: FMODProject/Test/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638419661197236741
+  lastModified: 638420453081059500
   FileSizes:
   - Name: Desktop
-    Value: 110848
+    Value: 1036
   Exists: 1
---- !u!114 &-7795508994800111456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Music.bank
-  m_EditorClassIdentifier: 
-  Path: FMODProject/Test/Build/Desktop/Music.bank
-  Name: Music
-  StudioPath: bank:/Music
-  lastModified: 638420416663894335
-  FileSizes:
-  - Name: Desktop
-    Value: 1502688
-  Exists: 1
---- !u!114 &-7491019609888845815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: FMODProject/Test/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-<<<<<<< HEAD
-  lastModified: 638420456872772864
-=======
-  lastModified: 638420498891041795
->>>>>>> 83e7c51 (update music bank)
-  FileSizes:
-  - Name: Desktop
-    Value: 1130
-  Exists: 1
---- !u!114 &-7280664222700092789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Sound Effetcs/ElevatorArrives
-  m_EditorClassIdentifier: 
-  Path: event:/Sound Effetcs/ElevatorArrives
-  Guid:
-    Data1: 1775096665
-    Data2: 1251191676
-    Data3: 477227424
-    Data4: -538463635
-  Banks:
-  - {fileID: 8777530531100486521}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-6662398138907245882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Music/Triggre
-  m_EditorClassIdentifier: 
-  Name: Triggre
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 1699410845
-    data2: 1834670988
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &-5170365870672655959
+--- !u!114 &-6474834344082287661
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,323 +35,12 @@ MonoBehaviour:
   Path: FMODProject/Test/Build/Desktop/SoundsEffect.bank
   Name: SoundsEffect
   StudioPath: bank:/SoundsEffect
-<<<<<<< HEAD
-  lastModified: 638420456872833636
-=======
-<<<<<<< HEAD
-  lastModified: 638420468337601322
-=======
-  lastModified: 638420498904841775
->>>>>>> 4f75f12 (update music bank)
->>>>>>> 83e7c51 (update music bank)
+  lastModified: 638420513182336997
   FileSizes:
   - Name: Desktop
     Value: 86688
   Exists: 1
---- !u!114 &-3776159719989073447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Music/BonheurLevel
-  m_EditorClassIdentifier: 
-  Name: BonheurLevel
-  StudioPath: 
-  Min: 0
-  Max: 10
-  Default: 0
-  ID:
-    data1: 3992121996
-    data2: 1975770945
-  Type: 1
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &-2164896326148675415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Sound Effetcs/CallElevator
-  m_EditorClassIdentifier: 
-  Path: event:/Sound Effetcs/CallElevator
-  Guid:
-    Data1: 1355455013
-    Data2: 1298279289
-    Data3: 1065262491
-    Data4: 1216716828
-  Banks:
-  - {fileID: 8777530531100486521}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-1797344700331700880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/Music
-  m_EditorClassIdentifier: 
-  Path: event:/Music/Music
-  Guid:
-    Data1: -1867286026
-    Data2: 1224550555
-    Data3: -49053775
-    Data4: 1109302179
-  Banks:
-  - {fileID: 7895506046442670313}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -6662398138907245882}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 15000
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: -7491019609888845815}
-  - {fileID: 1577349199369142536}
-  - {fileID: 496846567446664241}
-  - {fileID: -5170365870672655959}
-  EditorEvents:
-  - {fileID: 1662435407896818965}
-  - {fileID: -9060095951450238813}
-  - {fileID: 4107408289342798305}
-  - {fileID: 1312886054601697531}
-  - {fileID: 3920059908627333626}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: 1577349199369142536}
-  StringsBanks:
-  - {fileID: -7491019609888845815}
-<<<<<<< HEAD
-  cacheTime: 638420456872833636
-=======
-<<<<<<< HEAD
-  cacheTime: 638420468337738776
-=======
-  cacheTime: 638420498904841775
->>>>>>> 4f75f12 (update music bank)
->>>>>>> 83e7c51 (update music bank)
-  cacheVersion: 131616
---- !u!114 &496846567446664241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Music.bank
-  m_EditorClassIdentifier: 
-  Path: FMODProject/Test/Build/Desktop/Music.bank
-  Name: Music
-  StudioPath: bank:/Music
-<<<<<<< HEAD
-  lastModified: 638420456872822858
-=======
-<<<<<<< HEAD
-  lastModified: 638420468337738776
-=======
-  lastModified: 638420498903133426
->>>>>>> 4f75f12 (update music bank)
->>>>>>> 83e7c51 (update music bank)
-  FileSizes:
-  - Name: Desktop
-    Value: 2042144
-  Exists: 1
---- !u!114 &544027972734027787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/Music
-  m_EditorClassIdentifier: 
-  Path: event:/Music/Music
-  Guid:
-    Data1: -1867286026
-    Data2: 1224550555
-    Data3: -49053775
-    Data4: 1109302179
-  Banks:
-  - {fileID: -7795508994800111456}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 4807420057558161428}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 125513
---- !u!114 &1312886054601697531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Sound Effetcs/TravelingElevator
-  m_EditorClassIdentifier: 
-  Path: event:/Sound Effetcs/TravelingElevator
-  Guid:
-    Data1: -1856417557
-    Data2: 1211606910
-    Data3: -200555900
-    Data4: -459249590
-  Banks:
-  - {fileID: -5170365870672655959}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1500
---- !u!114 &1577349199369142536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: FMODProject/Test/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-<<<<<<< HEAD
-  lastModified: 638420456872772864
-=======
-<<<<<<< HEAD
-  lastModified: 638420468337468401
-=======
-  lastModified: 638420498890996596
->>>>>>> 4f75f12 (update music bank)
->>>>>>> 83e7c51 (update music bank)
-  FileSizes:
-  - Name: Desktop
-    Value: 1036
-  Exists: 1
---- !u!114 &1662435407896818965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/Music
-  m_EditorClassIdentifier: 
-  Path: event:/Music/Music
-  Guid:
-    Data1: -1867286026
-    Data2: 1224550555
-    Data3: -49053775
-    Data4: 1109302179
-  Banks:
-  - {fileID: 496846567446664241}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -3776159719989073447}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 167351
---- !u!114 &2378001779595156629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/Test
-  m_EditorClassIdentifier: 
-  Path: event:/Music/Test
-  Guid:
-    Data1: 410905536
-    Data2: 1085537991
-    Data3: 1794190261
-    Data4: 523914346
-  Banks:
-  - {fileID: -8047554272833443299}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 9322
---- !u!114 &3260474547947889350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: FMODProject/Test/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638420416652668756
-  FileSizes:
-  - Name: Desktop
-    Value: 1036
-  Exists: 1
---- !u!114 &3920059908627333626
+--- !u!114 &-5584725772758600056
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -492,7 +59,7 @@ MonoBehaviour:
     Data3: 1572594365
     Data4: 1052681018
   Banks:
-  - {fileID: -5170365870672655959}
+  - {fileID: -6474834344082287661}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -500,7 +67,62 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 721
---- !u!114 &4107408289342798305
+--- !u!114 &-3537779677637369552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Effetcs/CallElevator
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Effetcs/CallElevator
+  Guid:
+    Data1: 1355455013
+    Data2: 1298279289
+    Data3: 1065262491
+    Data4: 1216716828
+  Banks:
+  - {fileID: -6474834344082287661}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2462099549121010132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music
+  Guid:
+    Data1: -1867286026
+    Data2: 1224550555
+    Data3: -49053775
+    Data4: 1109302179
+  Banks:
+  - {fileID: 6755811251897613067}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 7427522656175761560}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 167351
+--- !u!114 &-1783598290365995989
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -519,7 +141,7 @@ MonoBehaviour:
     Data3: 477227424
     Data4: -538463635
   Banks:
-  - {fileID: -5170365870672655959}
+  - {fileID: -6474834344082287661}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -527,7 +149,64 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &4131357750209565313
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: 5000560550341837368}
+  - {fileID: -6700205680454396899}
+  - {fileID: 6755811251897613067}
+  - {fileID: -6474834344082287661}
+  EditorEvents:
+  - {fileID: -2462099549121010132}
+  - {fileID: -3537779677637369552}
+  - {fileID: -1783598290365995989}
+  - {fileID: -5584725772758600056}
+  - {fileID: 179737720677776523}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: -6700205680454396899}
+  StringsBanks:
+  - {fileID: 5000560550341837368}
+  cacheTime: 638420513182336997
+  cacheVersion: 131616
+--- !u!114 &179737720677776523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Effetcs/TravelingElevator
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Effetcs/TravelingElevator
+  Guid:
+    Data1: -1856417557
+    Data2: 1211606910
+    Data3: -200555900
+    Data4: -459249590
+  Banks:
+  - {fileID: -6474834344082287661}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1500
+--- !u!114 &5000560550341837368
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -542,12 +221,32 @@ MonoBehaviour:
   Path: FMODProject/Test/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638419661197246742
+  lastModified: 638420513182186392
   FileSizes:
   - Name: Desktop
-    Value: 904
+    Value: 1130
   Exists: 1
---- !u!114 &4807420057558161428
+--- !u!114 &6755811251897613067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: FMODProject/Test/Build/Desktop/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 638420513182327125
+  FileSizes:
+  - Name: Desktop
+    Value: 2042144
+  Exists: 1
+--- !u!114 &7427522656175761560
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -570,91 +269,4 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Labels: []
-  Exists: 1
---- !u!114 &7356576364386478117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Sound Effetcs/TravelingElevator
-  m_EditorClassIdentifier: 
-  Path: event:/Sound Effetcs/TravelingElevator
-  Guid:
-    Data1: -1856417557
-    Data2: 1211606910
-    Data3: -200555900
-    Data4: -459249590
-  Banks:
-  - {fileID: 8777530531100486521}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1500
---- !u!114 &7895506046442670313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Music.bank
-  m_EditorClassIdentifier: 
-  Path: FMODProject/Test/Build/Desktop/Music.bank
-  Name: Music
-  StudioPath: bank:/Music
-  lastModified: 638419661138380398
-  FileSizes:
-  - Name: Desktop
-    Value: 224224
-  Exists: 1
---- !u!114 &7957131543062937995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: FMODProject/Test/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638420416652693924
-  FileSizes:
-  - Name: Desktop
-    Value: 1092
-  Exists: 1
---- !u!114 &8777530531100486521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/SoundsEffect.bank
-  m_EditorClassIdentifier: 
-  Path: FMODProject/Test/Build/Desktop/SoundsEffect.bank
-  Name: SoundsEffect
-  StudioPath: bank:/SoundsEffect
-  lastModified: 638420416665713230
-  FileSizes:
-  - Name: Desktop
-    Value: 78624
   Exists: 1
