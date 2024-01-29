@@ -61,7 +61,7 @@ public class AOESadness : MonoBehaviour
 
     void ClearTiles(List<Vector3Int> lastGreyTiles)
     {
-        //todo : optimise if npc is near 
+        //todo : optimise if npc is near, if not dont put in the npcs list
         GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
         foreach (Vector3Int tilepos in lastGreyTiles){
             bool canErase = true;
@@ -79,7 +79,7 @@ public class AOESadness : MonoBehaviour
     private void GrayscaleEffect()
     {
         if (_currentSadnessRate == 0) return;
-        //float sadnessRadius = 2f;
+        //float sadnessRadius = 3f;
         float sadnessRadius = Mathf.Lerp(_minSadnessRadius, _maxSadnessRadius, _currentSadnessRate);
         Vector3Int newCellPosition = _grid.WorldToCell(transform.position);
 
@@ -101,9 +101,9 @@ public class AOESadness : MonoBehaviour
             int yMax = _cellPosition.y + Mathf.RoundToInt(sadnessRadius);
 
             TileBase tile;
-            for (int tileX = xMin; tileX < xMax; tileX++)
+            for (int tileX = xMin; tileX <= xMax; tileX++)
             {
-                for (int tileY = yMin; tileY < yMax; tileY++)
+                for (int tileY = yMin; tileY <= yMax; tileY++)
                 {
                     float distanceToCenter = Mathf.Sqrt(Mathf.Pow(tileX - _cellPosition.x,2) + Mathf.Pow(tileY - _cellPosition.y, 2));
                     
