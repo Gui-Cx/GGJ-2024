@@ -109,7 +109,7 @@ public class NPCHappinessBarController : MonoBehaviour
 
     private IEnumerator HappinessTimer()
     {
-        GameObject aoe = Instantiate(_happinessAOE);
+        GameObject aoe = Instantiate(_happinessAOE, transform);
         aoe.transform.position = gameObject.transform.position;
         yield return new WaitForSeconds(_happinessTimer);
         Destroy(aoe);

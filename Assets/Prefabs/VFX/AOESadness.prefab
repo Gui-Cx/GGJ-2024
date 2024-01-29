@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 423134228169675886}
   - component: {fileID: 3390105082103617884}
   m_Layer: 0
-  m_Name: SadnessAOE
+  m_Name: AOESadness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
