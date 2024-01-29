@@ -30,12 +30,12 @@ public class Interactor : MonoBehaviour
         if (_collider != null)
         {
             _collider.TryGetComponent(out currentInteractable);
-            UIController.Instance.SetInteractButton(true);
+            SetUIState(true);
         }
         else 
         {
-            currentInteractable = null; 
-            UIController.Instance.SetInteractButton(false);
+            currentInteractable = null;
+            SetUIState(false);
         }
     }
 
@@ -45,7 +45,7 @@ public class Interactor : MonoBehaviour
         _button.SetActive(active);
 
         float buttonPosition = _player.IsFacingRight ? _playerButtonPosition : -_playerButtonPosition;
-        _button.transform.localPosition.Set(buttonPosition, transform.localPosition.y, transform.localPosition.z);
+        _button.transform.localPosition.Set(buttonPosition, _button.transform.localPosition.y, _button.transform.localPosition.z);
     }
 
     private void OnDrawGizmos()
