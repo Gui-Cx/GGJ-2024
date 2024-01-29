@@ -118,15 +118,13 @@ public class UIController : MonoBehaviour
     {
         Debug.Log("restarting game");
         _endMenu.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        LoadLevel(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void StartGame(int buildIndex)
     {
         LoadLevel(buildIndex);
-        //SceneManager.LoadScene(buildIndex);
-        //_startMenu.SetActive(false);
-        //_gameTimer.SetActive(true);
+        
     }
     #endregion
 
