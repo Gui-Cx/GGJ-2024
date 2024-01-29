@@ -289,7 +289,7 @@ MonoBehaviour:
   pie: {fileID: 8941947995306523594, guid: 981644ed8123ade41a744b9c3d52b18e, type: 3}
   reloadPieTime: 1
   throwStrength: 8
-  maxPressTime: 2
+  maxPressTime: 1.5
   minPressTime: 0.05
   sliderColor:
     serializedVersion: 2

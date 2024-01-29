@@ -50,6 +50,7 @@ MonoBehaviour:
   _sadnessMaterial: {fileID: 2100000, guid: 3c8f97ce3c0c4944b87b33ba7d8f6252, type: 2}
   _minSadnessRadius: 1
   _maxSadnessRadius: 2
+  _areaRoundness: 0.5
   _minEmissionRate: 1
   _maxEmissionRate: 10
 --- !u!198 &423134228169675886

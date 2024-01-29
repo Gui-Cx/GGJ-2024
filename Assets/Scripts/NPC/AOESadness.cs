@@ -12,6 +12,7 @@ public class AOESadness : MonoBehaviour
     [Header("Sadness Radius")]
     [SerializeField] private float _minSadnessRadius;
     [SerializeField] private float _maxSadnessRadius;
+    [SerializeField, Range(0,1)] private float _areaRoundness;
 
     [Header("Particle emission")]
     [SerializeField] private float _minEmissionRate;
@@ -68,9 +69,9 @@ public class AOESadness : MonoBehaviour
     }
     private void GrayscaleEffect()
     {
-        float sadnessRadius = 2;
-        //if (_currentSadnessRate != 0) sadnessRadius = Mathf.Lerp(_minSadnessRadius, _maxSadnessRadius, _currentSadnessRate);
-        //print(sadnessRadius);
+        if (_currentSadnessRate == 0) return; 
+
+        float sadnessRadius = Mathf.Lerp(_minSadnessRadius, _maxSadnessRadius, _currentSadnessRate);
         Vector3Int newCellPosition = _grid.WorldToCell(transform.position);
 
         List<Vector3Int> lastGreyTiles = new List<Vector3Int>();
@@ -95,11 +96,16 @@ public class AOESadness : MonoBehaviour
             {
                 for (int tileY = yMin; tileY < yMax; tileY++)
                 {
-                    Vector3Int tilePosition = new Vector3Int(tileX, tileY);
-                    lastGreyTiles.Remove(tilePosition);
-                    tile = _backgroundTilemap.GetTile(tilePosition);
-                    _grayscaleTilemap.SetTile(tilePosition, tile);
-                    greyTiles.Add(tilePosition);   
+                    float distanceToCenter = Mathf.Sqrt(Mathf.Pow(tileX - _cellPosition.x,2) + Mathf.Pow(tileY - _cellPosition.y, 2));
+                    
+                    if (distanceToCenter <= sadnessRadius + _areaRoundness)
+                    {
+                        Vector3Int tilePosition = new Vector3Int(tileX, tileY);
+                        lastGreyTiles.Remove(tilePosition);
+                        tile = _backgroundTilemap.GetTile(tilePosition);
+                        _grayscaleTilemap.SetTile(tilePosition, tile);
+                        greyTiles.Add(tilePosition);
+                    }
                 }
             }
             lastRadius = sadnessRadius;

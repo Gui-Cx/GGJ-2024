@@ -48,7 +48,6 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         _endMenu.SetActive(false);
-        _startMenu.SetActive(true);
     }
 
     #region IN-GAME UI
