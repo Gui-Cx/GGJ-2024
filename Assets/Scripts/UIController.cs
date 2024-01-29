@@ -50,6 +50,7 @@ public class UIController : MonoBehaviour
         _startMenu.SetActive(true);
     }
 
+    #region IN-GAME UI
     public void SetInteractButton(bool active)
     {
         _interactButton.color = active ? _activeColor : _disabledColor;
@@ -61,7 +62,6 @@ public class UIController : MonoBehaviour
         _itemButton.color = active ? _activeColor : _disabledColor;
         _itemText.color = active ? _activeColor : _disabledColor;
     }
-
     public void UpdateGameTimer(float hourValue, float minuteValue)
     {
         string textHour = hourValue.ToString();
@@ -83,6 +83,9 @@ public class UIController : MonoBehaviour
         _sunDialArrow.transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
+    #endregion
+
+    #region END-MENU UI
     public void EnableEndMenu()
     {
         _endMenu.SetActive(true);
@@ -99,7 +102,9 @@ public class UIController : MonoBehaviour
     {
         _endScoreText.text = "Score : "+scoreValue.ToString() + '\n' + '\n' + "Number of Satisfied Clients : "+numSatisfiedClients.ToString() + '\n' + '\n' + "Not Amused Clients : "+numNotAmusedClients.ToString() + '\n' + '\n' + "Number of Dead Clients : "+numDeadClients;
     }
+    #endregion
 
+    #region BUTTONS
     public void QuitGame()
     {
         Application.Quit();
@@ -118,4 +123,10 @@ public class UIController : MonoBehaviour
         _startMenu.SetActive(false);
         _gameTimer.SetActive(true);
     }
+    #endregion
+
+    #region SCENE MANAGEMENT
+
+    #endregion
+
 }
