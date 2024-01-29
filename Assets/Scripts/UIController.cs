@@ -85,7 +85,7 @@ public class UIController : MonoBehaviour
 
     public void StartGame(int buildIndex)
     {
-        SceneManager.LoadScene(buildIndex);
+        //SceneManager.LoadScene(buildIndex);
         _startMenu.SetActive(false);
         _gameTimer.SetActive(true);
     }
