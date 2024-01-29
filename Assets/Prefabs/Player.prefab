@@ -334,10 +334,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c1c519eb302084d80525db5ce1a19c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
-  currentItem: 0
-  IsBoostedByHappinessAOE: 0
-  isFacingRight: 1
+  _maxSpeed: 30
+  _happynessSpeedBoost: 1.5
+  particleParent: {fileID: 1143771610576601991}
   itemParticleSystems:
   - itemType: 0
     itemParticleSystem: {fileID: 7539562290372881223}
@@ -353,7 +352,6 @@ MonoBehaviour:
     itemParticleSystem: {fileID: 1891447008148266832}
   - itemType: 4
     itemParticleSystem: {fileID: 649568423193699657}
-  particleParent: {fileID: 1143771610576601991}
 --- !u!114 &3436095440098622070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,7 +623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactionPoint: {fileID: 896171388854043153}
-  _interactionRadius: 1
+  _interactionRadius: 0.5
   _interactableMask:
     serializedVersion: 2
     m_Bits: 64

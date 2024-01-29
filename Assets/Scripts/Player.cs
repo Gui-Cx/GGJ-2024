@@ -1,11 +1,7 @@
 using System;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.UI;
-using Random = System.Random;
 
 enum PlayerState
 {
@@ -21,42 +17,44 @@ public class ItemParticleSystem
 }
 
 
-
 public class Player : MonoBehaviour
 {
-    public int speed = 0;
-    // public int maxVelocity = 0;
-    // Left = -1; None = 0; Right = 1
-    private int movementDirection = 0;
-    private int verticalMovementDirection = 0;
+    [Header("Parameters")]
+    [SerializeField] private float _maxSpeed;
+    [SerializeField] private float _happynessSpeedBoost;
+
+    [Header("Particles")]
+    [SerializeField] private GameObject particleParent;
+    [SerializeField] private ItemParticleSystem[] itemParticleSystems;
 
     private Rigidbody2D rigidbody2d;
     private Interactor interactor;
-    // Start is called before the first frame update
     private ItemController itemController;
-    PlayerState currentState;
-    ElevatorLocomotion currentElevator;
-    Animator animator;
+    private Animator animator;
+    private ElevatorLocomotion currentElevator;
 
-    [SerializeField] ITEM_TYPE currentItem;
+    private PlayerState currentState;
+    private ITEM_TYPE currentItem;
 
-    public bool IsBoostedByHappinessAOE=false;
+    private float _currentSpeed;
+    private int _movementDirection = 0;
+    private int _verticalMovementDirection = 0;
+    private bool _isFacingRight = true;
+    private bool _isBoosted = false;
 
-    public bool isFacingRight=true;
+    private float timingHoldUseItem;
+    private bool isPressedThrow;
 
-    float timingHoldUseItem;
-    bool isPressedThrow;
-    public ItemParticleSystem[] itemParticleSystems;
-
-    [SerializeField] GameObject particleParent;    
+    public bool IsFacingRight => _isFacingRight;
 
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         interactor = GetComponent<Interactor>();
-        currentState = PlayerState.Idle;
         animator = GetComponent<Animator>();
         itemController = GetComponent<ItemController>();
+
+        currentState = PlayerState.Idle;
     }    
 
     // Update is called once per frame
@@ -65,30 +63,38 @@ public class Player : MonoBehaviour
         switch (currentState)
         {
             case PlayerState.Idle:
-                rigidbody2d.AddForce(speed*Vector2.right * movementDirection);
-                if (movementDirection != 0)
+                _currentSpeed = _isBoosted ? _maxSpeed * _happynessSpeedBoost : _maxSpeed;
+                rigidbody2d.AddForce(_movementDirection * _currentSpeed * Vector2.right);
+
+                if (_movementDirection != 0)
                 {
                     animator.SetBool("isMoving", true);
-                    if (movementDirection > 0 && !isFacingRight) Flip();
-                    if (movementDirection < 0 && isFacingRight) Flip();
+                    if (_movementDirection > 0 && !_isFacingRight) Flip();
+                    if (_movementDirection < 0 && _isFacingRight) Flip();
                 }
                 else animator.SetBool("isMoving", false);
                 break;
+
             case PlayerState.InElevator:
                 transform.position = currentElevator.transform.position;
-                if (movementDirection != 0) { TryQuitElevator(movementDirection); }
-                if (verticalMovementDirection != 0) { TryUseElevator(verticalMovementDirection); }
+                if (_movementDirection != 0) { TryQuitElevator(_movementDirection); }
+                if (_verticalMovementDirection != 0) { TryUseElevator(_verticalMovementDirection); }
                 break;
         }
         if(isPressedThrow) itemController.GetTimeHold(Time.time - timingHoldUseItem);
 
     }
 
+    public void AddSpeedBoost(bool active)
+    {
+        _isBoosted = active;
+    }
+
     void Flip()
     {
         particleParent.transform.Rotate(new Vector3(0, 180, 0));
         gameObject.GetComponent<SpriteRenderer>().flipX = !gameObject.GetComponent<SpriteRenderer>().flipX;
-        isFacingRight=!isFacingRight;
+        _isFacingRight=!_isFacingRight;
     }
     
     public void PlayParticles(){
@@ -127,13 +133,13 @@ public class Player : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         //Debug.LogFormat("Cx : Direction is {0}", context.ReadValue<float>());
-        movementDirection = (int)Math.Round(context.ReadValue<float>());
+        _movementDirection = (int)Math.Round(context.ReadValue<float>());
     }
 
     public void OnElevator(InputAction.CallbackContext context)
     {
         //Debug.LogFormat("Cx : Direction is {0}", context.ReadValue<float>());
-        verticalMovementDirection = (int)Math.Round(context.ReadValue<float>());
+        _verticalMovementDirection = (int)Math.Round(context.ReadValue<float>());
 
     }
 

@@ -56,7 +56,7 @@ public class ItemController : MonoBehaviour
                 if (time == 0f)
                 {
                     Debug.LogFormat("Item type {0} triggered Circle", currentItem.Type);
-                    offset = positionVec2 + (player.isFacingRight ? 1 : -1) * currentItem.UseOffset;
+                    offset = positionVec2 + (player.IsFacingRight ? 1 : -1) * currentItem.UseOffset;
                     castCircle(offset, currentItem.UseRange);
                     gizmosoffset = offset;
                     gizmosradius = currentItem.UseRange;
@@ -66,11 +66,11 @@ public class ItemController : MonoBehaviour
             case USE_TYPE.Ray:
                 if (time == 0f)
                 {
-                    offset = positionVec2 + (player.isFacingRight ? 1 : -1) * currentItem.UseOffset;
-                    castRay(offset, (player.isFacingRight ? Vector2.right : Vector2.left), currentItem.UseRange);
+                    offset = positionVec2 + (player.IsFacingRight ? 1 : -1) * currentItem.UseOffset;
+                    castRay(offset, (player.IsFacingRight ? Vector2.right : Vector2.left), currentItem.UseRange);
                     Debug.LogFormat("Item type {0} triggered Ray", currentItem.Type);
                     gizmosfrom = offset;
-                    gizmosto = offset + (player.isFacingRight ? Vector2.right : Vector2.left) * currentItem.UseRange;
+                    gizmosto = offset + (player.IsFacingRight ? Vector2.right : Vector2.left) * currentItem.UseRange;
                 }
 
             break;
@@ -95,7 +95,7 @@ public class ItemController : MonoBehaviour
         if (time < minPressTime) { return; }
         float speedThrow = throwStrength * (Mathf.Clamp(time, 0, maxPressTime) - minPressTime) / (maxPressTime - minPressTime);
 
-        if (GetComponent<Player>().isFacingRight)
+        if (GetComponent<Player>().IsFacingRight)
         {
             Pie currentPie = Instantiate(pie, transform.position+new Vector3(1,0,0), Quaternion.identity).GetComponent<Pie>();
             currentPie.speed = speedThrow;
