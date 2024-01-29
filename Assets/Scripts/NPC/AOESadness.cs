@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -16,6 +17,9 @@ public class AOESadness : MonoBehaviour
     [SerializeField] private float _minEmissionRate;
     [SerializeField] private float _maxEmissionRate;
     float lastRadius = 0f;
+    List<Vector3Int> greyTiles;
+
+
 
     private Grid _grid;
     private Tilemap _backgroundTilemap;
@@ -30,6 +34,7 @@ public class AOESadness : MonoBehaviour
     void Awake()
     {
         _particleSystem = GetComponent<ParticleSystem>();
+        greyTiles = new List<Vector3Int>();
     }
 
     public void SetGridInfo(Grid grid, Tilemap backgroundTilemap, Tilemap grayscaleTilemap)
@@ -50,19 +55,33 @@ public class AOESadness : MonoBehaviour
         _currentSadnessRate = Mathf.Clamp01((float)(thresholdValue - happyness) / thresholdValue);
 
         SetEmission();
-        GrayscaleEffect();
+        //GrayscaleEffect();
     }
 
+    void ClearTiles(List<Vector3Int> lastGreyTiles)
+    {
+        
+            foreach (Vector3Int tilepos in lastGreyTiles)
+            {
+                _grayscaleTilemap.SetTile(tilepos, null);
+            };
+    }
     private void GrayscaleEffect()
     {
-        float sadnessRadius = 0;
-        if (_currentSadnessRate != 0) sadnessRadius = Mathf.Lerp(_minSadnessRadius, _maxSadnessRadius, _currentSadnessRate);
+        float sadnessRadius = 2;
+        //if (_currentSadnessRate != 0) sadnessRadius = Mathf.Lerp(_minSadnessRadius, _maxSadnessRadius, _currentSadnessRate);
         //print(sadnessRadius);
         Vector3Int newCellPosition = _grid.WorldToCell(transform.position);
 
+        List<Vector3Int> lastGreyTiles = new List<Vector3Int>();
+        foreach (var tile in greyTiles)
+        {
+            lastGreyTiles.Add(tile);
+        }
+        greyTiles = new List<Vector3Int>();
+
         if (newCellPosition != _cellPosition ||lastRadius!=sadnessRadius)
         {
-            _grayscaleTilemap.ClearAllTiles();
 
             _cellPosition = newCellPosition;
 
@@ -77,12 +96,14 @@ public class AOESadness : MonoBehaviour
                 for (int tileY = yMin; tileY < yMax; tileY++)
                 {
                     Vector3Int tilePosition = new Vector3Int(tileX, tileY);
-
+                    lastGreyTiles.Remove(tilePosition);
                     tile = _backgroundTilemap.GetTile(tilePosition);
                     _grayscaleTilemap.SetTile(tilePosition, tile);
+                    greyTiles.Add(tilePosition);   
                 }
             }
             lastRadius = sadnessRadius;
+            ClearTiles(lastGreyTiles);
         }
 
     }
