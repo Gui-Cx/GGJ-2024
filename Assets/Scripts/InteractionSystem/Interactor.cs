@@ -11,14 +11,9 @@ public class Interactor : MonoBehaviour
 
     public IInteractable currentInteractable;
     private Collider2D _collider;
-    private Player _player;
-    private float _playerButtonPosition;
 
-    private void Awake()
+    private void Start()
     {
-        _player = GetComponent<Player>();
-        _playerButtonPosition = _button.transform.localPosition.x;
-
         SetUIState(false);
     }
 
@@ -43,9 +38,6 @@ public class Interactor : MonoBehaviour
     {
         UIController.Instance.SetInteractButton(active);
         _button.SetActive(active);
-
-        float buttonPosition = _player.IsFacingRight ? _playerButtonPosition : -_playerButtonPosition;
-        _button.transform.localPosition.Set(buttonPosition, _button.transform.localPosition.y, _button.transform.localPosition.z);
     }
 
     private void OnDrawGizmos()

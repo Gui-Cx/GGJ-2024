@@ -30,8 +30,6 @@ public class UIController : MonoBehaviour
     [SerializeField] private Color _disabledColor;
 
     [Header("Game Timer Elements")]
-    [SerializeField] private GameObject _gameTimer;
-    [SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private GameObject _sunDialArrow;
     [SerializeField] private float _arrowStartAngle;
     [SerializeField] private float _arrowEndAngle;
@@ -46,7 +44,6 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         _endMenu.SetActive(false);
-        _gameTimer.SetActive(false);
         _startMenu.SetActive(true);
     }
 
@@ -60,21 +57,6 @@ public class UIController : MonoBehaviour
     {
         _itemButton.color = active ? _activeColor : _disabledColor;
         _itemText.color = active ? _activeColor : _disabledColor;
-    }
-
-    public void UpdateGameTimer(float hourValue, float minuteValue)
-    {
-        string textHour = hourValue.ToString();
-        string textMinute = minuteValue.ToString();
-        if (hourValue < 10)
-        {
-            textHour = "0" + textHour;
-        }
-        if (minuteValue < 10)
-        {
-            textMinute = "0" + textMinute;
-        }
-        _timerText.text = textHour + "H" + textMinute;
     }
 
     public void UpdateArrow(float elapsedTime, float totalTime)
@@ -116,6 +98,6 @@ public class UIController : MonoBehaviour
     {
         //SceneManager.LoadScene(buildIndex);
         _startMenu.SetActive(false);
-        _gameTimer.SetActive(true);
+        GameManager.Instance.StartGame();
     }
 }

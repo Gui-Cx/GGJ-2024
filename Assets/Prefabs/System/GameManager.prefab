@@ -44,8 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2fbce04e739b3342b7d0d455f3a629e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startHour: 8
-  _maxHourTimer: 18
+  _gameDuration: 240
   _timerIncrementValue: 5
   _timerRefreshRate: 2
   TilemapGrid: {fileID: 0}

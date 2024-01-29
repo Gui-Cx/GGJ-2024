@@ -28,8 +28,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [Header("Game Timer Parameters")]
-    [SerializeField] private int _startHour = 8;
-    [SerializeField] private int _maxHourTimer = 18;
+    [SerializeField] private int _gameDuration = 600;
     [SerializeField] private int _timerIncrementValue = 5;
     [SerializeField] private float _timerRefreshRate = 2f;
 
@@ -41,11 +40,7 @@ public class GameManager : MonoBehaviour
     [Header("Items")]
     public ItemsData ItemsData;
 
-    private int _curHour;
-    private int _curMinutes = 0;
-
     private float _totalTimeElapsed = 0f;
-    private float _totalGameTime;
 
     private int _curScore = 0;
     private int _numSatisfiedClients = 0;
@@ -54,48 +49,24 @@ public class GameManager : MonoBehaviour
     private int _numSadClients = 0;
     private int _numTotalClients = 0;
 
-    private void Start()
+    public void StartGame()
     {
-        SetupTimer();
-        UIController.Instance.UpdateGameTimer(_curHour, _curMinutes);
-    }
-
-    #region TIMER FUNCTIONS
-    /// <summary>
-    /// Function that will setup the timer and start the counter
-    /// </summary>
-    private void SetupTimer()
-    {
-        _curMinutes = 0;
-        _curHour = _startHour;
-        _totalTimeElapsed = 0f;
-        _totalGameTime = 60 * _timerRefreshRate * (_maxHourTimer - _startHour) / _timerIncrementValue;
-
         StartCoroutine(UpdateTimer());
     }
 
+    #region TIMER FUNCTIONS
     private IEnumerator UpdateTimer()
-    {
-        yield return new WaitForSeconds(_timerRefreshRate);
-        
-        _curMinutes += _timerIncrementValue;
+    {        
+        UIController.Instance.UpdateArrow(_totalTimeElapsed, _gameDuration);
         _totalTimeElapsed += _timerRefreshRate;
 
-        if (_curMinutes == 60)
-        {
-            _curHour++;
-            _curMinutes=0;
-        }
-
-        UIController.Instance.UpdateGameTimer(_curHour,_curMinutes);
-        UIController.Instance.UpdateArrow(_totalTimeElapsed, _totalGameTime);
-
-        if (_curHour >= _maxHourTimer)
+        if (_totalTimeElapsed >= _gameDuration)
         {
             TriggerEndOfGame();
         }
         else
         {
+            yield return new WaitForSeconds(_timerRefreshRate);
             StartCoroutine(UpdateTimer());
         }
     }

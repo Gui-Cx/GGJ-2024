@@ -19,7 +19,7 @@ MonoBehaviour:
     UseType: 1
     UseRange: 1.4
     UseOffset: {x: 0, y: 0}
-    Particles: {fileID: 970205748306781268, guid: ab12c43e0900b134cb8657f9ab60341f, type: 3}
+    Particles: {fileID: 4496030196794123325, guid: 432284e6230717b4e98689791415cee7, type: 3}
   - Name: Flower
     Symbol: {fileID: 21300000, guid: 9aa98901b8fe2b3438a784b9d0aa62f7, type: 3}
     Type: 1
