@@ -1555,8 +1555,10 @@ MonoBehaviour:
   _arrowStartAngle: 90
   _arrowEndAngle: -90
   _startMenu: {fileID: 6380090260941406481}
+  _startMenuQuitButton: {fileID: 8280339358522750563}
   _endMenu: {fileID: 5364212702037851252}
   _endScoreText: {fileID: 2826407915703017829}
+  _endMenuQuitButton: {fileID: 5382459559609654958}
   _loadingMenu: {fileID: 1092530337766618733}
 --- !u!1 &3021579192083807386
 GameObject:
