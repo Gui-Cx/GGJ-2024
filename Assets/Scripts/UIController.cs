@@ -37,10 +37,12 @@ public class UIController : MonoBehaviour
 
     [Header("Start Menu Elements")]
     [SerializeField] private GameObject _startMenu;
+    [SerializeField] private GameObject _startMenuQuitButton;
 
     [Header("End Menu Elements")]
     [SerializeField] private GameObject _endMenu;
     [SerializeField] private TextMeshProUGUI _endScoreText;
+    [SerializeField] private GameObject _endMenuQuitButton;
 
     [Header("Loading Screen Elements")]
     [SerializeField] private GameObject _loadingMenu;
@@ -48,6 +50,7 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         _endMenu.SetActive(false);
+        EnableStartMenu();
     }
 
     #region IN-GAME UI
@@ -71,10 +74,25 @@ public class UIController : MonoBehaviour
 
     #endregion
 
+    #region START MENU UI
+    private void EnableStartMenu()
+    {
+        _startMenu.SetActive(true);
+        if(Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            _startMenuQuitButton.SetActive(false);
+        }
+    }
+    #endregion
+
     #region END-MENU UI
     public void EnableEndMenu()
     {
         _endMenu.SetActive(true);
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            _endMenuQuitButton.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -106,7 +124,6 @@ public class UIController : MonoBehaviour
     public void StartGame(int buildIndex)
     {
         LoadLevel(buildIndex);
-        
     }
     #endregion
 
