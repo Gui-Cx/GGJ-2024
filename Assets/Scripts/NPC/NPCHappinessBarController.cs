@@ -104,7 +104,7 @@ public class NPCHappinessBarController : MonoBehaviour
         UpdateHappinessBarColor(Color.yellow);
         UpdateVisualHappinessBar();
         StartCoroutine(HappinessTimer());
-        _anim.SetTrigger("Laugth");
+        _anim.SetTrigger("Laugh");
     }
 
     private IEnumerator HappinessTimer()
