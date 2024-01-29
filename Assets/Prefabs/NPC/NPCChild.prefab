@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 5239786256614605535}
   - component: {fileID: 8593301969145467838}
   m_Layer: 7
-  m_Name: NPCBaby
+  m_Name: NPCChild
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -752,9 +752,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLevel: 20
   _curLevel: 0
-  _happinessThreshold: 10
-  _barDownUpdateTimer: 1
-  _happinessTimer: 5
+  _happinessThreshold: 5
+  _barDownUpdateTimer: 2
+  _happinessTimer: 10
   _happinessBar: {fileID: 6771110061281526966}
   _scoreIncrease: 20
   _scoreDecrease: 1

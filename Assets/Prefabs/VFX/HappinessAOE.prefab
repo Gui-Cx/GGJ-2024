@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde72f7600baebc4aa53707dd5cb6852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedMultiplicativeModifier: 2
 --- !u!58 &3904766562822369075
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -218,9 +217,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 1
-      minScalar: 5
+      minMaxState: 3
+      scalar: 0.6
+      minScalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -920,7 +919,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 5
       minScalar: 10
       maxCurve:
         serializedVersion: 2

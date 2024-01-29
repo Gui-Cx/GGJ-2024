@@ -50,8 +50,8 @@ MonoBehaviour:
   _sadnessMaterial: {fileID: 2100000, guid: 3c8f97ce3c0c4944b87b33ba7d8f6252, type: 2}
   _minSadnessRadius: 1
   _maxSadnessRadius: 2
-  _minEmissionRate: 10
-  _maxEmissionRate: 20
+  _minEmissionRate: 1
+  _maxEmissionRate: 10
 --- !u!198 &423134228169675886
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -187,9 +187,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 1
-      minScalar: 5
+      minMaxState: 3
+      scalar: 0.6
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:

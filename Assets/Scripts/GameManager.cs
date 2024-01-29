@@ -29,8 +29,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Timer Parameters")]
     [SerializeField] private int _gameDuration = 600;
-    [SerializeField] private int _timerIncrementValue = 5;
-    [SerializeField] private float _timerRefreshRate = 2f;
+    [SerializeField] private float _timerRefreshRate = 1f;
 
     [Header("Tilemap elements")]
     public Grid TilemapGrid;

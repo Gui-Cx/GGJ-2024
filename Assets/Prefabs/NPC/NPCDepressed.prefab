@@ -751,9 +751,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLevel: 20
   _curLevel: 0
-  _happinessThreshold: 10
-  _barDownUpdateTimer: 1
-  _happinessTimer: 5
+  _happinessThreshold: 5
+  _barDownUpdateTimer: 2
+  _happinessTimer: 10
   _happinessBar: {fileID: 8696643551601112355}
   _scoreIncrease: 20
   _scoreDecrease: 1
