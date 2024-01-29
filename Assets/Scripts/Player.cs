@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,23 +10,11 @@ enum PlayerState
     InElevator
 }
 
-[System.Serializable]
-public class ItemParticleSystem
-{
-    public ITEM_TYPE itemType;
-    public ParticleSystem itemParticleSystem;
-}
-
-
 public class Player : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _happynessSpeedBoost;
-
-    [Header("Particles")]
-    [SerializeField] private GameObject particleParent;
-    [SerializeField] private ItemParticleSystem[] itemParticleSystems;
 
     private Rigidbody2D rigidbody2d;
     private Interactor interactor;
@@ -33,8 +22,9 @@ public class Player : MonoBehaviour
     private Animator animator;
     private ElevatorLocomotion currentElevator;
 
-    private PlayerState currentState;
-    private ITEM_TYPE currentItem;
+    private PlayerState _currentState;
+    private ITEM_TYPE _currentItem;
+    private Dictionary<ITEM_TYPE, ParticleSystem> _itemParticles;
 
     private float _currentSpeed;
     private int _movementDirection = 0;
@@ -42,10 +32,11 @@ public class Player : MonoBehaviour
     private bool _isFacingRight = true;
     private bool _isBoosted = false;
 
-    private float timingHoldUseItem;
-    private bool isPressedThrow;
+    private float _timingHoldUseItem;
+    private bool _isPressedThrow;
 
     public bool IsFacingRight => _isFacingRight;
+    public ITEM_TYPE CurrentItem => _currentItem;
 
     void Awake()
     {
@@ -53,14 +44,21 @@ public class Player : MonoBehaviour
         interactor = GetComponent<Interactor>();
         animator = GetComponent<Animator>();
         itemController = GetComponent<ItemController>();
+    }
 
-        currentState = PlayerState.Idle;
-    }    
+    private void Start()
+    {
+        _currentState = PlayerState.Idle;
+        _currentItem = ITEM_TYPE.None;
+        _itemParticles = new Dictionary<ITEM_TYPE, ParticleSystem>();
+
+        UIController.Instance.SetItemButton(false);
+    }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        switch (currentState)
+        switch (_currentState)
         {
             case PlayerState.Idle:
                 _currentSpeed = _isBoosted ? _maxSpeed * _happynessSpeedBoost : _maxSpeed;
@@ -81,7 +79,7 @@ public class Player : MonoBehaviour
                 if (_verticalMovementDirection != 0) { TryUseElevator(_verticalMovementDirection); }
                 break;
         }
-        if(isPressedThrow) itemController.GetTimeHold(Time.time - timingHoldUseItem);
+        if(_isPressedThrow) itemController.GetTimeHold(Time.time - _timingHoldUseItem);
 
     }
 
@@ -92,39 +90,46 @@ public class Player : MonoBehaviour
 
     void Flip()
     {
-        particleParent.transform.Rotate(new Vector3(0, 180, 0));
         gameObject.GetComponent<SpriteRenderer>().flipX = !gameObject.GetComponent<SpriteRenderer>().flipX;
         _isFacingRight=!_isFacingRight;
     }
     
-    public void PlayParticles(){
-        ItemParticleSystem correspondingItemParticleSystem = itemParticleSystems.First(item => item.itemType == currentItem);
-        correspondingItemParticleSystem?.itemParticleSystem?.Play();
+    public void PlayParticles()
+    {
+        if (!_itemParticles.TryGetValue(_currentItem, out ParticleSystem particles))
+        {
+            GameObject particlePrefab = GameManager.Instance.ItemsData.Items.First(item => item.Type == _currentItem).Particles;
+            particles = Instantiate(particlePrefab, transform).GetComponent<ParticleSystem>();
+            print("Instantiate " + _currentItem);
+            _itemParticles.Add(_currentItem, particles);
+        }
+        if (!_isFacingRight) particles.transform.localEulerAngles = new Vector3(0, 180, 0);
+        particles.GetComponent<ParticleSystem>().Play();
     }
 
     public void OnUseItem(InputAction.CallbackContext context)
     {
-        if (currentItem != ITEM_TYPE.Pie){
+        if (_currentItem != ITEM_TYPE.None && _currentItem != ITEM_TYPE.Pie){
             PlayParticles();
-        }        
+        }
         if (context.started)
         {
-            isPressedThrow = true;
-            itemController.OnItemUsed(currentItem);
-            timingHoldUseItem = Time.time;       
+            _isPressedThrow = true;
+            itemController.OnItemUsed(_currentItem);
+            _timingHoldUseItem = Time.time;       
         }
         if (context.canceled)
         {
-            itemController.OnItemUsed(currentItem, Time.time - timingHoldUseItem);
-            timingHoldUseItem = Time.time;
-            isPressedThrow = false;
+            itemController.OnItemUsed(_currentItem, Time.time - _timingHoldUseItem);
+            _timingHoldUseItem = Time.time;
+            _isPressedThrow = false;
         }
     }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
         //Debug.LogFormat("Cx : Interact");
-        if (context.started && interactor.currentInteractable != null && currentState ==PlayerState.Idle)
+        if (context.started && interactor.currentInteractable != null && _currentState ==PlayerState.Idle)
         {
             interactor.currentInteractable.Interact(interactor);
         }
@@ -145,7 +150,7 @@ public class Player : MonoBehaviour
 
     public void EnterInElevator(ElevatorLocomotion elevator)
     {
-        currentState = PlayerState.InElevator;
+        _currentState = PlayerState.InElevator;
         currentElevator = elevator;
         GetComponent<BoxCollider2D>().enabled = false;
         rigidbody2d.simulated = false;
@@ -165,7 +170,7 @@ public class Player : MonoBehaviour
     {
         if (!currentElevator.isMoving)
         {
-            currentState = PlayerState.Idle;
+            _currentState = PlayerState.Idle;
             GetComponent<BoxCollider2D>().enabled = true;
             //if (movementDirection < 0) transform.position +=  new Vector3(-1f,0,0);
             //else transform.position += new Vector3(1f, 0, 0);
@@ -176,8 +181,10 @@ public class Player : MonoBehaviour
 
     public void SetCurrentItem(ITEM_TYPE item)
     {
-        currentItem = item;
-        switch (currentItem)
+        if (item == _currentItem) _currentItem = ITEM_TYPE.None;
+        else _currentItem = item;
+
+        switch (_currentItem)
         {
             case ITEM_TYPE.Hug:
                 animator.SetTrigger("GetPlush");
@@ -210,5 +217,7 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("GetEmpty");
                 break;
         }
+
+        UIController.Instance.SetItemButton(_currentItem != ITEM_TYPE.None);
     }
 }

@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public enum ITEM_TYPE
@@ -14,7 +11,8 @@ public enum ITEM_TYPE
     Pie,
     Hug,
     Trumpet,
-    Gun
+    Gun,
+    None
 }
 
 public enum USE_TYPE
@@ -26,7 +24,7 @@ public enum USE_TYPE
 
 
 [Serializable]
-public struct ItemDataElement
+public struct ItemData
 {
     public string Name;
     public Sprite Symbol;
@@ -34,6 +32,7 @@ public struct ItemDataElement
     public USE_TYPE UseType; 
     public float UseRange;
     public Vector2 UseOffset;
+    public GameObject Particles;
 }
 
 /// <summary>
@@ -42,5 +41,5 @@ public struct ItemDataElement
 [CreateAssetMenu(fileName ="ItemsData",menuName ="Scriptable Object/Items Data")]
 public class ItemsData : ScriptableObject
 {
-    [field: SerializeField] public ItemDataElement[] ItemDataElements { get; private set; }
+    [field: SerializeField] public ItemData[] Items { get; private set; }
 }

@@ -6,16 +6,9 @@ using UnityEngine;
 /// </summary>
 public class AOEHappiness : MonoBehaviour
 {
-    private ParticleSystem _particleSystem;
-
-    private void Awake()
-    {
-        _particleSystem = GetComponent<ParticleSystem>();
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.TryGetComponent<Player>(out Player player)) 
+        if(collision.gameObject.TryGetComponent(out Player player)) 
         {
             player.AddSpeedBoost(true);
         }
@@ -23,7 +16,7 @@ public class AOEHappiness : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Player>(out Player player))
+        if (collision.gameObject.TryGetComponent(out Player player))
         {
             player.AddSpeedBoost(false);
         }

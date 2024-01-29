@@ -24,7 +24,7 @@ public class SymbolModule : MonoBehaviour
     {
         _symbolSprites = new Dictionary<ITEM_TYPE, Sprite>();
         
-        foreach(var item in _itemData.ItemDataElements)
+        foreach(var item in _itemData.Items)
         {
             _symbolSprites.Add(item.Type, item.Symbol);
         }

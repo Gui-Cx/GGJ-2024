@@ -12,8 +12,7 @@ public class ItemController : MonoBehaviour
     [SerializeField] LayerMask _npcMask;
 
     private ContactFilter2D contactFilter2D;
-
-    private ItemDataElement currentItem;
+    private ItemData _currentItemData;
 
     [Header("Throw Pie")]
     [SerializeField] private Slider throwBar;
@@ -47,44 +46,47 @@ public class ItemController : MonoBehaviour
     }
 
     public void OnItemUsed(ITEM_TYPE type,float time=0f){
-        currentItem = GameManager.Instance.itemsData.ItemDataElements.First(item => item.Type == type);
-        Vector2 positionVec2 = new Vector2(transform.position.x, transform.position.y);
+
+        if (type == ITEM_TYPE.None) return;
+        _currentItemData = GameManager.Instance.ItemsData.Items.First(item => item.Type == type);
+
+        Vector2 positionVec2 = new(transform.position.x, transform.position.y);
         Vector2 offset;
-        switch (currentItem.UseType)
+
+        switch (_currentItemData.UseType)
         {
             case USE_TYPE.Circle:  
                 if (time == 0f)
                 {
-                    Debug.LogFormat("Item type {0} triggered Circle", currentItem.Type);
-                    offset = positionVec2 + (player.IsFacingRight ? 1 : -1) * currentItem.UseOffset;
-                    castCircle(offset, currentItem.UseRange);
+                    Debug.LogFormat("Item type {0} triggered Circle", _currentItemData.Type);
+                    offset = positionVec2 + (player.IsFacingRight ? 1 : -1) * _currentItemData.UseOffset;
+                    castCircle(offset, _currentItemData.UseRange);
                     gizmosoffset = offset;
-                    gizmosradius = currentItem.UseRange;
+                    gizmosradius = _currentItemData.UseRange;
 
                 }
             break;
             case USE_TYPE.Ray:
                 if (time == 0f)
                 {
-                    offset = positionVec2 + (player.IsFacingRight ? 1 : -1) * currentItem.UseOffset;
-                    castRay(offset, (player.IsFacingRight ? Vector2.right : Vector2.left), currentItem.UseRange);
-                    Debug.LogFormat("Item type {0} triggered Ray", currentItem.Type);
+                    offset = positionVec2 + (player.IsFacingRight ? 1 : -1) * _currentItemData.UseOffset;
+                    castRay(offset, (player.IsFacingRight ? Vector2.right : Vector2.left), _currentItemData.UseRange);
+                    Debug.LogFormat("Item type {0} triggered Ray", _currentItemData.Type);
                     gizmosfrom = offset;
-                    gizmosto = offset + (player.IsFacingRight ? Vector2.right : Vector2.left) * currentItem.UseRange;
+                    gizmosto = offset + (player.IsFacingRight ? Vector2.right : Vector2.left) * _currentItemData.UseRange;
                 }
 
             break;
             case USE_TYPE.The_Pie:
-                Debug.LogFormat("Item type {0} triggered the Piiiie", currentItem.Type);
                 //wait for release
-                if(canThrowPie)ThrowPie(time);
+                if(canThrowPie) ThrowPie(time);
             break;
         }
     }
 
     public void GetTimeHold(float time)
     {
-        if (currentItem.UseType == USE_TYPE.The_Pie)
+        if (_currentItemData.UseType == USE_TYPE.The_Pie)
         {
             throwBar.value = (time - minPressTime) / maxPressTime;
             throwBar.fillRect.GetComponent<UnityEngine.UI.Image>().color = sliderColor.Evaluate(throwBar.value);
@@ -137,20 +139,20 @@ public class ItemController : MonoBehaviour
             return;
         }
         //if we arrive here, then it means that the cast has failed : no one was overlapped
-        if(currentItem.Type == ITEM_TYPE.Ballon_Dog)
+        if(_currentItemData.Type == ITEM_TYPE.Ballon_Dog)
         {
             GetComponent<Player>().SetCurrentItem(ITEM_TYPE.Ballon_Heart);
-            currentItem = GameManager.Instance.itemsData.ItemDataElements.First(item => item.Type == ITEM_TYPE.Ballon_Heart);
+            _currentItemData = GameManager.Instance.ItemsData.Items.First(item => item.Type == ITEM_TYPE.Ballon_Heart);
         }
-        else if(currentItem.Type == ITEM_TYPE.Ballon_Heart)
+        else if(_currentItemData.Type == ITEM_TYPE.Ballon_Heart)
         {
             GetComponent<Player>().SetCurrentItem(ITEM_TYPE.Ballon_Cringe);
-            currentItem = GameManager.Instance.itemsData.ItemDataElements.First(item => item.Type == ITEM_TYPE.Ballon_Cringe);
+            _currentItemData = GameManager.Instance.ItemsData.Items.First(item => item.Type == ITEM_TYPE.Ballon_Cringe);
         } 
-        else if(currentItem.Type == ITEM_TYPE.Ballon_Cringe)
+        else if(_currentItemData.Type == ITEM_TYPE.Ballon_Cringe)
         {
             GetComponent<Player>().SetCurrentItem(ITEM_TYPE.Ballon_Dog);
-            currentItem = GameManager.Instance.itemsData.ItemDataElements.First(item => item.Type == ITEM_TYPE.Ballon_Dog);
+            _currentItemData = GameManager.Instance.ItemsData.Items.First(item => item.Type == ITEM_TYPE.Ballon_Dog);
         }
     }
 
@@ -171,20 +173,20 @@ public class ItemController : MonoBehaviour
         NPCItemHandler npcItemHandler;
         if (npcHit.TryGetComponent<NPCItemHandler>(out npcItemHandler))
         {
-            npcItemHandler.OnItemTriggered(currentItem.Type);
+            npcItemHandler.OnItemTriggered(_currentItemData.Type);
         }
     }
 
 
     private void OnDrawGizmos()
     {
-        if(currentItem.UseType == USE_TYPE.Circle)
+        if(_currentItemData.UseType == USE_TYPE.Circle)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(gizmosoffset, gizmosradius);
         }
        
-        if (currentItem.UseType == USE_TYPE.Ray)
+        if (_currentItemData.UseType == USE_TYPE.Ray)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawLine(gizmosfrom,gizmosto);

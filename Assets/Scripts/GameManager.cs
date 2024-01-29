@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -28,32 +27,32 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    [Header("Game Timer Elements")]
+    [Header("Game Timer Parameters")]
     [SerializeField] private int _startHour = 8;
     [SerializeField] private int _maxHourTimer = 18;
     [SerializeField] private int _timerIncrementValue = 5;
     [SerializeField] private float _timerRefreshRate = 2f;
 
-    [Header("End Menu Elements")]
-    [SerializeField] private int _curScore = 0;
-    [SerializeField] private int _numSatisfiedClients = 0;
-    [SerializeField] private int _numDeadClients = 0;
-    [SerializeField] private int _numNotAmusedClients = 0;
-    [SerializeField] private int _numSadClients = 0;
-    [SerializeField] private int _numTotalClients = 0;
-
     [Header("Tilemap elements")]
-    [SerializeField] public Grid TilemapGrid;
-    [SerializeField] public Tilemap BackgroundTilemap;
-    [SerializeField] public Tilemap GreyTilemap;
+    public Grid TilemapGrid;
+    public Tilemap BackgroundTilemap;
+    public Tilemap GreyTilemap;
 
-    [SerializeField] public ItemsData itemsData;
+    [Header("Items")]
+    public ItemsData ItemsData;
 
     private int _curHour;
     private int _curMinutes = 0;
 
     private float _totalTimeElapsed = 0f;
     private float _totalGameTime;
+
+    private int _curScore = 0;
+    private int _numSatisfiedClients = 0;
+    private int _numDeadClients = 0;
+    private int _numNotAmusedClients = 0;
+    private int _numSadClients = 0;
+    private int _numTotalClients = 0;
 
     private void Start()
     {

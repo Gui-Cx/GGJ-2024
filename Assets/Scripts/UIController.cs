@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Script that will handle the basic game UI
@@ -21,6 +20,15 @@ public class UIController : MonoBehaviour
     }
     #endregion
 
+    [Header("Button UI Elements")]
+    [SerializeField] private Image _interactButton;
+    [SerializeField] private TextMeshProUGUI _interactText;
+    [SerializeField] private Image _itemButton;
+    [SerializeField] private TextMeshProUGUI _itemText;
+    [Space(10)]
+    [SerializeField] private Color _activeColor;
+    [SerializeField] private Color _disabledColor;
+
     [Header("Game Timer Elements")]
     [SerializeField] private GameObject _gameTimer;
     [SerializeField] private TextMeshProUGUI _timerText;
@@ -28,18 +36,30 @@ public class UIController : MonoBehaviour
     [SerializeField] private float _arrowStartAngle;
     [SerializeField] private float _arrowEndAngle;
 
+    [Header("Start Menu Elements")]
+    [SerializeField] private GameObject _startMenu;
+
     [Header("End Menu Elements")]
     [SerializeField] private GameObject _endMenu;
     [SerializeField] private TextMeshProUGUI _endScoreText;
-
-    [Header("Start Menu Elements")]
-    [SerializeField] private GameObject _startMenu;
 
     private void Start()
     {
         _endMenu.SetActive(false);
         _gameTimer.SetActive(false);
         _startMenu.SetActive(true);
+    }
+
+    public void SetInteractButton(bool active)
+    {
+        _interactButton.color = active ? _activeColor : _disabledColor;
+        _interactText.color = active ? _activeColor : _disabledColor;
+    }
+
+    public void SetItemButton(bool active)
+    {
+        _itemButton.color = active ? _activeColor : _disabledColor;
+        _itemText.color = active ? _activeColor : _disabledColor;
     }
 
     public void UpdateGameTimer(float hourValue, float minuteValue)

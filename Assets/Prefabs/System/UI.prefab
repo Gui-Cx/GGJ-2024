@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7184894661013858929}
   - component: {fileID: 3788499835070843684}
   m_Layer: 5
-  m_Name: UI Text
+  m_Name: Item Button Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,11 +30,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 6338027094980743826}
+  m_Father: {fileID: 8779909495573004490}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 350, y: 75}
+  m_AnchoredPosition: {x: 350, y: 60}
   m_SizeDelta: {x: 450, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7184894661013858929
@@ -449,10 +449,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5125429373879337775}
-  - {fileID: 8779909495573004490}
-  - {fileID: 7587412276359671292}
-  - {fileID: 1519199738194706814}
   - {fileID: 7507928647693753308}
+  - {fileID: 8779909495573004490}
   - {fileID: 5190311685149485075}
   - {fileID: 2284393986423012234}
   m_Father: {fileID: 5301501433978512753}
@@ -727,7 +725,7 @@ GameObject:
   - component: {fileID: 3257192806117761627}
   - component: {fileID: 3528424186982555358}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Item Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -744,7 +742,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7587412276359671292}
   m_Father: {fileID: 6338027094980743826}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -802,7 +801,7 @@ GameObject:
   - component: {fileID: 380447446254146392}
   - component: {fileID: 3301644453598396286}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Interact Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -819,7 +818,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1519199738194706814}
   m_Father: {fileID: 6338027094980743826}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
@@ -1119,14 +1119,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723286dcaef393e4cac5038b35861e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactButton: {fileID: 3301644453598396286}
+  _interactText: {fileID: 2040287695199977884}
+  _itemButton: {fileID: 3528424186982555358}
+  _itemText: {fileID: 3788499835070843684}
+  _activeColor: {r: 1, g: 1, b: 1, a: 1}
+  _disabledColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.5019608}
   _gameTimer: {fileID: 1568076490743826436}
   _timerText: {fileID: 1889770491806453612}
   _sunDialArrow: {fileID: 7935820780587041593}
   _arrowStartAngle: 90
   _arrowEndAngle: -90
+  _startMenu: {fileID: 6380090260941406481}
   _endMenu: {fileID: 5364212702037851252}
   _endScoreText: {fileID: 2826407915703017829}
-  _startMenu: {fileID: 6380090260941406481}
 --- !u!1 &3021579192083807386
 GameObject:
   m_ObjectHideFlags: 0
@@ -2953,7 +2959,7 @@ GameObject:
   - component: {fileID: 7195104745868654346}
   - component: {fileID: 2040287695199977884}
   m_Layer: 5
-  m_Name: UI Text (1)
+  m_Name: Interact Button Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2971,11 +2977,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 6338027094980743826}
+  m_Father: {fileID: 7507928647693753308}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -365, y: 75}
+  m_AnchoredPosition: {x: -365, y: 60}
   m_SizeDelta: {x: 480, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7195104745868654346
