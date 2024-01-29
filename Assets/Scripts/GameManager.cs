@@ -29,8 +29,9 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [Header("Game Timer Elements")]
+    [SerializeField] private int _startHour = 8;
     [SerializeField] private int _maxHourTimer = 18;
-    [SerializeField] private int _curGameTimer=00;
+    [SerializeField] private int _timerIncrementValue = 5;
     [SerializeField] private float _timerRefreshRate = 2f;
 
     [Header("End Menu Elements")]
@@ -48,12 +49,16 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public ItemsData itemsData;
 
-    private int _curHour = 8;
+    private int _curHour;
+    private int _curMinutes = 0;
+
+    private float _totalTimeElapsed = 0f;
+    private float _totalGameTime;
 
     private void Start()
     {
         SetupTimer();
-        UIController.Instance.UpdateGameTimer(_curHour, _curGameTimer);
+        UIController.Instance.UpdateGameTimer(_curHour, _curMinutes);
     }
 
     #region TIMER FUNCTIONS
@@ -62,20 +67,30 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void SetupTimer()
     {
-        _curGameTimer = 0;
+        _curMinutes = 0;
+        _curHour = _startHour;
+        _totalTimeElapsed = 0f;
+        _totalGameTime = 60 * _timerRefreshRate * (_maxHourTimer - _startHour) / _timerIncrementValue;
+
         StartCoroutine(UpdateTimer());
     }
 
     private IEnumerator UpdateTimer()
     {
         yield return new WaitForSeconds(_timerRefreshRate);
-        _curGameTimer+=5;
-        if (_curGameTimer == 60)
+        
+        _curMinutes += _timerIncrementValue;
+        _totalTimeElapsed += _timerRefreshRate;
+
+        if (_curMinutes == 60)
         {
             _curHour++;
-            _curGameTimer=0;
+            _curMinutes=0;
         }
-        UIController.Instance.UpdateGameTimer(_curHour,_curGameTimer);
+
+        UIController.Instance.UpdateGameTimer(_curHour,_curMinutes);
+        UIController.Instance.UpdateArrow(_totalTimeElapsed, _totalGameTime);
+
         if (_curHour >= _maxHourTimer)
         {
             TriggerEndOfGame();

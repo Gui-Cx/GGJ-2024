@@ -24,6 +24,9 @@ public class UIController : MonoBehaviour
     [Header("Game Timer Elements")]
     [SerializeField] private GameObject _gameTimer;
     [SerializeField] private TextMeshProUGUI _timerText;
+    [SerializeField] private GameObject _sunDialArrow;
+    [SerializeField] private float _arrowStartAngle;
+    [SerializeField] private float _arrowEndAngle;
 
     [Header("End Menu Elements")]
     [SerializeField] private GameObject _endMenu;
@@ -51,7 +54,13 @@ public class UIController : MonoBehaviour
         {
             textMinute = "0" + textMinute;
         }
-        _timerText.text = textHour + textMinute;
+        _timerText.text = textHour + "H" + textMinute;
+    }
+
+    public void UpdateArrow(float elapsedTime, float totalTime)
+    {
+        float angle = _arrowStartAngle + elapsedTime / totalTime * (_arrowEndAngle - _arrowStartAngle);
+        _sunDialArrow.transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
     public void EnableEndMenu()
