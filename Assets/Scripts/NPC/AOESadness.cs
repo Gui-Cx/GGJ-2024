@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -18,8 +19,8 @@ public class AOESadness : MonoBehaviour
     [SerializeField] private float _minEmissionRate;
     [SerializeField] private float _maxEmissionRate;
     float lastRadius = 0f;
-    List<Vector3Int> greyTiles;
-
+    public List<Vector3Int> greyTiles = new List<Vector3Int>();
+    List<Vector3Int> lastGreyTiles = new List<Vector3Int>();
 
 
     private Grid _grid;
@@ -35,7 +36,6 @@ public class AOESadness : MonoBehaviour
     void Awake()
     {
         _particleSystem = GetComponent<ParticleSystem>();
-        greyTiles = new List<Vector3Int>();
     }
 
     public void SetGridInfo(Grid grid, Tilemap backgroundTilemap, Tilemap grayscaleTilemap)
@@ -61,25 +61,34 @@ public class AOESadness : MonoBehaviour
 
     void ClearTiles(List<Vector3Int> lastGreyTiles)
     {
-        
-            foreach (Vector3Int tilepos in lastGreyTiles)
-            {
-                _grayscaleTilemap.SetTile(tilepos, null);
-            };
+        //todo : optimise if npc is near 
+        GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
+        foreach (Vector3Int tilepos in lastGreyTiles){
+            bool canErase = true;
+            foreach(var npc in npcs){
+                if (!ReferenceEquals(npc, transform.root.gameObject))
+                {
+                    List<Vector3Int> tiles = npc.GetComponentInChildren<AOESadness>().lastGreyTiles;
+                    if (tiles.Contains(tilepos))
+                        canErase = false;
+                }
+            }
+            if (canErase) _grayscaleTilemap.SetTile(tilepos, null);
+        };
     }
     private void GrayscaleEffect()
     {
-        if (_currentSadnessRate == 0) return; 
-
+        if (_currentSadnessRate == 0) return;
+        //float sadnessRadius = 2f;
         float sadnessRadius = Mathf.Lerp(_minSadnessRadius, _maxSadnessRadius, _currentSadnessRate);
         Vector3Int newCellPosition = _grid.WorldToCell(transform.position);
 
-        List<Vector3Int> lastGreyTiles = new List<Vector3Int>();
+        
         foreach (var tile in greyTiles)
         {
             lastGreyTiles.Add(tile);
         }
-        greyTiles = new List<Vector3Int>();
+        greyTiles.Clear();
 
         if (newCellPosition != _cellPosition ||lastRadius!=sadnessRadius)
         {
