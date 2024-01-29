@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -41,12 +42,16 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _endMenu;
     [SerializeField] private TextMeshProUGUI _endScoreText;
 
+    [Header("Loading Screen Elements")]
+    [SerializeField] private GameObject _loadingMenu;
+
     private void Start()
     {
         _endMenu.SetActive(false);
         _startMenu.SetActive(true);
     }
 
+    #region IN-GAME UI
     public void SetInteractButton(bool active)
     {
         _interactButton.color = active ? _activeColor : _disabledColor;
@@ -65,6 +70,9 @@ public class UIController : MonoBehaviour
         _sunDialArrow.transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
+    #endregion
+
+    #region END-MENU UI
     public void EnableEndMenu()
     {
         _endMenu.SetActive(true);
@@ -81,7 +89,9 @@ public class UIController : MonoBehaviour
     {
         _endScoreText.text = "Score : "+scoreValue.ToString() + '\n' + '\n' + "Number of Satisfied Clients : "+numSatisfiedClients.ToString() + '\n' + '\n' + "Not Amused Clients : "+numNotAmusedClients.ToString() + '\n' + '\n' + "Number of Dead Clients : "+numDeadClients;
     }
+    #endregion
 
+    #region BUTTONS
     public void QuitGame()
     {
         Application.Quit();
@@ -91,13 +101,36 @@ public class UIController : MonoBehaviour
     {
         Debug.Log("restarting game");
         _endMenu.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        LoadLevel(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void StartGame(int buildIndex)
     {
-        //SceneManager.LoadScene(buildIndex);
-        _startMenu.SetActive(false);
-        GameManager.Instance.StartGame();
+        LoadLevel(buildIndex);
+        
     }
+    #endregion
+
+    #region SCENE MANAGEMENT
+    public void LoadLevel(int buildIndex)
+    {
+        StartCoroutine(LoadSceneAsynchronously(buildIndex));
+    }
+
+    private IEnumerator LoadSceneAsynchronously(int buildIndex)
+    {
+        AsyncOperation loadSceneAsyncOperation = SceneManager.LoadSceneAsync(buildIndex);
+        _loadingMenu.SetActive(true);
+        _startMenu.SetActive(false);
+        while (!loadSceneAsyncOperation.isDone)
+        {
+            float loadingProgress = Mathf.Clamp01(loadSceneAsyncOperation.progress / 0.9f);
+            Debug.Log("Loading progress : "+loadingProgress);
+            yield return null;
+        }
+        _loadingMenu.SetActive(false);
+        //_gameTimer.SetActive(true);
+    }
+    #endregion
+
 }

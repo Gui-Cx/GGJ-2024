@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     private int _numSadClients = 0;
     private int _numTotalClients = 0;
 
-    public void StartGame()
+    public void Start()
     {
         StartCoroutine(UpdateTimer());
     }
