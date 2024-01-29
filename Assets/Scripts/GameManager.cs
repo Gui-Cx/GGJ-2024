@@ -9,21 +9,14 @@ public class GameManager : MonoBehaviour
 {
 
     #region SINGLETON DESIGN PATTERN
-    private static GameManager _instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = new GameManager();
-            }
-            return _instance;
-        }
-    }
+    public static GameManager Instance;
+
     private void Awake()
     {
-        _instance = this;
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+
+        DontDestroyOnLoad(this);
     }
     #endregion
 

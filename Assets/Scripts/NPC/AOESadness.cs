@@ -56,7 +56,7 @@ public class AOESadness : MonoBehaviour
         _currentSadnessRate = Mathf.Clamp01((float)(thresholdValue - happyness) / thresholdValue);
 
         SetEmission();
-        //GrayscaleEffect();
+        GrayscaleEffect();
     }
 
     void ClearTiles(List<Vector3Int> lastGreyTiles)
