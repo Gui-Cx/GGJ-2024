@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -42,6 +43,9 @@ public class UIController : MonoBehaviour
     [Header("End Menu Elements")]
     [SerializeField] private GameObject _endMenu;
     [SerializeField] private TextMeshProUGUI _endScoreText;
+
+    [Header("Loading Screen Elements")]
+    [SerializeField] private GameObject _loadingMenu;
 
     private void Start()
     {
@@ -119,14 +123,33 @@ public class UIController : MonoBehaviour
 
     public void StartGame(int buildIndex)
     {
-        SceneManager.LoadScene(buildIndex);
-        _startMenu.SetActive(false);
-        _gameTimer.SetActive(true);
+        LoadLevel(buildIndex);
+        //SceneManager.LoadScene(buildIndex);
+        //_startMenu.SetActive(false);
+        //_gameTimer.SetActive(true);
     }
     #endregion
 
     #region SCENE MANAGEMENT
+    public void LoadLevel(int buildIndex)
+    {
+        StartCoroutine(LoadSceneAsynchronously(buildIndex));
+    }
 
+    private IEnumerator LoadSceneAsynchronously(int buildIndex)
+    {
+        AsyncOperation loadSceneAsyncOperation = SceneManager.LoadSceneAsync(buildIndex);
+        _loadingMenu.SetActive(true);
+        _startMenu.SetActive(false);
+        while (!loadSceneAsyncOperation.isDone)
+        {
+            float loadingProgress = Mathf.Clamp01(loadSceneAsyncOperation.progress / 0.9f);
+            Debug.Log("Loading progress : "+loadingProgress);
+            yield return null;
+        }
+        _loadingMenu.SetActive(false);
+        _gameTimer.SetActive(true);
+    }
     #endregion
 
 }
