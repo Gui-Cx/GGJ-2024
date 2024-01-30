@@ -7,7 +7,8 @@ using UnityEngine.InputSystem;
 enum PlayerState
 {
     Idle,
-    InElevator
+    InElevator,
+    Sliding
 }
 
 public class Player : MonoBehaviour
@@ -132,24 +133,20 @@ public class Player : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        //Debug.LogFormat("Cx : Interact");
         if (context.started && interactor.currentInteractable != null && _currentState ==PlayerState.Idle)
         {
             interactor.currentInteractable.Interact(interactor);
-        }
-             
+        }  
     }
+
     public void OnMove(InputAction.CallbackContext context)
     {
-        //Debug.LogFormat("Cx : Direction is {0}", context.ReadValue<float>());
         _movementDirection = (int)Math.Round(context.ReadValue<float>());
     }
 
     public void OnElevator(InputAction.CallbackContext context)
     {
-        //Debug.LogFormat("Cx : Direction is {0}", context.ReadValue<float>());
         _verticalMovementDirection = (int)Math.Round(context.ReadValue<float>());
-
     }
 
     public void EnterInElevator(ElevatorLocomotion elevator, Transform elevatorPosition)
@@ -182,6 +179,22 @@ public class Player : MonoBehaviour
             rigidbody2d.simulated = true;
             currentElevator.QuitElevator();
         }
+    }
+
+    public void StartSlide()
+    {
+        _currentState = PlayerState.Sliding;
+        GetComponent<BoxCollider2D>().enabled = false;
+        rigidbody2d.simulated = false;
+        animator.SetBool("isSliding", true);
+    }
+
+    public void EndSlide()
+    {
+        _currentState = PlayerState.Idle;
+        GetComponent<BoxCollider2D>().enabled = true;
+        rigidbody2d.simulated = true;
+        animator.SetBool("isSliding", false);
     }
 
     public void SetCurrentItem(ITEM_TYPE item)
