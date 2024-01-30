@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _happynessSpeedBoost;
+    [Space(10)]
+    [SerializeField] private Transform _particleParent;
 
     private Rigidbody2D rigidbody2d;
     private Interactor interactor;
@@ -100,11 +102,12 @@ public class Player : MonoBehaviour
         if (!_itemParticles.TryGetValue(_currentItem, out ParticleSystem particles))
         {
             GameObject particlePrefab = GameManager.Instance.ItemsData.Items.First(item => item.Type == _currentItem).Particles;
-            particles = Instantiate(particlePrefab, transform).GetComponent<ParticleSystem>();
+            particles = Instantiate(particlePrefab, _particleParent).GetComponent<ParticleSystem>();
             print("Instantiate " + _currentItem);
             _itemParticles.Add(_currentItem, particles);
         }
-        if (!_isFacingRight) particles.transform.localEulerAngles = new Vector3(0, 180, 0);
+        if (_isFacingRight) _particleParent.localEulerAngles = new Vector3(0, 0, 0);
+        else _particleParent.localEulerAngles = new Vector3(0, 180, 0);
         particles.GetComponent<ParticleSystem>().Play();
     }
 

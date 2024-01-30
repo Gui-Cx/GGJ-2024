@@ -50,7 +50,7 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         _endMenu.SetActive(false);
-        EnableStartMenu();
+        if (SceneManager.GetActiveScene().buildIndex == 0) EnableStartMenu();
     }
 
     #region IN-GAME UI

@@ -44,30 +44,27 @@ public enum NPC_STATE
 public class NPCBehaviourController : MonoBehaviour
 {
     #region DATA VARIABLES
-    [SerializeField, InspectorName("Current NPC Data")] private NPCTypeData _curNpcData;
-    [SerializeField, InspectorName("Available NPC Data")] private NPCTypeData[] _availableNPCData;
-    [SerializeField,InspectorName("NPC Movement Data")] private NPCMovementData _movementData;
+    [SerializeField] private Animator _anim;
+    [SerializeField] private NPCMovementData _movementData;
+    [Space(10)]
+    [SerializeField] private NPCTypeData[] _availableNPCData;
     #endregion
 
     #region VARIABLES
-    private NPC_TYPES _type;
-    [SerializeField] private NPC_STATE _state;
     private Dictionary<ITEM_TYPE, NPC_STATE> _itemInteractionDict;
     private NPCHappinessBarController _happinessBarController;
     private NPCSymbolController _symbolController;
     private NPCMovementController _movementController;
 
-    [Header("Animation")]
-    [SerializeField] private Animator _anim;
-
+    private NPC_STATE _state;
     private ITEM_TYPE _wantedItem;
+    private NPCTypeData _curNpcData;
 
     [HideInInspector] public Transform SpawnPoint;
     #endregion
 
     private void OnValidate()
     {
-        Assert.IsNotNull(_curNpcData);
         Assert.IsNotNull(_movementData);
     }
 
@@ -80,6 +77,8 @@ public class NPCBehaviourController : MonoBehaviour
     private void Start()
     {
         SwitchState(NPC_STATE.Idle);
+        SwitchNPCData();
+
         UpdateItemInteractionTable();
         GameManager.Instance.UpdateNumberTotalOfClients();
     }
@@ -89,7 +88,6 @@ public class NPCBehaviourController : MonoBehaviour
     /// </summary>
     private void UpdateItemInteractionTable()
     {
-        _type = _curNpcData.Type;
         _itemInteractionDict = new Dictionary<ITEM_TYPE, NPC_STATE>();
         foreach (var item in _curNpcData.ItemInteractionTable)
         {
@@ -106,8 +104,8 @@ public class NPCBehaviourController : MonoBehaviour
     {
         Debug.Log("HE'S DEAD JOHN");
         _state = NPC_STATE.Dead;
-        //gameObject.SetActive(false); //TODO : PROBABLY CHANGE THAT
-        Destroy(gameObject);
+
+        Destroy(gameObject); //TODO : PROBABLY CHANGE THAT
         GameManager.Instance.UpdateNumberOfDeadClients();
         NPCEvents.Instance.Event.Invoke(new NPCGameEventArg() { Npc=gameObject, Type=NPCGameEventType.Death});
     }
@@ -133,9 +131,10 @@ public class NPCBehaviourController : MonoBehaviour
         {
             GameManager.Instance.UpdateSadNumber(true);
         }
+
         _state = state;
         _symbolController.UpdateSymbolItem(_wantedItem);
-        //Debug.Log("NPC " + this.gameObject.name + " : Switching back to state : " + _state);
+
         if(_state == NPC_STATE.Idle) 
         {
             _symbolController.DisplaySymbol();
@@ -158,10 +157,9 @@ public class NPCBehaviourController : MonoBehaviour
     {
         SwitchState(NPC_STATE.Satisfied);
         _happinessBarController.ActivateHappinessTime();
-        _symbolController.HideSymbolDuringHappinessTime();
+        _symbolController.HideSymbol();
         GameManager.Instance.UpdateNumberOfSatisfiedClients();
         SwitchNPCData();
-        //Debug.Log("NPC " + this.gameObject.name + " : CORRECT ITEM APPLIED | State : "+_state+" and switching data");
     }
 
     /// <summary>
@@ -169,7 +167,6 @@ public class NPCBehaviourController : MonoBehaviour
     /// </summary>
     public void IncorrectItemApplied()
     {
-        //Debug.Log("NPC " + this.gameObject.name + " : INCORRECT ITEM APPLIED");
         GameManager.Instance.UpdateNumberOfNotAmusedClients();
         SwitchState(NPC_STATE.NotSatisfied);
         StartCoroutine(NotSatisfiedTimer());
@@ -180,22 +177,23 @@ public class NPCBehaviourController : MonoBehaviour
     /// </summary>
     public void OnItemTriggered(ITEM_TYPE type)
     {
-        Debug.LogFormat("Cx : {0} received item {1}, expected {2}, result {3}", gameObject.name, type, _itemInteractionDict.Keys.ToString(), _itemInteractionDict[type]);
-        if(_itemInteractionDict.ContainsKey(type) && _itemInteractionDict[type] == NPC_STATE.Satisfied)
+        if (_itemInteractionDict.TryGetValue(type, out var npcState))
         {
-            CorrectItemApplied();
-        }
-        else if(_itemInteractionDict.ContainsKey(type) && _itemInteractionDict[type] == NPC_STATE.Dead)
-        {
-            Dies();
-        }
-        else if(_itemInteractionDict.ContainsKey(type) && _itemInteractionDict[type] == NPC_STATE.NotSatisfied)
-        {
-            IncorrectItemApplied();
-        }
-        else
-        {
-            Debug.Log("No state change : NPC remains idle");
+            if (!_happinessBarController.HappinessIsActive)
+            {
+                if (npcState == NPC_STATE.Satisfied)
+                {
+                    CorrectItemApplied();
+                }
+                else if (npcState == NPC_STATE.NotSatisfied)
+                {
+                    IncorrectItemApplied();
+                }
+            }
+            else if (npcState == NPC_STATE.Dead)
+            {
+                Dies();
+            }
         }
     }
     #endregion

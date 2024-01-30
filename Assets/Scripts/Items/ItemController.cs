@@ -58,9 +58,9 @@ public class ItemController : MonoBehaviour
             case USE_TYPE.Circle:  
                 if (time == 0f)
                 {
-                    Debug.LogFormat("Item type {0} triggered Circle", _currentItemData.Type);
                     offset = positionVec2 + (player.IsFacingRight ? 1 : -1) * _currentItemData.UseOffset;
                     castCircle(offset, _currentItemData.UseRange);
+
                     gizmosoffset = offset;
                     gizmosradius = _currentItemData.UseRange;
 
@@ -71,7 +71,7 @@ public class ItemController : MonoBehaviour
                 {
                     offset = positionVec2 + (player.IsFacingRight ? 1 : -1) * _currentItemData.UseOffset;
                     castRay(offset, (player.IsFacingRight ? Vector2.right : Vector2.left), _currentItemData.UseRange);
-                    Debug.LogFormat("Item type {0} triggered Ray", _currentItemData.Type);
+
                     gizmosfrom = offset;
                     gizmosto = offset + (player.IsFacingRight ? Vector2.right : Vector2.left) * _currentItemData.UseRange;
                 }

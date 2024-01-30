@@ -8,32 +8,30 @@ using UnityEngine.Assertions;
 /// </summary>
 public class NPCHappinessBarController : MonoBehaviour
 {
-    [Header("Happiness Bar values")]
+    [Header("Happiness Parameters")]
     [SerializeField] private int _maxLevel = 20;
-    [SerializeField] private int _curLevel;
     [SerializeField] private int _happinessThreshold = 10; //at this point, the patient will start to emit sadness
+    [SerializeField] private int _curLevel; //Serialized for debug purposes
 
-    [Header("Timer values")]
+    [Header("Timer Parameters")]
     [SerializeField] private float _barDownUpdateTimer=1f;
     [SerializeField] private float _happinessTimer = 5f; //the timer during which the NPC will be "happy" and its happiness bar will no longer go down
 
-    [Header("Happiness Bar elements")]
-    [SerializeField] private GameObject _happinessBar;
-    private HappinessBarModule _barModule;
+    [Header("Score Parameters")]
+    [SerializeField] private int _scoreIncrease = 20;
+    [SerializeField] private int _scoreDecrease = 1;
 
-    [Header("Score Elements")]
-    [SerializeField] private int _scoreIncrease=20;
-    [SerializeField] private int _scoreDecrease=1;
-
-    [Header("Happiness AOE")]
+    [Header("Elements")]
     [SerializeField] private GameObject _happinessAOE;
-
-    private bool _happinessIsActive = false;
-
-    [Header("Animation")]
+    [SerializeField] private GameObject _laughSprite;
+    [SerializeField] private GameObject _happinessBar;
     [SerializeField] private Animator _anim;
 
     private AOESadness _aoeSadness;
+    private HappinessBarModule _barModule;
+
+    private bool _happinessIsActive = false;
+    public bool HappinessIsActive => _happinessIsActive;
 
     private void OnValidate()
     {
@@ -45,9 +43,13 @@ public class NPCHappinessBarController : MonoBehaviour
     {
         _barModule = _happinessBar.GetComponent<HappinessBarModule>();
         _curLevel = _maxLevel;
+
         _barModule.SetMaxHappiness(_maxLevel);
+        _laughSprite.SetActive(false);
+
         UpdateHappinessBarColor(Color.green);
         StartCoroutine(BarDownUpdate());
+
         _aoeSadness = GetComponentInChildren<AOESadness>();
         _aoeSadness.SetGridInfo(GameManager.Instance.TilemapGrid,GameManager.Instance.BackgroundTilemap,GameManager.Instance.GreyTilemap);
     }
@@ -99,22 +101,29 @@ public class NPCHappinessBarController : MonoBehaviour
     public void ActivateHappinessTime()
     {
         _happinessIsActive = true;
-        _curLevel = _maxLevel;
+        _curLevel = _maxLevel;        
+        _anim.SetTrigger("Laugh");
+        _laughSprite.SetActive(true);
+
         GameManager.Instance.IncreaseScore(_scoreIncrease);
         UpdateHappinessBarColor(Color.yellow);
         UpdateVisualHappinessBar();
+
         StartCoroutine(HappinessTimer());
-        _anim.SetTrigger("Laugh");
     }
 
     private IEnumerator HappinessTimer()
     {
         GameObject aoe = Instantiate(_happinessAOE, transform);
         aoe.transform.position = gameObject.transform.position;
+
         yield return new WaitForSeconds(_happinessTimer);
-        Destroy(aoe);
+        
         _happinessIsActive = false;
+        _laughSprite.SetActive(false);
+        Destroy(aoe);
         UpdateHappinessBarColor(Color.green);
+
         GetComponent<NPCBehaviourController>().SwitchState(NPC_STATE.Idle);
     }
 }
