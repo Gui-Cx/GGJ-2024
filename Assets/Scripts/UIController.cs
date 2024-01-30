@@ -104,7 +104,7 @@ public class UIController : MonoBehaviour
     /// <param name="numDeadClients">Number of Dead clients (self-explanatory)</param>
     public void UpdateEndScore(int scoreValue, int numSatisfiedClients, int numNotAmusedClients, int numDeadClients)
     {
-        _endScoreText.text = "Score : "+scoreValue.ToString() + '\n' + '\n' + "Number of Satisfied Clients : "+numSatisfiedClients.ToString() + '\n' + '\n' + "Not Amused Clients : "+numNotAmusedClients.ToString() + '\n' + '\n' + "Number of Dead Clients : "+numDeadClients;
+        _endScoreText.text = "Score : "+scoreValue.ToString() + '\n' + '\n' + "Satisfied Clients : "+numSatisfiedClients.ToString() + '\n' + '\n' + "Not Amused Clients : "+numNotAmusedClients.ToString() + '\n' + '\n' + "Dead Clients : "+numDeadClients;
     }
     #endregion
 
