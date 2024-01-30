@@ -80,7 +80,6 @@ public class ElevatorLocomotion : MonoBehaviour, IInteractable
 
     public void PlayerEnter(Player player)
     {
-        Debug.Log("enter elevator");
         playerIsIn = true;
         player.EnterInElevator(this, _playerPosition);
         DisplayArrows(true);
@@ -88,7 +87,6 @@ public class ElevatorLocomotion : MonoBehaviour, IInteractable
 
     public void QuitElevator()
     {
-        Debug.Log("quit elevator");
         playerIsIn = false;
         DisplayArrows(false);
     }
