@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 792270040209353196, guid: 52cc72df8fb647648aea0de521d5e80f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1509234935832426120, guid: 52cc72df8fb647648aea0de521d5e80f, type: 3}
       propertyPath: m_Name
       value: FlowerDispenser

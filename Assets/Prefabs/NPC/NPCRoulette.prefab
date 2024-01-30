@@ -556,7 +556,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 25
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1447084245, guid: 43338049d0b29034fa9241fb5d0df909, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -729,14 +729,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a55d200e5e886e84ebfaf734e593a887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _curNpcData: {fileID: 11400000, guid: d05e96ada7d51794cbb6b598efb96131, type: 2}
+  _anim: {fileID: 5357768684245781940}
+  _movementData: {fileID: 11400000, guid: 55a01bd08b21eef4eae9603fab312d4e, type: 2}
   _availableNPCData:
   - {fileID: 11400000, guid: d05e96ada7d51794cbb6b598efb96131, type: 2}
   - {fileID: 11400000, guid: 07f2c6c1f8c6a0d488bc8b7908228991, type: 2}
   - {fileID: 11400000, guid: 6b9df9f4d06cdfe4bb4044713a8dda51, type: 2}
-  _movementData: {fileID: 11400000, guid: 55a01bd08b21eef4eae9603fab312d4e, type: 2}
-  _state: 0
-  _anim: {fileID: 5357768684245781940}
   SpawnPoint: {fileID: 0}
 --- !u!114 &5244143766612524366
 MonoBehaviour:
