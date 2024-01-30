@@ -15,11 +15,15 @@ public class ElevatorLocomotion : MonoBehaviour, IInteractable
     [SerializeField] SpriteRenderer spriteUpArrow;
     [SerializeField] SpriteRenderer spriteDownArrow;
 
+    [Header("Player Elements")]
+    [SerializeField] private Transform _playerPosition;
+
     private void Start()
     {
         SetCurrentEmpty(startEmptyElevator);
         DisplayArrows(false);
     }
+
     public void MoveToEmptyElevator(EmptyElevator target)
     {
         isMoving = true;
@@ -85,7 +89,7 @@ public class ElevatorLocomotion : MonoBehaviour, IInteractable
     {
         Debug.Log("enter elevator");
         playerIsIn = true;
-        player.EnterInElevator(this);
+        player.EnterInElevator(this, _playerPosition);
         DisplayArrows(true);
     }
 

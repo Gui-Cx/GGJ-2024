@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private ItemController itemController;
     private Animator animator;
     private ElevatorLocomotion currentElevator;
+    private Transform _currentElevatorPoition; //contains the correct transform the position the player
 
     private PlayerState _currentState;
     private ITEM_TYPE _currentItem;
@@ -74,7 +75,7 @@ public class Player : MonoBehaviour
                 break;
 
             case PlayerState.InElevator:
-                transform.position = currentElevator.transform.position;
+                transform.position = _currentElevatorPoition.position;
                 if (_movementDirection != 0) { TryQuitElevator(_movementDirection); }
                 if (_verticalMovementDirection != 0) { TryUseElevator(_verticalMovementDirection); }
                 break;
@@ -148,13 +149,14 @@ public class Player : MonoBehaviour
 
     }
 
-    public void EnterInElevator(ElevatorLocomotion elevator)
+    public void EnterInElevator(ElevatorLocomotion elevator, Transform elevatorPosition)
     {
         _currentState = PlayerState.InElevator;
         currentElevator = elevator;
+        _currentElevatorPoition = elevatorPosition;
         GetComponent<BoxCollider2D>().enabled = false;
         rigidbody2d.simulated = false;
-        transform.position = elevator.transform.position;
+        transform.position = elevatorPosition.position;
     }
 
     public void TryUseElevator(float movementDirection)
