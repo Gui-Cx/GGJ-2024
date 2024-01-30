@@ -7,20 +7,19 @@ using static UnityEngine.GraphicsBuffer;
 
 public class ElevatorLocomotion : MonoBehaviour, IInteractable
 {
-    [SerializeField] float timing;
-    public EmptyElevator currentEmpty;
-    [SerializeField] EmptyElevator startEmptyElevator;
-    public bool isMoving;
-    bool playerIsIn;
-    [SerializeField] SpriteRenderer spriteUpArrow;
-    [SerializeField] SpriteRenderer spriteDownArrow;
-
-    [Header("Player Elements")]
+    [SerializeField] private float timing;
+    [SerializeField] private EmptyElevator startPosition;
+    [SerializeField] private SpriteRenderer spriteUpArrow;
+    [SerializeField] private SpriteRenderer spriteDownArrow;
     [SerializeField] private Transform _playerPosition;
+
+    [HideInInspector] public EmptyElevator currentEmpty;
+    [HideInInspector] public bool isMoving;
+    private bool playerIsIn;
 
     private void Start()
     {
-        SetCurrentEmpty(startEmptyElevator);
+        SetCurrentEmpty(startPosition);
         DisplayArrows(false);
     }
 
@@ -30,7 +29,6 @@ public class ElevatorLocomotion : MonoBehaviour, IInteractable
         DisplayArrows(false);
         AudioManager.Instance.PlayOneShot(FMODEvents.instance.TravelingElevator, this.transform.position);
         StartCoroutine(StartMoving(target));
-        print(target.transform.position);
     }
 
     void DisplayArrows(bool isDisplay)
@@ -76,7 +74,6 @@ public class ElevatorLocomotion : MonoBehaviour, IInteractable
 
     public void UseElevator(bool goUp)
     {
-        Debug.Log("use");
         if (goUp) {
             if (currentEmpty.upNeighbor != null)MoveToEmptyElevator(currentEmpty.upNeighbor);
         }
@@ -98,7 +95,6 @@ public class ElevatorLocomotion : MonoBehaviour, IInteractable
         Debug.Log("quit elevator");
         playerIsIn = false;
         DisplayArrows(false);
-
     }
 
     public bool Interact(Interactor interactor)
@@ -106,7 +102,6 @@ public class ElevatorLocomotion : MonoBehaviour, IInteractable
         if (!playerIsIn && !isMoving )
         {
             PlayerEnter(interactor.gameObject.GetComponent<Player>());
-            print("Enter in Elevator");
             return true;
         }
         return false;

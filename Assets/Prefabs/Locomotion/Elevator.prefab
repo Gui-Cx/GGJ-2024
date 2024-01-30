@@ -332,12 +332,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366909ddb807428479336321f0dd453d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timing: 3
+  timing: 1
   currentEmpty: {fileID: 0}
   startEmptyElevator: {fileID: 0}
   isMoving: 0
-  spriteUpArrow: {fileID: 0}
-  spriteDownArrow: {fileID: 0}
+  spriteUpArrow: {fileID: 7228769638350841779}
+  spriteDownArrow: {fileID: 7125428114592347918}
   _playerPosition: {fileID: 6521925598009175446}
 --- !u!61 &7452760407281712383
 BoxCollider2D:

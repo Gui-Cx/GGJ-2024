@@ -368,10 +368,6 @@ PrefabInstance:
       propertyPath: downNeighbor
       value: 
       objectReference: {fileID: 285935001}
-    - target: {fileID: 3456805139129799239, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8186230665463920497, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
       propertyPath: m_Name
       value: EmptyElevator 4
@@ -2558,45 +2554,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6184596249335772412, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: timing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6184596249335772412, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: spriteUpArrow
+      propertyPath: startPosition
       value: 
-      objectReference: {fileID: 1549901625}
-    - target: {fileID: 6184596249335772412, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: spriteDownArrow
-      value: 
-      objectReference: {fileID: 377629912}
+      objectReference: {fileID: 992450852}
     - target: {fileID: 6184596249335772412, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
       propertyPath: startEmptyElevator
       value: 
       objectReference: {fileID: 992450852}
-    - target: {fileID: 7125428114592347918, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7228769638350841779, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7452760407281712383, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: m_Size.x
-      value: 1.0059977
-      objectReference: {fileID: 0}
-    - target: {fileID: 7452760407281712383, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: m_Size.y
-      value: 1.3675737
-      objectReference: {fileID: 0}
-    - target: {fileID: 7452760407281712383, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.019203901
-      objectReference: {fileID: 0}
-    - target: {fileID: 7452760407281712383, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.015313864
-      objectReference: {fileID: 0}
     - target: {fileID: 8056579825344954253, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
       propertyPath: m_Name
       value: Elevator
@@ -2913,10 +2877,6 @@ PrefabInstance:
       propertyPath: downNeighbor
       value: 
       objectReference: {fileID: 624374221}
-    - target: {fileID: 3456805139129799239, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8186230665463920497, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
       propertyPath: m_Name
       value: EmptyElevator 1
@@ -3002,10 +2962,6 @@ PrefabInstance:
       propertyPath: downNeighbor
       value: 
       objectReference: {fileID: 1713720170}
-    - target: {fileID: 3456805139129799239, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8186230665463920497, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
       propertyPath: m_Name
       value: EmptyElevator 3
@@ -3124,11 +3080,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 790612248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &377629912 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 7125428114592347918, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-  m_PrefabInstance: {fileID: 195567655}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &413127221
 GameObject:
   m_ObjectHideFlags: 0
@@ -5925,10 +5876,6 @@ PrefabInstance:
       propertyPath: upNeighbor
       value: 
       objectReference: {fileID: 219234783}
-    - target: {fileID: 3456805139129799239, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8186230665463920497, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
       propertyPath: m_Name
       value: EmptyElevator 0
@@ -6509,10 +6456,6 @@ PrefabInstance:
       propertyPath: downNeighbor
       value: 
       objectReference: {fileID: 992450852}
-    - target: {fileID: 3456805139129799239, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8186230665463920497, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
       propertyPath: m_Name
       value: EmptyElevator 1
@@ -6938,10 +6881,6 @@ PrefabInstance:
       propertyPath: downNeighbor
       value: 
       objectReference: {fileID: 1580394720}
-    - target: {fileID: 3456805139129799239, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8186230665463920497, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
       propertyPath: m_Name
       value: EmptyElevator 4
@@ -7027,10 +6966,6 @@ PrefabInstance:
       propertyPath: downNeighbor
       value: 
       objectReference: {fileID: 1812737788}
-    - target: {fileID: 3456805139129799239, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8186230665463920497, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
       propertyPath: m_Name
       value: EmptyElevator 2
@@ -7397,10 +7332,6 @@ PrefabInstance:
       propertyPath: upNeighbor
       value: 
       objectReference: {fileID: 1812737788}
-    - target: {fileID: 3456805139129799239, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8186230665463920497, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
       propertyPath: m_Name
       value: EmptyElevator 0
@@ -7414,11 +7345,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 926944292406973259, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
   m_PrefabInstance: {fileID: 1498834177}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &1549901625 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 7228769638350841779, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-  m_PrefabInstance: {fileID: 195567655}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1556904777 stripped
 MonoBehaviour:
@@ -7491,10 +7417,6 @@ PrefabInstance:
       propertyPath: downNeighbor
       value: 
       objectReference: {fileID: 1556904777}
-    - target: {fileID: 3456805139129799239, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8186230665463920497, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
       propertyPath: m_Name
       value: EmptyElevator 3
@@ -7699,10 +7621,6 @@ PrefabInstance:
       propertyPath: downNeighbor
       value: 
       objectReference: {fileID: 219234783}
-    - target: {fileID: 3456805139129799239, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8186230665463920497, guid: 5e74859604f1d294bb73c59be744be70, type: 3}
       propertyPath: m_Name
       value: EmptyElevator 2
@@ -7930,45 +7848,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6184596249335772412, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: timing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6184596249335772412, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: spriteUpArrow
+      propertyPath: startPosition
       value: 
-      objectReference: {fileID: 1817827130}
-    - target: {fileID: 6184596249335772412, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: spriteDownArrow
-      value: 
-      objectReference: {fileID: 1817827129}
+      objectReference: {fileID: 624374221}
     - target: {fileID: 6184596249335772412, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
       propertyPath: startEmptyElevator
       value: 
       objectReference: {fileID: 624374221}
-    - target: {fileID: 7125428114592347918, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7228769638350841779, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7452760407281712383, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: m_Size.x
-      value: 1.0059977
-      objectReference: {fileID: 0}
-    - target: {fileID: 7452760407281712383, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: m_Size.y
-      value: 1.3675737
-      objectReference: {fileID: 0}
-    - target: {fileID: 7452760407281712383, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.019203901
-      objectReference: {fileID: 0}
-    - target: {fileID: 7452760407281712383, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.015313864
-      objectReference: {fileID: 0}
     - target: {fileID: 8056579825344954253, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
       propertyPath: m_Name
       value: Elevator
@@ -7981,16 +7867,6 @@ PrefabInstance:
 --- !u!4 &1817827128 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3142045601570226514, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-  m_PrefabInstance: {fileID: 1817827127}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &1817827129 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 7125428114592347918, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
-  m_PrefabInstance: {fileID: 1817827127}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &1817827130 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 7228769638350841779, guid: 193fdb40b2c64ca4a8988897293fb43c, type: 3}
   m_PrefabInstance: {fileID: 1817827127}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1817827131 stripped
