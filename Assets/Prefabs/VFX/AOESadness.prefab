@@ -53,6 +53,7 @@ MonoBehaviour:
   _areaRoundness: 0.3
   _minEmissionRate: 1
   _maxEmissionRate: 10
+  greyTiles: []
 --- !u!198 &423134228169675886
 ParticleSystem:
   m_ObjectHideFlags: 0

@@ -22,20 +22,27 @@ public class AOESadness : MonoBehaviour
     public List<Vector3Int> greyTiles = new List<Vector3Int>();
     List<Vector3Int> lastGreyTiles = new List<Vector3Int>();
 
-
     private Grid _grid;
     private Tilemap _backgroundTilemap;
     private Tilemap _grayscaleTilemap;
     private ParticleSystem _particleSystem;
 
-    //Value between 0 and 1, corresponds to the percentage of sadness
-    private float _currentSadnessRate;
     //Position of the cell on the gridmap at which the pnc is located
     private Vector3Int _cellPosition;
+    //Value between 0 and 1, corresponds to the percentage of sadness
+    private float _currentSadnessRate;
+    private float _sadnessRadius;
+
+    private bool isEmitting;
 
     void Awake()
     {
         _particleSystem = GetComponent<ParticleSystem>();
+    }
+
+    private void Update()
+    {
+        if (isEmitting) GrayscaleEffect();
     }
 
     public void SetGridInfo(Grid grid, Tilemap backgroundTilemap, Tilemap grayscaleTilemap)
@@ -54,9 +61,10 @@ public class AOESadness : MonoBehaviour
     public void SetSadness(int happyness, int thresholdValue)
     {
         _currentSadnessRate = Mathf.Clamp01((float)(thresholdValue - happyness) / thresholdValue);
+        _sadnessRadius = Mathf.Lerp(_minSadnessRadius, _maxSadnessRadius, _currentSadnessRate);
+        isEmitting = _currentSadnessRate > 0f;
 
         SetEmission();
-        GrayscaleEffect();
     }
 
     void ClearTiles(List<Vector3Int> lastGreyTiles)
@@ -78,11 +86,7 @@ public class AOESadness : MonoBehaviour
     }
     private void GrayscaleEffect()
     {
-        if (_currentSadnessRate == 0) return;
-        //float sadnessRadius = 3f;
-        float sadnessRadius = Mathf.Lerp(_minSadnessRadius, _maxSadnessRadius, _currentSadnessRate);
         Vector3Int newCellPosition = _grid.WorldToCell(transform.position);
-
         
         foreach (var tile in greyTiles)
         {
@@ -90,15 +94,15 @@ public class AOESadness : MonoBehaviour
         }
         greyTiles.Clear();
 
-        if (newCellPosition != _cellPosition ||lastRadius!=sadnessRadius)
+        if (newCellPosition != _cellPosition ||lastRadius!=_sadnessRadius)
         {
 
             _cellPosition = newCellPosition;
 
-            int xMin = _cellPosition.x - Mathf.RoundToInt(sadnessRadius);
-            int xMax = _cellPosition.x + Mathf.RoundToInt(sadnessRadius);
-            int yMin = _cellPosition.y - Mathf.RoundToInt(sadnessRadius);
-            int yMax = _cellPosition.y + Mathf.RoundToInt(sadnessRadius);
+            int xMin = _cellPosition.x - Mathf.RoundToInt(_sadnessRadius);
+            int xMax = _cellPosition.x + Mathf.RoundToInt(_sadnessRadius);
+            int yMin = _cellPosition.y - Mathf.RoundToInt(_sadnessRadius);
+            int yMax = _cellPosition.y + Mathf.RoundToInt(_sadnessRadius);
 
             TileBase tile;
             for (int tileX = xMin; tileX <= xMax; tileX++)
@@ -107,9 +111,9 @@ public class AOESadness : MonoBehaviour
                 {
                     float distanceToCenter = Mathf.Sqrt(Mathf.Pow(tileX - _cellPosition.x,2) + Mathf.Pow(tileY - _cellPosition.y, 2));
                     
-                    if (distanceToCenter <= sadnessRadius + _areaRoundness)
+                    if (distanceToCenter <= _sadnessRadius + _areaRoundness)
                     {
-                        Vector3Int tilePosition = new Vector3Int(tileX, tileY);
+                        Vector3Int tilePosition = new(tileX, tileY);
                         lastGreyTiles.Remove(tilePosition);
                         tile = _backgroundTilemap.GetTile(tilePosition);
                         _grayscaleTilemap.SetTile(tilePosition, tile);
@@ -117,7 +121,7 @@ public class AOESadness : MonoBehaviour
                     }
                 }
             }
-            lastRadius = sadnessRadius;
+            lastRadius = _sadnessRadius;
             ClearTiles(lastGreyTiles);
         }
 
