@@ -104,11 +104,12 @@ public class Player : MonoBehaviour
         {
             GameObject particlePrefab = GameManager.Instance.ItemsData.Items.First(item => item.Type == _currentItem).Particles;
             particles = Instantiate(particlePrefab, _particleParent).GetComponent<ParticleSystem>();
-            print("Instantiate " + _currentItem);
             _itemParticles.Add(_currentItem, particles);
         }
+
         if (_isFacingRight) _particleParent.localEulerAngles = new Vector3(0, 0, 0);
         else _particleParent.localEulerAngles = new Vector3(0, 180, 0);
+
         particles.GetComponent<ParticleSystem>().Play();
     }
 
