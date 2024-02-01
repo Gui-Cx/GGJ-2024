@@ -56,6 +56,7 @@ public class ElevatorLocomotion : MonoBehaviour, IInteractable
     {
         SetCurrentEmpty(target);
         isMoving = false;
+        transform.position = target.transform.position;
         if (playerIsIn) DisplayArrows(true);
         AudioManager.Instance.PlayOneShot(FMODEvents.instance.ElevatorArrives, this.transform.position);
     }
