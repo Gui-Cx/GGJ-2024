@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField] private float _maxSpeed;
-    [SerializeField] private float _happynessSpeedBoost;
+    [SerializeField] private float _happinessSpeedBoost;
     [Space(10)]
     [SerializeField] private Transform _particleParent;
 
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
         switch (_currentState)
         {
             case PlayerState.Idle:
-                _currentSpeed = _isBoosted ? _maxSpeed * _happynessSpeedBoost : _maxSpeed;
+                _currentSpeed = _isBoosted ? _maxSpeed * _happinessSpeedBoost : _maxSpeed;
                 rigidbody2d.AddForce(_movementDirection * _currentSpeed * Vector2.right);
 
                 if (_movementDirection != 0)

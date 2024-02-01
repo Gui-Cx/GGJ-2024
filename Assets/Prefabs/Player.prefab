@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeed: 30
-  _happynessSpeedBoost: 1.5
+  _happinessSpeedBoost: 1.25
   _particleParent: {fileID: 1880724352819481940}
 --- !u!114 &8673505464920307247
 MonoBehaviour:

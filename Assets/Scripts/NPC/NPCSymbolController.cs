@@ -8,7 +8,6 @@ using UnityEngine.Assertions;
 /// </summary>
 public class NPCSymbolController : MonoBehaviour
 { 
-    [Header("Symbol elements")]
     [SerializeField] private GameObject _symbol;
 
     private SymbolModule _symbolModule;

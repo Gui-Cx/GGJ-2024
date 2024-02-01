@@ -1,138 +1,73 @@
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class AOESadness : MonoBehaviour
 {
-    [Header("Materials")]
-    [SerializeField] private Material _defaultMaterial;
-    [SerializeField] private Material _sadnessMaterial;
+    private static readonly float RADIUS_TO_SCREEN = 0.05f;
 
-    [Header("Sadness Radius")]
-    [SerializeField] private float _minSadnessRadius;
-    [SerializeField] private float _maxSadnessRadius;
-    [SerializeField, Range(0,1)] private float _areaRoundness;
+    [SerializeField] private SpriteRenderer _circleSprite;
 
-    [Header("Particle emission")]
-    [SerializeField] private float _minEmissionRate;
-    [SerializeField] private float _maxEmissionRate;
-    float lastRadius = 0f;
-    public List<Vector3Int> greyTiles = new List<Vector3Int>();
-    List<Vector3Int> lastGreyTiles = new List<Vector3Int>();
-
-
-    private Grid _grid;
-    private Tilemap _backgroundTilemap;
-    private Tilemap _grayscaleTilemap;
     private ParticleSystem _particleSystem;
+    private Material _grayMaterial;
 
-    //Value between 0 and 1, corresponds to the percentage of sadness
-    private float _currentSadnessRate;
-    //Position of the cell on the gridmap at which the pnc is located
-    private Vector3Int _cellPosition;
+    private float _minSadnessRadius;
+    private float _maxSadnessRadius;
+
+    private float _minEmissionRate;
+    private float _maxEmissionRate;
 
     void Awake()
     {
         _particleSystem = GetComponent<ParticleSystem>();
+        _grayMaterial = _circleSprite.material;
     }
 
-    public void SetGridInfo(Grid grid, Tilemap backgroundTilemap, Tilemap grayscaleTilemap)
+    public void SetValues(float minRadius, float maxRadius, float minEmission, float maxEmission)
     {
-        _grid = grid;
-        _backgroundTilemap = backgroundTilemap;
-        _grayscaleTilemap = grayscaleTilemap;
+        _minSadnessRadius = minRadius;
+        _maxSadnessRadius = maxRadius;
+        _minEmissionRate = minEmission;
+        _maxEmissionRate = maxEmission;
+
+        RemoveSadness();
+    }
+
+    public void RemoveSadness()
+    {
+        SetEmission(0);
+        GrayscaleEffect(0);
     }
 
     /// <summary>
-    /// Sets the sadness rate. Depends on the current happyness value and the threshold value
+    /// Sets the sadness rate. Depends on the current happiness value and the threshold value
     /// at which the NPC starts being sad.
     /// </summary>
-    /// <param name="happyness">Current NPC happyness value</param>
+    /// <param name="happiness">Current NPC happiness value</param>
     /// <param name="thresholdValue">Value under which the NPC is considered sad</param>
-    public void SetSadness(int happyness, int thresholdValue)
+    public void SetSadness(int happiness, int thresholdValue)
     {
-        _currentSadnessRate = Mathf.Clamp01((float)(thresholdValue - happyness) / thresholdValue);
+        float sadnessRate = Mathf.Clamp01((float)(thresholdValue - happiness) / thresholdValue);
 
-        SetEmission();
-        GrayscaleEffect();
+        SetEmission(sadnessRate);
+        GrayscaleEffect(sadnessRate);
     }
 
-    void ClearTiles(List<Vector3Int> lastGreyTiles)
+    private void GrayscaleEffect(float sadnessRate)
     {
-        //todo : optimise if npc is near, if not dont put in the npcs list
-        GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
-        foreach (Vector3Int tilepos in lastGreyTiles){
-            bool canErase = true;
-            foreach(var npc in npcs){
-                if (!ReferenceEquals(npc, transform.root.gameObject))
-                {
-                    List<Vector3Int> tiles = npc.GetComponentInChildren<AOESadness>().lastGreyTiles;
-                    if (tiles.Contains(tilepos))
-                        canErase = false;
-                }
-            }
-            if (canErase) _grayscaleTilemap.SetTile(tilepos, null);
-        };
-    }
-    private void GrayscaleEffect()
-    {
-        if (_currentSadnessRate == 0) return;
-        //float sadnessRadius = 3f;
-        float sadnessRadius = Mathf.Lerp(_minSadnessRadius, _maxSadnessRadius, _currentSadnessRate);
-        Vector3Int newCellPosition = _grid.WorldToCell(transform.position);
-
-        
-        foreach (var tile in greyTiles)
-        {
-            lastGreyTiles.Add(tile);
-        }
-        greyTiles.Clear();
-
-        if (newCellPosition != _cellPosition ||lastRadius!=sadnessRadius)
-        {
-
-            _cellPosition = newCellPosition;
-
-            int xMin = _cellPosition.x - Mathf.RoundToInt(sadnessRadius);
-            int xMax = _cellPosition.x + Mathf.RoundToInt(sadnessRadius);
-            int yMin = _cellPosition.y - Mathf.RoundToInt(sadnessRadius);
-            int yMax = _cellPosition.y + Mathf.RoundToInt(sadnessRadius);
-
-            TileBase tile;
-            for (int tileX = xMin; tileX <= xMax; tileX++)
-            {
-                for (int tileY = yMin; tileY <= yMax; tileY++)
-                {
-                    float distanceToCenter = Mathf.Sqrt(Mathf.Pow(tileX - _cellPosition.x,2) + Mathf.Pow(tileY - _cellPosition.y, 2));
-                    
-                    if (distanceToCenter <= sadnessRadius + _areaRoundness)
-                    {
-                        Vector3Int tilePosition = new Vector3Int(tileX, tileY);
-                        lastGreyTiles.Remove(tilePosition);
-                        tile = _backgroundTilemap.GetTile(tilePosition);
-                        _grayscaleTilemap.SetTile(tilePosition, tile);
-                        greyTiles.Add(tilePosition);
-                    }
-                }
-            }
-            lastRadius = sadnessRadius;
-            ClearTiles(lastGreyTiles);
-        }
-
+        float sadnessRadius = sadnessRate == 0 ? 0 : Mathf.Lerp(_minSadnessRadius, _maxSadnessRadius, sadnessRate);
+        _grayMaterial.SetFloat("_Radius", sadnessRadius * RADIUS_TO_SCREEN);
     }
 
-    private void SetEmission()
+    private void SetEmission(float sadnessRate)
     {
-        if (_currentSadnessRate == 0)
+        if (sadnessRate == 0)
         {
             _particleSystem.Stop();
             return;
         }
         else _particleSystem.Play();
 
-        float emissionRate = _minEmissionRate + _maxEmissionRate * _currentSadnessRate;
+        float emissionRate = _minEmissionRate + _maxEmissionRate * sadnessRate;
 
         ParticleSystem.EmissionModule emissionModule = _particleSystem.emission;
         emissionModule.rateOverTime = emissionRate;

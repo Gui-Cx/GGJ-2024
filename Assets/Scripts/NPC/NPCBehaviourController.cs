@@ -2,18 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
-
-
-public enum NPC_TYPES
-{
-    Old,
-    Baby,
-    Depressed,
-    Death,
-    Wheelchair,
-    SadClown
-}
 
 public enum NPC_STATE
 {
@@ -26,47 +14,33 @@ public enum NPC_STATE
 
 /// <summary>
 /// This script will handle the basic behaviours of the NPCs 
-/// Said behaviour :
-/// - Static NPC
-/// - Moving NPCs
-/// 
-/// This script will also handle the "type" of NPC and what it requests :
-/// Types :
-/// - Old
-/// - Young (Babies)
-/// - Depressed (Adult random)
-/// - Death
-/// - Wheelchair
-/// - Sad clowns
 /// </summary>
 [RequireComponent(typeof(NPCItemHandler))]
 [RequireComponent(typeof(NPCHappinessBarController))]
 public class NPCBehaviourController : MonoBehaviour
 {
     #region DATA VARIABLES
-    [SerializeField] private Animator _anim;
+    [Header("Data")]
+    [SerializeField] private NPCSettingsData _settingsData;
     [SerializeField] private NPCMovementData _movementData;
-    [Space(10)]
-    [SerializeField] private NPCTypeData[] _availableNPCData;
+    [SerializeField] private NPCTypeData _behaviourData;
+    [Header("Elements")]
+    [SerializeField] private Animator _animator;
     #endregion
 
     #region VARIABLES
-    private Dictionary<ITEM_TYPE, NPC_STATE> _itemInteractionDict;
+    private Dictionary<ITEM_TYPE, NPC_STATE> _interactionDict;
+
     private NPCHappinessBarController _happinessBarController;
-    private NPCSymbolController _symbolController;
     private NPCMovementController _movementController;
+    private NPCSymbolController _symbolController;
 
     private NPC_STATE _state;
     private ITEM_TYPE _wantedItem;
-    private NPCTypeData _curNpcData;
+    private NPCBehaviourData _curNpcData;
 
     [HideInInspector] public Transform SpawnPoint;
     #endregion
-
-    private void OnValidate()
-    {
-        Assert.IsNotNull(_movementData);
-    }
 
     private void Awake()
     {
@@ -76,27 +50,53 @@ public class NPCBehaviourController : MonoBehaviour
 
     private void Start()
     {
+        _happinessBarController.SetValues(_settingsData, _animator);
+        
         SwitchState(NPC_STATE.Idle);
         SwitchNPCData();
 
-        UpdateItemInteractionTable();
-        GameManager.Instance.UpdateNumberTotalOfClients();
+        GameManager.Instance.UpdateTotalClientsCount();
+    }
+
+    /// <summary>
+    /// Function that will handle the switch of interaction table
+    /// </summary>
+    public void SwitchNPCData()
+    {
+        int rng = UnityEngine.Random.Range(0, _behaviourData.BehaviourDatas.Length);
+        _curNpcData = _behaviourData.BehaviourDatas[rng];
+
+        UpdateInteractionTable();
     }
 
     /// <summary>
     /// Updates the dict of values that link the item types to the outcome (satisfied/not/dead)
     /// </summary>
-    private void UpdateItemInteractionTable()
+    private void UpdateInteractionTable()
     {
-        _itemInteractionDict = new Dictionary<ITEM_TYPE, NPC_STATE>();
-        foreach (var item in _curNpcData.ItemInteractionTable)
+        _interactionDict = new Dictionary<ITEM_TYPE, NPC_STATE>();
+
+        foreach(var item in _curNpcData.InteractionTable)
         {
-            _itemInteractionDict[item.Type] = item.OutcomeState;
-            if(item.OutcomeState == NPC_STATE.Satisfied)
+            if (item.Satisfies)
             {
+                _interactionDict[item.Type] = NPC_STATE.Satisfied;
                 _wantedItem = item.Type;
             }
+            else if (item.Kills)
+            {
+                _interactionDict[item.Type] = NPC_STATE.Dead;
+            }
         }
+
+        foreach (ITEM_TYPE item in Enum.GetValues(typeof(ITEM_TYPE)))
+        {
+            if (!_interactionDict.ContainsKey(item))
+            {
+                _interactionDict[item] = NPC_STATE.NotSatisfied;
+            }
+        }
+
         _symbolController.UpdateSymbolItem(_wantedItem);
     }
 
@@ -106,18 +106,8 @@ public class NPCBehaviourController : MonoBehaviour
         _state = NPC_STATE.Dead;
 
         Destroy(gameObject); //TODO : PROBABLY CHANGE THAT
-        GameManager.Instance.UpdateNumberOfDeadClients();
+        GameManager.Instance.UpdateDeadClientsCount();
         NPCEvents.Instance.Event.Invoke(new NPCGameEventArg() { Npc=gameObject, Type=NPCGameEventType.Death});
-    }
-
-    /// <summary>
-    /// Function that will handle the switch of interaction table
-    /// </summary>
-    public void SwitchNPCData()
-    {
-        int rng = UnityEngine.Random.Range(0, _availableNPCData.Length);
-        _curNpcData = _availableNPCData[rng];
-        UpdateItemInteractionTable();
     }
 
     #region STATE RELATED FUNCTIONS
@@ -125,11 +115,11 @@ public class NPCBehaviourController : MonoBehaviour
     {
         if (_state == NPC_STATE.Sad && state != NPC_STATE.Sad)
         {
-            GameManager.Instance.UpdateSadNumber(false);
+            GameManager.Instance.UpdateSadCount(false);
         }
         if (_state != NPC_STATE.Sad && state == NPC_STATE.Sad)
         {
-            GameManager.Instance.UpdateSadNumber(true);
+            GameManager.Instance.UpdateSadCount(true);
         }
 
         _state = state;
@@ -156,10 +146,12 @@ public class NPCBehaviourController : MonoBehaviour
     public void CorrectItemApplied()
     {
         SwitchState(NPC_STATE.Satisfied);
+        SwitchNPCData();
+
         _happinessBarController.ActivateHappinessTime();
         _symbolController.HideSymbol();
-        GameManager.Instance.UpdateNumberOfSatisfiedClients();
-        SwitchNPCData();
+
+        GameManager.Instance.UpdateSatisfiedClientsCount();
     }
 
     /// <summary>
@@ -167,9 +159,10 @@ public class NPCBehaviourController : MonoBehaviour
     /// </summary>
     public void IncorrectItemApplied()
     {
-        GameManager.Instance.UpdateNumberOfNotAmusedClients();
         SwitchState(NPC_STATE.NotSatisfied);
         StartCoroutine(NotSatisfiedTimer());
+
+        GameManager.Instance.UpdateNotAmusedClientsCount();
     }
 
     /// <summary>
@@ -177,7 +170,7 @@ public class NPCBehaviourController : MonoBehaviour
     /// </summary>
     public void OnItemTriggered(ITEM_TYPE type)
     {
-        if (_itemInteractionDict.TryGetValue(type, out var npcState))
+        if (_interactionDict.TryGetValue(type, out var npcState))
         {
             if (!_happinessBarController.HappinessIsActive)
             {
@@ -207,7 +200,7 @@ public class NPCBehaviourController : MonoBehaviour
     public void MakeMovingNPC()
     {
         _movementController = gameObject.AddComponent<NPCMovementController>();
-        _movementController.InitializeData(_movementData, _anim);
+        _movementController.InitializeData(_movementData, _animator);
     }
     #endregion
 }
