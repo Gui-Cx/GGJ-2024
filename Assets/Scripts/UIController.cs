@@ -50,6 +50,12 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         _endMenu.SetActive(false);
+
+        FMODUnity.RuntimeManager.LoadBank("Music", true);
+        FMODUnity.RuntimeManager.LoadBank("SoundsEffect", true);
+        FMODUnity.RuntimeManager.CoreSystem.mixerSuspend();
+        FMODUnity.RuntimeManager.CoreSystem.mixerResume();
+
         if (SceneManager.GetActiveScene().buildIndex == 0) EnableStartMenu();
     }
 
@@ -139,8 +145,15 @@ public class UIController : MonoBehaviour
     private IEnumerator LoadSceneAsynchronously(int buildIndex)
     {
         AsyncOperation loadSceneAsyncOperation = SceneManager.LoadSceneAsync(buildIndex);
+        loadSceneAsyncOperation.allowSceneActivation = false;
         _loadingMenu.SetActive(true);
         _startMenu.SetActive(false);
+
+        while (!FMODUnity.RuntimeManager.HaveAllBanksLoaded)
+        {
+            yield return null;
+        }
+        loadSceneAsyncOperation.allowSceneActivation = true;
         while (!loadSceneAsyncOperation.isDone)
         {
             float loadingProgress = Mathf.Clamp01(loadSceneAsyncOperation.progress / 0.9f);
