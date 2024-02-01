@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 /// <summary>
 /// Script of the GameManager object that will handle the game's objective and overall architecture
@@ -22,11 +21,6 @@ public class GameManager : MonoBehaviour
     [Header("Game Timer Parameters")]
     [SerializeField] private int _gameDuration = 600;
     [SerializeField] private float _timerRefreshRate = 1f;
-
-    [Header("Tilemap elements")]
-    public Grid TilemapGrid;
-    public Tilemap BackgroundTilemap;
-    public Tilemap GreyTilemap;
 
     [Header("Items")]
     public ItemsData ItemsData;
@@ -88,26 +82,26 @@ public class GameManager : MonoBehaviour
     /// Updates the number of clients that reach their happiness time.
     /// The same client can be counted multiple times
     /// </summary>
-    public void UpdateNumberOfSatisfiedClients()
+    public void UpdateSatisfiedClientsCount()
     {
         _numSatisfiedClients++;
     }
-    public void UpdateNumberOfDeadClients()
+    public void UpdateDeadClientsCount()
     {
         _numDeadClients++;
         _numTotalClients--;
     }
-    public void UpdateNumberOfNotAmusedClients()
+    public void UpdateNotAmusedClientsCount()
     {
         _numNotAmusedClients++;
     }
-    public void UpdateNumberTotalOfClients()
+    public void UpdateTotalClientsCount()
     {
         _numTotalClients++;
         SetMusicLevel();
     }
 
-    public void UpdateSadNumber(bool isSad)
+    public void UpdateSadCount(bool isSad)
     {
         _ = isSad? _numSadClients++ : _numSadClients--;
         SetMusicLevel();

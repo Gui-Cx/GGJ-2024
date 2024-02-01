@@ -22,7 +22,6 @@ public enum USE_TYPE
     The_Pie
 }
 
-
 [Serializable]
 public struct ItemData
 {
