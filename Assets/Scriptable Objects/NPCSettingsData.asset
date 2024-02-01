@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHappiness: 100
   HappinessThreshold: 50
-  HappinessUpdateDelay: 1
-  HappyTime: 10
+  HappinessUpdateDelay: 0.5
+  HappyTime: 20
   MinSadnessRadius: 1
-  MaxSadnessRadius: 4
+  MaxSadnessRadius: 4.5
   MinEmissionRate: 1
   MaxEmissionRate: 10
   ScoreIncrease: 10

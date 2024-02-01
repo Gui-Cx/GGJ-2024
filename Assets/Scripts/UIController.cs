@@ -41,7 +41,7 @@ public class UIController : MonoBehaviour
 
     [Header("End Menu Elements")]
     [SerializeField] private GameObject _endMenu;
-    [SerializeField] private TextMeshProUGUI _endScoreText;
+    [SerializeField] private OutlinedText _endScoreText;
     [SerializeField] private GameObject _endMenuQuitButton;
 
     [Header("Loading Screen Elements")]
@@ -104,7 +104,10 @@ public class UIController : MonoBehaviour
     /// <param name="numDeadClients">Number of Dead clients (self-explanatory)</param>
     public void UpdateEndScore(int scoreValue, int numSatisfiedClients, int numNotAmusedClients, int numDeadClients)
     {
-        _endScoreText.text = "Score : "+scoreValue.ToString() + '\n' + '\n' + "Satisfied Clients : "+numSatisfiedClients.ToString() + '\n' + '\n' + "Not Amused Clients : "+numNotAmusedClients.ToString() + '\n' + '\n' + "Dead Clients : "+numDeadClients;
+        string values = scoreValue.ToString() + '\n' + numSatisfiedClients.ToString() + '\n' +
+                        numNotAmusedClients.ToString() + '\n' + numDeadClients.ToString() + '\n';
+
+        _endScoreText.SetText(values);
     }
     #endregion
 
