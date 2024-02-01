@@ -44,6 +44,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: c8cddfa3329e6d549844140047fbe905, type: 2}
+    - target: {fileID: 7554101328503949171, guid: d6b15d45668b4b8438c2c38d9ebf556f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554101328503949171, guid: d6b15d45668b4b8438c2c38d9ebf556f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7770832343102074976, guid: d6b15d45668b4b8438c2c38d9ebf556f, type: 3}
       propertyPath: m_Sprite
       value: 

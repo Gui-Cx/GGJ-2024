@@ -28,6 +28,8 @@ public class AOESadness : MonoBehaviour
         _maxSadnessRadius = maxRadius;
         _minEmissionRate = minEmission;
         _maxEmissionRate = maxEmission;
+
+        RemoveSadness();
     }
 
     public void RemoveSadness()

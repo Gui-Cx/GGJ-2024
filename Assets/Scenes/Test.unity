@@ -6875,15 +6875,7 @@ PrefabInstance:
       value: NPCSpawnManager
       objectReference: {fileID: 0}
     - target: {fileID: 6569675572112283778, guid: 50f3259aaa291ec449685af219153108, type: 3}
-      propertyPath: MaxHospitalCapacity
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6569675572112283778, guid: 50f3259aaa291ec449685af219153108, type: 3}
       propertyPath: _spawnPoints.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6569675572112283778, guid: 50f3259aaa291ec449685af219153108, type: 3}
-      propertyPath: _availableNPC.Array.size
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6569675572112283778, guid: 50f3259aaa291ec449685af219153108, type: 3}
@@ -6902,21 +6894,17 @@ PrefabInstance:
       propertyPath: _spawnPoints.Array.data[3]
       value: 
       objectReference: {fileID: 1875047899}
-    - target: {fileID: 6569675572112283778, guid: 50f3259aaa291ec449685af219153108, type: 3}
-      propertyPath: _availableNPC.Array.data[3]
-      value: 
-      objectReference: {fileID: 9199155297810892559, guid: 3030c932f22c531438d94ee092cc4ec5, type: 3}
     - target: {fileID: 8949326260697495775, guid: 50f3259aaa291ec449685af219153108, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.986781
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8949326260697495775, guid: 50f3259aaa291ec449685af219153108, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5367427
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8949326260697495775, guid: 50f3259aaa291ec449685af219153108, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.06605733
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8949326260697495775, guid: 50f3259aaa291ec449685af219153108, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6924,15 +6912,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8949326260697495775, guid: 50f3259aaa291ec449685af219153108, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8949326260697495775, guid: 50f3259aaa291ec449685af219153108, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8949326260697495775, guid: 50f3259aaa291ec449685af219153108, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8949326260697495775, guid: 50f3259aaa291ec449685af219153108, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

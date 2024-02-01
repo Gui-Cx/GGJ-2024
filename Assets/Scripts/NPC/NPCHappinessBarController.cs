@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Assertions;
 using Color = UnityEngine.Color;
 
 /// <summary>
@@ -8,15 +7,14 @@ using Color = UnityEngine.Color;
 /// </summary>
 public class NPCHappinessBarController : MonoBehaviour
 {
-    [SerializeField, InspectorName("Happiness Lvl (debug)")] private int _curLevel; //Serialized for debug purposes
+    [SerializeField] private int _happiness; //Serialized for debug purposes
 
     [Header("Elements")]
     [SerializeField] private GameObject _happinessBar;
     [SerializeField] private GameObject _laughSprite;
-    [SerializeField] private GameObject _happinessAOE;
-    [SerializeField] private GameObject _sadnessAOE;
+    [SerializeField] private GameObject _AOEHappiness;
 
-    private AOESadness _aoeSadness;
+    private AOESadness _AOESadness;
     private HappinessBarModule _barModule;
     private Animator _animator;
 
@@ -31,18 +29,13 @@ public class NPCHappinessBarController : MonoBehaviour
     private bool _happinessIsActive = false;
     public bool HappinessIsActive => _happinessIsActive;
 
-    private void OnValidate()
-    {
-        Assert.IsNotNull(_happinessAOE);
-        Assert.IsNotNull(_happinessBar);
-    }
-
     private void Awake()
     {
         _barModule = _happinessBar.GetComponent<HappinessBarModule>();
-        _aoeSadness = GetComponentInChildren<AOESadness>();
+        _AOESadness = GetComponentInChildren<AOESadness>();
 
         _laughSprite.SetActive(false);
+        _AOEHappiness.SetActive(false);
     }
 
     public void SetValues(NPCSettingsData settingsData, Animator animator)
@@ -55,12 +48,13 @@ public class NPCHappinessBarController : MonoBehaviour
         _scoreIncrease = settingsData.ScoreIncrease;
         _scoreDecrease = settingsData.ScoreDecrease;
 
-        _aoeSadness.SetValues(settingsData.MinSadnessRadius, settingsData.MaxSadnessRadius, 
+        _AOESadness.SetValues(settingsData.MinSadnessRadius, settingsData.MaxSadnessRadius, 
                               settingsData.MinEmissionRate, settingsData.MaxEmissionRate);
-
+        
         _barModule.SetMaxHappiness(_maxHappiness);
         _barModule.ChangeFillColor(Color.green);
 
+        _happiness = _maxHappiness;
         StartCoroutine(UpdateHappiness());
     }
 
@@ -71,17 +65,17 @@ public class NPCHappinessBarController : MonoBehaviour
     private IEnumerator UpdateHappiness()
     {
         yield return new WaitForSeconds(_HappinessUpdateDelay);
-        _barModule.SetHappinessValue(_curLevel);
+        _barModule.SetHappinessValue(_happiness);
 
-        if (!_happinessIsActive) _curLevel--;
-        if (_curLevel < 0) _curLevel = 0;
+        if (!_happinessIsActive) _happiness--;
+        if (_happiness < 0) _happiness = 0;
 
-        if (_curLevel < _happinessThreshold)
+        if (_happiness < _happinessThreshold)
         {
             GetComponent<NPCBehaviourController>().SwitchState(NPC_STATE.Sad);
             GameManager.Instance.DecreaseScore(_scoreDecrease);
 
-            _aoeSadness.SetSadness(_curLevel, _happinessThreshold);
+            _AOESadness.SetSadness(_happiness, _happinessThreshold);
             _barModule.ChangeFillColor(Color.red);
         }
 
@@ -97,28 +91,28 @@ public class NPCHappinessBarController : MonoBehaviour
     public void ActivateHappinessTime()
     {
         _happinessIsActive = true;
-        _curLevel = _maxHappiness;        
+        _happiness = _maxHappiness;        
         _animator.SetTrigger("Laugh");
         _laughSprite.SetActive(true);
-        _aoeSadness.RemoveSadness();
+        _AOESadness.RemoveSadness();
 
         GameManager.Instance.IncreaseScore(_scoreIncrease);
 
         _barModule.ChangeFillColor(Color.yellow);
-        _barModule.SetHappinessValue(_curLevel);
+        _barModule.SetHappinessValue(_happiness);
 
         StartCoroutine(HappinessTimer());
     }
 
     private IEnumerator HappinessTimer()
     {
-        _happinessAOE.SetActive(true);
+        _AOEHappiness.SetActive(true);
 
         yield return new WaitForSeconds(_happyTime);
         
         _happinessIsActive = false;
         _laughSprite.SetActive(false);
-        _happinessAOE.SetActive(false);
+        _AOEHappiness.SetActive(false);
 
         _barModule.ChangeFillColor(Color.green);
 

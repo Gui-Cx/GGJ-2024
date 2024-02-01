@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5603849482279556583}
   - component: {fileID: 4225532870313250269}
   m_Layer: 0
-  m_Name: AOEHappyness
+  m_Name: AOEHappiness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

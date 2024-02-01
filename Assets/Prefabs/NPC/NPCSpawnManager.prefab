@@ -53,11 +53,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  MaxHospitalCapacity: 5
+  MaxHospitalCapacity: 4
   CurNPCNumber: 0
   _initialSpawnNPCNumber: 3
   _availableNPC:
-  - {fileID: 9199155297810892559, guid: 02c91ca7f8879da47948f39d21ba5f88, type: 3}
-  - {fileID: 9199155297810892559, guid: d6b15d45668b4b8438c2c38d9ebf556f, type: 3}
-  - {fileID: 9199155297810892559, guid: d20d1199b22e04b40aa19c582f532315, type: 3}
-  - {fileID: 9199155297810892559, guid: 3030c932f22c531438d94ee092cc4ec5, type: 3}
+  - {fileID: 1538179899212824326, guid: a3aaac11e87345c4086fd995566bf4d8, type: 3}
+  - {fileID: 1538179899212824326, guid: adc46fd88b1c9884fabc9e0869d9d7cc, type: 3}
+  - {fileID: 1538179899212824326, guid: 4f6db65356306714fa38311ac853786d, type: 3}
+  - {fileID: 1538179899212824326, guid: ed79d889ae6244e4985bb9b1c3b3e6ea, type: 3}
