@@ -92,27 +92,27 @@ public class NPCHappinessBarController : MonoBehaviour
     {
         _happinessIsActive = true;
         _happiness = _maxHappiness;        
-        _animator.SetTrigger("Laugh");
         _laughSprite.SetActive(true);
+        _AOEHappiness.SetActive(true);
+        _animator.SetTrigger("Laugh");
         _AOESadness.RemoveSadness();
-
-        GameManager.Instance.IncreaseScore(_scoreIncrease);
 
         _barModule.ChangeFillColor(Color.yellow);
         _barModule.SetHappinessValue(_happiness);
+
+        GameManager.Instance.IncreaseScore(_scoreIncrease);
 
         StartCoroutine(HappinessTimer());
     }
 
     private IEnumerator HappinessTimer()
     {
-        _AOEHappiness.SetActive(true);
-
         yield return new WaitForSeconds(_happyTime);
         
         _happinessIsActive = false;
         _laughSprite.SetActive(false);
         _AOEHappiness.SetActive(false);
+        _animator.SetTrigger("Idle");
 
         _barModule.ChangeFillColor(Color.green);
 
