@@ -20,5 +20,5 @@ MonoBehaviour:
   MaxSadnessRadius: 4.5
   MinEmissionRate: 1
   MaxEmissionRate: 10
-  ScoreIncrease: 10
+  ScoreIncrease: 50
   ScoreDecrease: 1

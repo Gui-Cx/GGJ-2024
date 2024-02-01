@@ -30,10 +30,11 @@ public class UIController : MonoBehaviour
     [SerializeField] private Color _activeColor;
     [SerializeField] private Color _disabledColor;
 
-    [Header("Game Timer Elements")]
+    [Header("Game UI Elements")]
     [SerializeField] private GameObject _sunDialArrow;
     [SerializeField] private float _arrowStartAngle;
     [SerializeField] private float _arrowEndAngle;
+    [SerializeField] private TextMeshProUGUI _scoreText;
 
     [Header("Start Menu Elements")]
     [SerializeField] private GameObject _startMenu;
@@ -70,6 +71,11 @@ public class UIController : MonoBehaviour
     {
         float angle = _arrowStartAngle + elapsedTime / totalTime * (_arrowEndAngle - _arrowStartAngle);
         _sunDialArrow.transform.eulerAngles = new Vector3(0, 0, angle);
+    }
+
+    public void UpdateScore(float value)
+    {
+        _scoreText.text = "Score " + value;
     }
 
     #endregion
