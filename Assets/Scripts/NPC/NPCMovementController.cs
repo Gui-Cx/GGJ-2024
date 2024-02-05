@@ -64,11 +64,11 @@ public class NPCMovementController : MonoBehaviour
         Vector2 newPos;
         if (_state == NPC_MOVEMENT_STATE.MoveRight)
         {
-            newPos = transform.position + transform.right * Time.deltaTime*_data.Speed;
+            newPos = transform.position + _data.Speed * Time.deltaTime * transform.right;
         }
         else
         {
-            newPos = transform.position - transform.right * Time.deltaTime * _data.Speed;
+            newPos = transform.position - _data.Speed * Time.deltaTime * transform.right;
         }
         if (!MovementIsPossible(newPos))
         {

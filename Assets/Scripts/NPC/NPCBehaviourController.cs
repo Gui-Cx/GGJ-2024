@@ -24,6 +24,9 @@ public class NPCBehaviourController : MonoBehaviour
     [SerializeField] private NPCSettingsData _settingsData;
     [SerializeField] private NPCMovementData _movementData;
     [SerializeField] private NPCTypeData _behaviourData;
+    [Header("Debug")]
+    [SerializeField] private NPCBehaviourData _curNpcData;
+
     [Header("Elements")]
     [SerializeField] private Animator _animator;
     #endregion
@@ -37,8 +40,7 @@ public class NPCBehaviourController : MonoBehaviour
 
     private NPC_STATE _state;
     private ITEM_TYPE _wantedItem;
-    private NPCBehaviourData _curNpcData;
-
+    
     [HideInInspector] public Transform SpawnPoint;
     #endregion
 
@@ -53,7 +55,8 @@ public class NPCBehaviourController : MonoBehaviour
         _happinessBarController.SetValues(_settingsData, _animator);
         
         SwitchState(NPC_STATE.Idle);
-        SwitchNPCData();
+        if (_curNpcData == null) SwitchNPCData();
+        else UpdateInteractionTable();
 
         GameManager.Instance.UpdateTotalClientsCount();
     }

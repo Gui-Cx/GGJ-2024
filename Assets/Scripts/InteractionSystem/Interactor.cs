@@ -4,6 +4,7 @@ public class Interactor : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField] float _interactionRadius;
+    [SerializeField] Vector2 _interactorOffset;
     [SerializeField] LayerMask _interactableMask;
 
     [Header("Player UI")]
@@ -20,7 +21,8 @@ public class Interactor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _collider = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y), _interactionRadius, _interactableMask);
+        Vector2 interactorPosition = (Vector2) transform.position + _interactorOffset;
+        _collider = Physics2D.OverlapCircle(interactorPosition, _interactionRadius, _interactableMask);
         
         if (_collider != null)
         {
@@ -43,11 +45,12 @@ public class Interactor : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position, _interactionRadius);
+        Vector2 interactorPosition = (Vector2)transform.position + _interactorOffset;
+        Gizmos.DrawSphere(interactorPosition, _interactionRadius);
         if (_collider)
         {
             Gizmos.color = Color.blue;
-            Gizmos.DrawLine(transform.position, _collider.transform.position);
+            Gizmos.DrawLine(interactorPosition, _collider.transform.position);
         }
     }
 }
