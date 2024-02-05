@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Tilemap_fg-door-right
+  m_Name: Tilemap_bg-grid-top
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 4aaceb97df2be76469a0f8c6df0df3d9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f8827ba6b47e8e45a0fa033030e00c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -33,4 +33,4 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
-  m_ColliderType: 0
+  m_ColliderType: 1
