@@ -15,25 +15,6 @@ using static NPCEvents;
 /// </summary>
 public class NPCSpawnManager : MonoBehaviour
 {
-    #region SINGLETON DESIGN PATTERN
-    private static NPCSpawnManager _instance;
-    public static NPCSpawnManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = new NPCSpawnManager();
-            }
-            return _instance;
-        }
-    }
-    private void Awake()
-    {
-        _instance = this;
-    }
-    #endregion
-
     #region VARIABLES
     [Header("Spawn variables")]
     [SerializeField] private float _spawnTimer=10f;
