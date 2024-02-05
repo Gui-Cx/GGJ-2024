@@ -35,14 +35,14 @@ MonoBehaviour:
     UseOffset: {x: 0, y: 0}
     Particles: {fileID: 2218194259297860986, guid: 0dd0739523034b44cbd3f572cfb5e4f2, type: 3}
   - Name: BallonHeart
-    Symbol: {fileID: 21300000, guid: 51f2936857921a04486a6b0882447396, type: 3}
+    Symbol: {fileID: 21300000, guid: eb6d50aaee159d84a890b34058170697, type: 3}
     Type: 3
     UseType: 0
     UseRange: 2
     UseOffset: {x: 0, y: 0}
     Particles: {fileID: 6921933126050192, guid: 2121bc266b628d045b901e444cc1919f, type: 3}
   - Name: BallonDog
-    Symbol: {fileID: 21300000, guid: 99947f81180d7224c9984cc8d7f6e52c, type: 3}
+    Symbol: {fileID: 21300000, guid: eb6d50aaee159d84a890b34058170697, type: 3}
     Type: 2
     UseType: 0
     UseRange: 2
