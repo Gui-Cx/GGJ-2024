@@ -96,19 +96,9 @@ public class ItemController : MonoBehaviour
     {
         if (time < minPressTime) { return; }
         float speedThrow = throwStrength * (Mathf.Clamp(time, 0, maxPressTime) - minPressTime) / (maxPressTime - minPressTime);
-
-        if (GetComponent<Player>().IsFacingRight)
-        {
-            Pie currentPie = Instantiate(pie, transform.position+new Vector3(1,0,0), Quaternion.identity).GetComponent<Pie>();
-            currentPie.speed = speedThrow;
-            currentPie.goRight = true;
-        }
-        else
-        {
-            Pie currentPie = Instantiate(pie, transform.position + new Vector3(-1, 0, 0), Quaternion.identity).GetComponent<Pie>();
-            currentPie.speed = speedThrow;
-            currentPie.goRight = false;
-        }
+        Pie currentPie = Instantiate(pie, transform.position, Quaternion.identity).GetComponent<Pie>();
+        currentPie.speed = speedThrow;
+        currentPie.goRight = GetComponent<Player>().IsFacingRight;
         canThrowPie = false;
         StartCoroutine(CountdownPie(reloadPieTime));
         GetTimeHold(0);
