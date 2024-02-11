@@ -73,10 +73,12 @@ public class GameManager : MonoBehaviour
     public void IncreaseScore(int value)
     {
         _curScore += value;
+        UIController.Instance.UpdateScore(_curScore);
     }
     public void DecreaseScore(int value)
     {
         _curScore -= value;
+        UIController.Instance.UpdateScore(_curScore);
     }
     /// <summary>
     /// Updates the number of clients that reach their happiness time.

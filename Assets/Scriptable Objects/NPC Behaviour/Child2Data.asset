@@ -16,3 +16,9 @@ MonoBehaviour:
   - Type: 2
     Satisfies: 1
     Kills: 0
+  - Type: 3
+    Satisfies: 1
+    Kills: 0
+  - Type: 4
+    Satisfies: 1
+    Kills: 0

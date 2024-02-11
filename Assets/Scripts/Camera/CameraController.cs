@@ -11,10 +11,10 @@ public class CameraController : MonoBehaviour
     [Header("Camera Elements")]
     [SerializeField] private GameObject _player;
     [Header("Map Limit Points")]
-    [SerializeField] private float _yLowerLimit;
-    [SerializeField] private float _yUpperLimit;
-    [SerializeField] private float _xRightLimit;
-    [SerializeField] private float _xLeftLimit;
+    [SerializeField] private float _xMin;
+    [SerializeField] private float _yMin;
+    [SerializeField] private float _xMax;
+    [SerializeField] private float _yMax;
 
     private void Update()
     {
@@ -30,8 +30,8 @@ public class CameraController : MonoBehaviour
     {
         //Update the position :
         transform.position = new Vector3(
-            Mathf.Clamp(_player.transform.position.x, _xLeftLimit, _xRightLimit),
-            Mathf.Clamp(_player.transform.position.y, _yLowerLimit, _yUpperLimit),
+            Mathf.Clamp(_player.transform.position.x, _xMin, _xMax),
+            Mathf.Clamp(_player.transform.position.y, _yMin, _yMax),
             -6.5f);
     }
 }

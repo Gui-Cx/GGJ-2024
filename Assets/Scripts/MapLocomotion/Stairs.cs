@@ -14,7 +14,7 @@ public class Stairs : MonoBehaviour, IInteractable
 
     private void Start()
     {
-        if (pairStairs == null) Debug.LogError("No pairStairs");
-        else if (pairStairs.pairStairs!=this) Debug.LogError("pairStairs have another Pair");
+        if (pairStairs == null) Debug.LogError(name + " has no stair pair");
+        else if (pairStairs == this) Debug.LogWarning(name + "'s stair pair is itself");
     }
 }

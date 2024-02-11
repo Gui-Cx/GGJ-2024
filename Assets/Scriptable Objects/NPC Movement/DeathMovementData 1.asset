@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cd208048db15047a8aefc009f52329, type: 3}
   m_Name: DeathMovementData 1
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 2
+  <Speed>k__BackingField: 1
   <PauseTimer>k__BackingField: 2
-  <MovementCooldown>k__BackingField: 40
+  <MovementCooldown>k__BackingField: 25
